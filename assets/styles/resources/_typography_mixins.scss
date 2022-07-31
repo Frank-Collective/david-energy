@@ -1,0 +1,130 @@
+@mixin h1 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  @include clamp("font-size", 60px, 6.6vw, 125px);
+  letter-spacing: -0.02em;
+  line-height: 100%;
+  // margin-bottom: 0.5em;
+
+  @include breakpoint(small) {
+    line-height: 110%;
+  }
+}
+
+@mixin h2 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  @include clamp("font-size", 42px, 5vw, 96px);
+  letter-spacing: -0.02em;
+  line-height: 110%;
+  // margin-bottom: 0.5em;
+
+  @include breakpoint(small) {
+    line-height: 120%;
+  }
+}
+
+@mixin h3 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  @include clamp("font-size", 32px, 3.8vw, 72px);
+  letter-spacing: -0.01em;
+  line-height: 110%;
+  // margin-bottom: 0.5em;
+
+  @include breakpoint(small) {
+    line-height: 120%;
+  }
+}
+
+@mixin h4 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  @include clamp("font-size", 26px, 2.3vw, 44px);
+  letter-spacing: -0.01em;
+  line-height: 130%;
+  // margin-bottom: 0.5em;
+
+  @include breakpoint(small) {
+    line-height: 120%;
+  }
+}
+
+@mixin h5 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  line-height: 100%;
+  // margin-bottom: 0.5em;
+}
+
+@mixin h6 {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  line-height: 100%;
+  // margin-bottom: 0.5em;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  @include clamp("font-size", 14px, 1vw, 18px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $white;
+  background-color: $bright_green;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25em 1em 0;
+  width: 300px;
+  height: 50px;
+  white-space: nowrap;
+  transition: 0.15s;
+
+  &:hover {
+    color: $light_green;
+    background-color: $dark_evergreen;
+  }
+
+  &--outline {
+    @extend .button;
+    color: $dark_evergreen;
+    background-color: $white;
+    border: 1px solid $bright_green;
+
+    &:hover {
+      color: $white;
+      background-color: $bright_green;
+    }
+  }
+
+  &--light-green {
+    @extend .button;
+    color: $dark_evergreen;
+    background-color: $light_green;
+
+    &:hover {
+      color: $light_green;
+      background-color: $dark_evergreen;
+    }
+  }
+}
+
+@mixin button {
+  @extend .button;
+}

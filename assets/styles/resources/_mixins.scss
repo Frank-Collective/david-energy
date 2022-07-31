@@ -42,7 +42,7 @@ $tiny: 480px;
 }
 
 @mixin gutter($prop) {
-  #{$prop}: 7.8vw;
+  #{$prop}: 5.6vw;
 
   @media (max-width: $large - 1px) {
     #{$prop}: 3.9vw;
@@ -54,7 +54,7 @@ $tiny: 480px;
 }
 
 @mixin neg-gutter($prop) {
-  #{$prop}: -7.8vw;
+  #{$prop}: -5.6vw;
 
   @media (max-width: $large - 1px) {
     #{$prop}: -3.9vw;
