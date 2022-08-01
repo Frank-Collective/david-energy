@@ -128,3 +128,89 @@
 @mixin button {
   @extend .button;
 }
+
+.indented-text-link {
+  position: relative;
+  white-space: nowrap;
+
+  &--medium {
+    @extend .indented-text-link;
+    @include h4;
+    line-height: 140%;
+    text-decoration: none;
+    color: $text_color;
+    transition: 0.15s padding-left;
+
+    @include breakpoint(medium) {
+      @include h3;
+    }
+
+    &:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 38%;
+      left: 0;
+      transform: translateY(-50%);
+      @include clamp("width", 9px, 0.7vw, 12px);
+      @include clamp("height", 16px, 1.3vw, 24px);
+      background-image: url("/images/icon-indented-text-link-medium.svg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: 0.15s opacity;
+    }
+
+    &:hover {
+      padding-left: 0.5em;
+
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--small {
+    @extend .indented-text-link;
+    font-family: "Gronland";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 150%;
+    text-decoration: none;
+    color: $text_color;
+    transition: 0.15s padding-left;
+
+    @include breakpoint(medium) {
+      font-size: 24px;
+    }
+
+    &:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 16px;
+      background-image: url("/images/icon-indented-text-link-small.svg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: 0.15s opacity;
+    }
+
+    &:hover {
+      padding-left: 0.5em;
+
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@mixin indented-text-link {
+  @extend .indented-text-link;
+}

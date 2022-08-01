@@ -39,23 +39,63 @@
         </div>
         <div class="menu-1">
           <ul>
-            <li><nuxt-link to="#">For Home</nuxt-link></li>
-            <li><nuxt-link to="#">For Business</nuxt-link></li>
+            <li>
+              <nuxt-link class="indented-text-link--medium" to="#"
+                >For Home</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--medium" to="#"
+                >For Business</nuxt-link
+              >
+            </li>
           </ul>
           <span>For Partners</span>
           <ul>
-            <li><nuxt-link to="#">For Brokers</nuxt-link></li>
-            <li><nuxt-link to="#">For Developers</nuxt-link></li>
+            <li>
+              <nuxt-link class="indented-text-link--medium" to="#"
+                >For Brokers</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--medium" to="#"
+                >For Developers</nuxt-link
+              >
+            </li>
           </ul>
         </div>
         <div class="menu-2">
           <ul>
-            <li><nuxt-link to="#">Why David Energy?</nuxt-link></li>
-            <li><nuxt-link to="#">FAQ</nuxt-link></li>
-            <li><nuxt-link to="#">About Us</nuxt-link></li>
-            <li><nuxt-link to="#">Careers</nuxt-link></li>
-            <li><nuxt-link to="#">Contact Us</nuxt-link></li>
-            <li><nuxt-link to="#">Blog</nuxt-link></li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >Why David Energy?</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >FAQ</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >About Us</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >Careers</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >Contact Us</nuxt-link
+              >
+            </li>
+            <li>
+              <nuxt-link class="indented-text-link--small" to="#"
+                >Blog</nuxt-link
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -228,22 +268,6 @@ footer.footer {
             @include breakpoint(medium) {
               margin: 0 0 0.5em;
             }
-
-            a {
-              @include h4;
-              line-height: 140%;
-              text-decoration: none;
-              color: $text_color;
-              transition: 0.15s color;
-
-              @include breakpoint(medium) {
-                @include h3;
-              }
-
-              &:hover {
-                color: $bright_green;
-              }
-            }
           }
         }
 
@@ -257,7 +281,7 @@ footer.footer {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: $bright_green;
-          margin: 2em 0 1em;
+          margin: 2.5em 0 1em;
 
           @include breakpoint(medium) {
             font-size: 15px;
@@ -296,25 +320,6 @@ footer.footer {
 
             @include breakpoint(medium) {
               margin: 0 0 0.25em;
-            }
-
-            a {
-              font-family: "Gronland";
-              font-style: normal;
-              font-weight: 400;
-              font-size: 28px;
-              line-height: 150%;
-              text-decoration: none;
-              color: $text_color;
-              transition: 0.15s color;
-
-              @include breakpoint(medium) {
-                font-size: 24px;
-              }
-
-              &:hover {
-                color: $bright_green;
-              }
             }
           }
         }
