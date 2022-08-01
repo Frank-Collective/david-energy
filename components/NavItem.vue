@@ -8,7 +8,18 @@
   >
     <nuxt-link :to="data.url" v-bind:class="{ green_hover: !data.dropdown }">
       {{ data.title }}
-      <img v-if="data.dropdown" src="/images/icon-dropdown-arrow.svg" alt="" />
+      <img
+        class="desktop"
+        v-if="data.dropdown"
+        src="/images/icon-dropdown-arrow.svg"
+        alt=""
+      />
+      <img
+        class="mobile"
+        v-if="data.dropdown"
+        src="/images/icon-dropdown-arrow-mobile.svg"
+        alt=""
+      />
     </nuxt-link>
     <transition
       v-if="data.dropdown"
@@ -82,9 +93,18 @@ export default {
 
 <style lang="scss" scoped>
 .nav-item {
+  @include breakpoint(mobile_nav_breakpoint) {
+    padding: 0 18px;
+    border-top: 2px solid rgba($slate_gray, 0.4);
+  }
+
   &:hover {
     > a {
       border-bottom: 2px solid $bright_green;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        border: none;
+      }
 
       img {
         transform: rotate(180deg);
@@ -101,6 +121,16 @@ export default {
     .dropdown-dummy {
       padding: 12px 0 0;
       height: auto;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        padding: 5px 0 0;
+      }
+    }
+
+    > a {
+      @include breakpoint(mobile_nav_breakpoint) {
+        color: $bright_green;
+      }
     }
   }
 
@@ -118,8 +148,41 @@ export default {
     margin: 7px 1.5em 0;
     transition: 0.15s color;
 
+    @include breakpoint(mobile_nav_breakpoint) {
+      display: flex;
+      justify-content: space-between;
+      font-family: "Gronland";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 120%;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      margin: 0;
+    }
+
     img {
+      flex-shrink: 0;
+      width: 14px;
+      height: auto;
       transition: transform 0.15s;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        width: 22px;
+      }
+
+      &.desktop {
+        @include breakpoint(mobile_nav_breakpoint) {
+          display: none;
+        }
+      }
+
+      &.mobile {
+        display: none;
+        @include breakpoint(mobile_nav_breakpoint) {
+          display: block;
+        }
+      }
     }
   }
 
@@ -141,6 +204,11 @@ export default {
 
         &:hover {
           color: $bright_green !important;
+        }
+
+        @include breakpoint(mobile_nav_breakpoint) {
+          margin: 0 0 10px 0;
+          @include h4;
         }
       }
     }

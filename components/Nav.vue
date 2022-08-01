@@ -1,13 +1,27 @@
 <template>
   <nav class="nav">
-    <div class="inner">
+    <div class="inner" v-bind:class="{ mobile_menu_open: mobileMenuOpen }">
       <div class="logo">
-        <a v-if="currentRoute == 'index'" v-scroll-to="'#top'"
-          ><img src="/images/logo-desktop.svg" alt=""
-        /></a>
-        <nuxt-link v-if="currentRoute != 'index'" to="/"
-          ><img src="/images/logo-desktop.svg" alt=""
-        /></nuxt-link>
+        <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
+          <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+          <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+        </a>
+        <nuxt-link v-if="currentRoute != 'index'" to="/">
+          <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+          <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+        </nuxt-link>
+      </div>
+      <div class="burger" v-on:click="toggleMenu">
+        <img
+          v-bind:class="{ hide: mobileMenuOpen }"
+          src="/images/icon-burger.svg"
+          alt=""
+        />
+        <img
+          v-bind:class="{ hide: !mobileMenuOpen }"
+          src="/images/icon-burger-x.svg"
+          alt=""
+        />
       </div>
       <ul class="routes">
         <NavItem
@@ -77,12 +91,26 @@ export default {
   data() {
     return {
       currentRoute: null,
+      mobileMenuOpen: false,
     };
   },
   mounted() {
     this.currentRoute = this.$route.name;
   },
-  methods: {},
+  methods: {
+    toggleMenu: function () {
+      this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
+    hideDropdown: function () {
+      this.dropdownsHidden = true;
+      setTimeout(() => {
+        this.dropdownsHidden = false;
+      }, 500);
+    },
+    closeMenu: function () {
+      this.mobileMenuOpen = false;
+    },
+  },
   watch: {
     $route(to, from) {
       this.currentRoute = to.name;
@@ -99,6 +127,10 @@ nav.nav {
   width: 100%;
   padding: 20px 32px 0;
 
+  @include breakpoint(mobile_nav_breakpoint) {
+    padding: 0;
+  }
+
   .inner {
     display: flex;
     align-items: flex-start;
@@ -107,19 +139,99 @@ nav.nav {
     border-radius: 18px;
     padding: 14px 35px;
 
+    @include breakpoint(mobile_nav_breakpoint) {
+      border-radius: 0;
+      padding: 0 15px 0 20px;
+      height: 56px;
+      align-items: center;
+    }
+
+    &.mobile_menu_open {
+      @include breakpoint(mobile_nav_breakpoint) {
+        .routes {
+          display: block;
+        }
+      }
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      background-color: $white;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        display: block;
+      }
+    }
+
     .logo {
       cursor: pointer;
       align-self: flex-start;
 
-      img {
+      @include breakpoint(mobile_nav_breakpoint) {
+        align-self: unset;
+        position: relative;
+        z-index: 1;
+      }
+
+      img.desktop {
         display: block;
         width: 130px;
         height: auto;
+
+        @include breakpoint(mobile_nav_breakpoint) {
+          display: none;
+        }
+      }
+
+      img.mobile {
+        display: none;
+        width: 200px;
+        height: auto;
+
+        @include breakpoint(mobile_nav_breakpoint) {
+          display: block;
+        }
+      }
+    }
+
+    .burger {
+      position: relative;
+      z-index: 1;
+      display: none;
+      align-items: center;
+      cursor: pointer;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        display: flex;
+      }
+
+      img.hide {
+        display: none;
       }
     }
 
     .routes {
       display: flex;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        padding: 56px 0 0;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        background-color: $white;
+      }
 
       > li {
         &.divider {
@@ -127,6 +239,10 @@ nav.nav {
           // height: 50px;
           background-color: $bright_green;
           margin: 0 30px;
+
+          @include breakpoint(mobile_nav_breakpoint) {
+            display: none;
+          }
         }
 
         &.bright-green-button {
@@ -134,6 +250,12 @@ nav.nav {
           align-items: center;
           align-self: flex-start;
           padding: 3px 0;
+
+          @include breakpoint(mobile_nav_breakpoint) {
+            padding: 30px 18px 0;
+            align-self: unset;
+            border-top: 2px solid rgba($slate_gray, 0.4);
+          }
 
           a {
             font-family: "Gronland";
@@ -157,6 +279,10 @@ nav.nav {
             &:hover {
               color: $light_green;
               background-color: $dark_evergreen;
+            }
+
+            @include breakpoint(mobile_nav_breakpoint) {
+              width: 100px;
             }
           }
         }

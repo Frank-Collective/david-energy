@@ -11,12 +11,14 @@
     <div class="footer-content">
       <div class="inner">
         <div class="logo">
-          <a v-if="currentRoute == 'index'" v-scroll-to="'#top'"
-            ><img src="/images/logo-desktop.svg" alt=""
-          /></a>
-          <nuxt-link v-if="currentRoute != 'index'" to="/"
-            ><img src="/images/logo-desktop.svg" alt=""
-          /></nuxt-link>
+          <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
+            <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+            <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+          </a>
+          <nuxt-link v-if="currentRoute != 'index'" to="/">
+            <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+            <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+          </nuxt-link>
           <ul class="social-media-links">
             <li>
               <a href="/" target="_blank">
@@ -102,36 +104,74 @@ footer.footer {
       padding: 2.4vw 4.6vw;
     }
   }
+
   .footer-content {
     background-color: $soft_white;
     @include gutter(padding-left);
     @include gutter(padding-right);
     padding-top: 4.2vw;
-    padding-bottom: 260px;
+    padding-bottom: 13.5vw;
+
+    @include breakpoint(medium) {
+      padding-top: 60px;
+      padding-bottom: 67px;
+    }
 
     .inner {
       display: flex;
       align-items: flex-start;
+
+      @include breakpoint(medium) {
+        flex-direction: column;
+      }
 
       .logo {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
 
+        @include breakpoint(medium) {
+          width: 100%;
+        }
+
         a {
           cursor: pointer;
           align-self: flex-start;
-          > img,
-          > svg {
+
+          @include breakpoint(medium) {
+            align-self: unset;
+          }
+
+          > img.desktop {
             display: block;
             width: 20vw;
             height: auto;
+
+            @include breakpoint(medium) {
+              display: none;
+            }
+          }
+
+          > img.mobile {
+            display: none;
+            width: 100%;
+            max-width: 374px;
+            height: auto;
+
+            @include breakpoint(medium) {
+              display: block;
+            }
           }
         }
 
         .social-media-links {
           display: flex;
           margin-top: 60px;
+
+          @include breakpoint(medium) {
+            margin-top: 34px;
+            margin-bottom: 50px;
+          }
 
           li {
             margin-right: 16px;
@@ -162,6 +202,11 @@ footer.footer {
         padding-left: 24px;
         width: 33%;
 
+        @include breakpoint(medium) {
+          padding-left: 0;
+          width: auto;
+        }
+
         &:before {
           content: "";
           display: block;
@@ -170,11 +215,19 @@ footer.footer {
           width: 2px;
           height: 100%;
           background-color: $bright_green;
+
+          @include breakpoint(medium) {
+            display: none;
+          }
         }
 
         ul {
           li {
             margin: 0 0 0.25em;
+
+            @include breakpoint(medium) {
+              margin: 0 0 0.5em;
+            }
 
             a {
               @include h4;
@@ -182,6 +235,10 @@ footer.footer {
               text-decoration: none;
               color: $text_color;
               transition: 0.15s color;
+
+              @include breakpoint(medium) {
+                @include h3;
+              }
 
               &:hover {
                 color: $bright_green;
@@ -201,6 +258,10 @@ footer.footer {
           text-transform: uppercase;
           color: $bright_green;
           margin: 2em 0 1em;
+
+          @include breakpoint(medium) {
+            font-size: 15px;
+          }
         }
       }
 
@@ -208,6 +269,12 @@ footer.footer {
         position: relative;
         padding-left: 24px;
         width: 25%;
+
+        @include breakpoint(medium) {
+          padding-left: 0;
+          width: auto;
+          margin-top: 45px;
+        }
 
         &:before {
           content: "";
@@ -217,11 +284,19 @@ footer.footer {
           width: 2px;
           height: 100%;
           background-color: $bright_green;
+
+          @include breakpoint(medium) {
+            display: none;
+          }
         }
 
         ul {
           li {
             margin: 0 0 0.5em;
+
+            @include breakpoint(medium) {
+              margin: 0 0 0.25em;
+            }
 
             a {
               font-family: "Gronland";
@@ -232,6 +307,10 @@ footer.footer {
               text-decoration: none;
               color: $text_color;
               transition: 0.15s color;
+
+              @include breakpoint(medium) {
+                font-size: 24px;
+              }
 
               &:hover {
                 color: $bright_green;
@@ -257,6 +336,14 @@ footer.footer {
       letter-spacing: 0.08em;
       padding: 17px 0 13px;
 
+      @include breakpoint(medium) {
+        font-weight: 400;
+        text-transform: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px 0;
+      }
+
       a {
         text-decoration: none;
         color: $bright_green;
@@ -268,6 +355,11 @@ footer.footer {
 
       span {
         margin-left: 2em;
+
+        @include breakpoint(medium) {
+          margin-left: 0;
+          font-size: 15px;
+        }
       }
     }
   }
