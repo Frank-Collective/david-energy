@@ -123,6 +123,17 @@
       background-color: $dark_evergreen;
     }
   }
+
+  &--white {
+    @extend .button;
+    color: $bright_green;
+    background-color: $white;
+
+    &:hover {
+      color: $light_green;
+      background-color: $dark_evergreen;
+    }
+  }
 }
 
 @mixin button {

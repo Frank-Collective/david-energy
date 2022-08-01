@@ -81,6 +81,18 @@
         <li class="bright-green-button">
           <nuxt-link class="button" to="#">Get Started</nuxt-link>
         </li>
+
+        <NavItem
+          class="login-button-desktop"
+          :data="{
+            title: 'Log In',
+            url: '/login',
+          }"
+        />
+
+        <li class="login-button-mobile">
+          <nuxt-link class="button--white" to="#">Log In</nuxt-link>
+        </li>
       </ul>
     </div>
   </nav>
@@ -137,7 +149,7 @@ nav.nav {
     justify-content: space-between;
     background-color: $white;
     border-radius: 18px;
-    padding: 14px 35px;
+    padding: 14px 10px 14px 35px;
 
     @include breakpoint(mobile_nav_breakpoint) {
       border-radius: 0;
@@ -250,11 +262,13 @@ nav.nav {
           align-items: center;
           align-self: flex-start;
           padding: 3px 0;
+          margin-right: 0.4em;
 
           @include breakpoint(mobile_nav_breakpoint) {
-            padding: 30px 18px 0;
+            padding: 30px 18px 10px;
             align-self: unset;
             border-top: 2px solid rgba($slate_gray, 0.4);
+            margin: 0;
           }
 
           a {
@@ -282,7 +296,30 @@ nav.nav {
             }
 
             @include breakpoint(mobile_nav_breakpoint) {
-              width: 100px;
+              width: 100%;
+              height: 50px;
+            }
+          }
+        }
+
+        &.login-button-desktop {
+          display: block;
+          @include breakpoint(mobile_nav_breakpoint) {
+            display: none;
+          }
+        }
+
+        &.login-button-mobile {
+          display: none;
+          align-items: center;
+
+          @include breakpoint(mobile_nav_breakpoint) {
+            display: flex;
+            padding: 0px 18px 30px;
+
+            a {
+              width: 100%;
+              height: 50px;
             }
           }
         }
