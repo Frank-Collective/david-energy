@@ -17,6 +17,10 @@ h1,
   @include h1;
 }
 
+.h1-large {
+  @include h1-large;
+}
+
 h2,
 .h2 {
   @include h2;
@@ -44,4 +48,14 @@ h6,
 
 p {
   line-height: 150%;
+}
+
+.body-copy-small {
+  @include clamp("font-size", 18px, 1.25vw, 24px);
+  letter-spacing: 0em;
+  line-height: 150%;
+
+  @include breakpoint(small) {
+    letter-spacing: 0.01em;
+  }
 }

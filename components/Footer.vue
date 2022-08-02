@@ -130,6 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 footer.footer {
+  position: relative;
   .cta {
     @include gutter(padding-left);
     @include gutter(padding-right);

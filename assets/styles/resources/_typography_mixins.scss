@@ -12,6 +12,21 @@
   }
 }
 
+@mixin h1-large {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 216px;
+  @include clamp("font-size", 82px, 11.25vw, 216px);
+  line-height: 100%;
+  letter-spacing: -0.035em;
+
+  @include breakpoint(small) {
+    line-height: 95%;
+    letter-spacing: -0.03em;
+  }
+}
+
 @mixin h2 {
   font-family: "Gronland";
   font-style: normal;
@@ -143,33 +158,55 @@
 .indented-text-link {
   position: relative;
   white-space: nowrap;
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 400;
+  @include clamp("font-size", 42px, 3.75vw, 72px);
+  line-height: 110%;
+  letter-spacing: -0.01em;
+  color: $text_color;
+  transition: 0.15s padding-left;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 43%;
+    left: 0;
+    transform: translateY(-50%);
+    @include clamp("width", 10px, 1.05vw, 20px);
+    @include clamp("height", 20px, 2.09vw, 40px);
+    background-image: url("/images/icon-indented-text-link.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.15s opacity;
+  }
+
+  &:hover {
+    padding-left: 0.5em;
+
+    &:before {
+      opacity: 1;
+    }
+  }
 
   &--medium {
     @extend .indented-text-link;
     @include h4;
     line-height: 140%;
-    text-decoration: none;
-    color: $text_color;
-    transition: 0.15s padding-left;
 
     @include breakpoint(medium) {
       @include h3;
     }
 
     &:before {
-      content: "";
-      display: inline-block;
-      position: absolute;
       top: 38%;
-      left: 0;
-      transform: translateY(-50%);
       @include clamp("width", 9px, 0.7vw, 12px);
       @include clamp("height", 16px, 1.3vw, 24px);
       background-image: url("/images/icon-indented-text-link-medium.svg");
-      background-size: 100%;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transition: 0.15s opacity;
     }
 
     &:hover {
@@ -183,33 +220,18 @@
 
   &--small {
     @extend .indented-text-link;
-    font-family: "Gronland";
-    font-style: normal;
-    font-weight: 400;
     font-size: 28px;
     line-height: 150%;
-    text-decoration: none;
-    color: $text_color;
-    transition: 0.15s padding-left;
 
     @include breakpoint(medium) {
       font-size: 24px;
     }
 
     &:before {
-      content: "";
-      display: inline-block;
-      position: absolute;
       top: 50%;
-      left: 0;
-      transform: translateY(-50%);
       width: 8px;
       height: 16px;
       background-image: url("/images/icon-indented-text-link-small.svg");
-      background-size: 100%;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transition: 0.15s opacity;
     }
 
     &:hover {
