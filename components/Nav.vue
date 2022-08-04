@@ -67,12 +67,6 @@
             dropdown: [
               { title: 'Who We Are', url: '/who-we-are' },
               { title: 'Careers', url: '/careers' },
-              { title: 'Who We Are', url: '/who-we-are' },
-              { title: 'Careers', url: '/careers' },
-              { title: 'Who We Are', url: '/who-we-are' },
-              { title: 'Careers', url: '/careers' },
-              { title: 'Who We Are', url: '/who-we-are' },
-              { title: 'Careers', url: '/careers' },
             ],
           }"
         />

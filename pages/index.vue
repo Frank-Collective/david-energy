@@ -1,6 +1,11 @@
 <template>
   <div id="top">
-    <LandingHeader />
+    <LandingSection1 />
+    <LandingSection2 />
+    <LandingSection3 />
+    <LandingSection4 />
+    <LandingSection5 />
+    <LandingSection6 />
   </div>
 </template>
 
