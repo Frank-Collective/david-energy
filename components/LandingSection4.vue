@@ -2,7 +2,12 @@
   <client-only>
     <div class="landing-section-4">
       <div class="bg-image-1">
-        <img src="/images/landing-section-4-bg1.png" alt="" />
+        <img class="desktop" src="/images/landing-section-4-bg1.png" alt="" />
+        <img
+          class="mobile"
+          src="/images/landing-section-4-bg1-mobile.png"
+          alt=""
+        />
       </div>
       <div class="bg-image-2">
         <img src="/images/landing-section-4-bg2.png" alt="" />
@@ -151,6 +156,61 @@
               </div>
             </flickity>
           </div>
+          <div class="expandable-btns">
+            <LandingSection4MenuItem
+              :data="{
+                title: 'Thermostats',
+                logos: [
+                  '/images/Sensibo.svg',
+                  '/images/Senisi.svg',
+                  '/images/Ecobee.svg',
+                  '/images/Honeywell.svg',
+                ],
+                callback: toggleContent,
+                index: 0,
+              }"
+            />
+            <LandingSection4MenuItem
+              :data="{
+                title: 'Electric Vehicles',
+                logos: [
+                  '/images/Tesla.svg',
+                  '/images/Ford.svg',
+                  '/images/BMW.svg',
+                  '/images/Volkswagen.svg',
+                  '/images/Audi.svg',
+                  '/images/Jaguar.svg',
+                ],
+                callback: toggleContent,
+                index: 1,
+              }"
+            />
+            <LandingSection4MenuItem
+              :data="{
+                title: 'Solar',
+                logos: [
+                  '/images/SolarEdge.svg',
+                  '/images/Enphase.svg',
+                  '/images/SMA.svg',
+                ],
+                callback: toggleContent,
+                index: 2,
+              }"
+            />
+            <LandingSection4MenuItem
+              :data="{
+                title: 'Batteries',
+              }"
+            />
+            <LandingSection4MenuItem
+              :data="{
+                title: 'Generators',
+                logos: ['/images/Generac.svg'],
+                callback: toggleContent,
+                index: 4,
+              }"
+            />
+          </div>
         </div>
         <div class="cta">
           <p>Don’t see your device here?</p>
@@ -229,6 +289,10 @@ export default {
   position: relative;
   padding-top: 10.4vw;
 
+  @include breakpoint(small) {
+    margin-bottom: 40px;
+  }
+
   .bg-image-1 {
     position: absolute;
     top: -105%;
@@ -236,10 +300,30 @@ export default {
     width: 90%;
     pointer-events: none;
 
+    @include breakpoint(small) {
+      top: -23%;
+      left: 0;
+      width: 85%;
+    }
+
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
   }
 
@@ -249,6 +333,11 @@ export default {
     right: 0;
     width: 72%;
     pointer-events: none;
+
+    @include breakpoint(small) {
+      bottom: 10%;
+      width: 112%;
+    }
 
     img {
       display: block;
@@ -266,6 +355,11 @@ export default {
 
     h3 {
       margin-bottom: 0.75em;
+
+      @include breakpoint(small) {
+        @include h2;
+        margin-bottom: 0.5em;
+      }
     }
 
     .content {
@@ -273,14 +367,26 @@ export default {
       justify-content: space-between;
       padding-bottom: 5vw;
 
+      @include breakpoint(small) {
+        flex-direction: column;
+      }
+
       .copy {
         width: 24%;
+
+        @include breakpoint(small) {
+          width: 100%;
+        }
       }
 
       .toggle-btns {
         width: 36%;
         flex-shrink: 0;
         padding-left: 10%;
+
+        @include breakpoint(small) {
+          display: none;
+        }
 
         .indented-text-link--medium {
           display: flex;
@@ -312,6 +418,10 @@ export default {
         position: relative;
         width: 40%;
         flex-shrink: 0;
+
+        @include breakpoint(small) {
+          display: none;
+        }
 
         .group {
           display: flex;
@@ -462,6 +572,15 @@ export default {
           }
         }
       }
+
+      .expandable-btns {
+        display: none;
+        flex-direction: column;
+        margin-top: 0.5em;
+        @include breakpoint(small) {
+          display: flex;
+        }
+      }
     }
 
     .cta {
@@ -473,8 +592,18 @@ export default {
       border-radius: 18px;
       padding: 1.32vw;
 
+      @include breakpoint(small) {
+        flex-direction: column;
+        padding: 18px;
+      }
+
       p {
         margin-right: 2em;
+
+        @include breakpoint(small) {
+          @include body-copy-small;
+          margin: 0 0 0.5em;
+        }
       }
     }
   }

@@ -88,6 +88,16 @@
   // margin-bottom: 0.5em;
 }
 
+@mixin body-copy-small {
+  @include clamp("font-size", 18px, 1.25vw, 24px);
+  letter-spacing: 0em;
+  line-height: 150%;
+
+  @include breakpoint(small) {
+    letter-spacing: 0.01em;
+  }
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -113,6 +123,10 @@
   &:hover {
     color: $light_green;
     background-color: $dark_evergreen;
+  }
+
+  @include breakpoint(small) {
+    width: 100%;
   }
 
   &--outline {

@@ -136,6 +136,10 @@ footer.footer {
     @include gutter(padding-right);
     margin-bottom: 4.2vw;
 
+    @include breakpoint(small) {
+      margin-bottom: 30px;
+    }
+
     .inner {
       display: flex;
       align-items: center;
@@ -143,6 +147,21 @@ footer.footer {
       background-color: $bright_green;
       border-radius: 18px;
       padding: 2.4vw 4.6vw;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+        padding: 27px 15px;
+      }
+
+      h4 {
+        padding-right: 1em;
+
+        @include breakpoint(small) {
+          text-align: center;
+          padding-right: 0;
+          margin-bottom: 0.5em;
+        }
+      }
     }
   }
 

@@ -147,7 +147,7 @@ nav.nav {
 
     @include breakpoint(mobile_nav_breakpoint) {
       border-radius: 0;
-      padding: 0 15px 0 20px;
+      padding: 0 15px 0 13px;
       height: 56px;
       align-items: center;
     }
@@ -259,7 +259,7 @@ nav.nav {
           margin-right: 0.4em;
 
           @include breakpoint(mobile_nav_breakpoint) {
-            padding: 30px 18px 10px;
+            padding: 30px 13px 10px;
             align-self: unset;
             border-top: 2px solid rgba($slate_gray, 0.4);
             margin: 0;
@@ -309,7 +309,7 @@ nav.nav {
 
           @include breakpoint(mobile_nav_breakpoint) {
             display: flex;
-            padding: 0px 18px 30px;
+            padding: 0px 13px 30px;
 
             a {
               width: 100%;

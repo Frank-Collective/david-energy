@@ -2,7 +2,12 @@
   <client-only>
     <div class="landing-section-6">
       <div class="bg-image-1">
-        <img src="/images/landing-section-6-bg1.png" alt="" />
+        <img class="desktop" src="/images/landing-section-6-bg1.png" alt="" />
+        <img
+          class="mobile"
+          src="/images/landing-section-6-bg1-mobile.png"
+          alt=""
+        />
       </div>
       <div class="inner">
         <flickity ref="flickity" :options="flickityOptions" class="carousel">
@@ -46,13 +51,13 @@ export default {
         prevNextButtons: false,
         pageDots: true,
         draggable: true,
-        fade: true,
         cellAlign: "center",
         imagesLoaded: true,
         contain: true,
         cellSelector: "blockquote",
         autoPlay: 15000,
         adaptiveHeight: true,
+        fade: true,
       },
     };
   },
@@ -87,7 +92,6 @@ export default {
       }
     },
     nextSlide() {
-      console.log("nextSlide");
       this.$refs.flickity.next();
     },
     prevSlide() {
@@ -109,6 +113,10 @@ export default {
   @include gutter(padding-left);
   @include gutter(padding-right);
 
+  @include breakpoint(small) {
+    padding-bottom: 140px;
+  }
+
   .bg-image-1 {
     position: absolute;
     bottom: -52%;
@@ -116,10 +124,30 @@ export default {
     width: 50%;
     pointer-events: none;
 
+    @include breakpoint(small) {
+      bottom: -80%;
+      right: 0%;
+      width: 90%;
+    }
+
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
   }
 
@@ -129,6 +157,11 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 10vw;
+
+    @include breakpoint(small) {
+      @include gutter(padding-left);
+      @include gutter(padding-right);
+    }
 
     .carousel {
       width: 100%;
@@ -150,14 +183,26 @@ export default {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: $text_color;
+
+          @include breakpoint(small) {
+            font-size: 15px;
+            color: $text_color;
+            text-transform: none;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+          }
         }
       }
     }
   }
 }
-
+:deep(.flickity-viewport) {
+  transition: 0.15s height;
+}
 :deep(.flickity-page-dots) {
-  .flickity-page-dot {
+  bottom: -50px;
+
+  .dot {
     width: 16px;
     height: 16px;
     background-color: $light_green;

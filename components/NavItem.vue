@@ -94,7 +94,7 @@ export default {
 <style lang="scss" scoped>
 .nav-item {
   @include breakpoint(mobile_nav_breakpoint) {
-    padding: 0 18px;
+    padding: 0 18px 0 13px;
     border-top: 2px solid rgba($slate_gray, 0.4);
   }
 

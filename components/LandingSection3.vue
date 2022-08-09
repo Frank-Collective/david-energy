@@ -4,14 +4,28 @@
       <div class="copy">
         <div class="toggle-btns">
           <div
-            class="toggle-btn"
+            class="toggle-btn desktop"
             v-bind:class="{ selected: selected_index == 0 }"
             v-on:click="toggleContent(0)"
           >
             For Business
           </div>
           <div
-            class="toggle-btn"
+            class="toggle-btn mobile button--outline"
+            v-bind:class="{ selected: selected_index == 0 }"
+            v-on:click="toggleContent(0)"
+          >
+            For Business
+          </div>
+          <div
+            class="toggle-btn desktop"
+            v-bind:class="{ selected: selected_index == 1 }"
+            v-on:click="toggleContent(1)"
+          >
+            For Home
+          </div>
+          <div
+            class="toggle-btn mobile button--outline"
             v-bind:class="{ selected: selected_index == 1 }"
             v-on:click="toggleContent(1)"
           >
@@ -22,7 +36,7 @@
         <div class="content">
           <div class="section" ref="section0">
             <h3>
-              One platform.<br />One bill.<br />One less thing to worry about.
+              One platform. <br />One bill. <br />One less thing to worry about.
             </h3>
             <p>
               We consolidate 5+ point solutions, streamlining energy supply,
@@ -53,6 +67,26 @@
           alt=""
           v-bind:class="{ visible: selected_index == 1 }"
         />
+      </div>
+      <div class="mobile-ctas">
+        <nuxt-link
+          to="#"
+          class="button"
+          v-bind:class="{ visible: selected_index == 0 }"
+          >About Us</nuxt-link
+        >
+        <nuxt-link
+          to="#"
+          class="button"
+          v-bind:class="{ visible: selected_index == 1 }"
+          >Learn More</nuxt-link
+        >
+        <nuxt-link
+          to="#"
+          class="button"
+          v-bind:class="{ visible: selected_index == 1 }"
+          >More Learning Here!</nuxt-link
+        >
       </div>
     </div>
   </div>
@@ -93,8 +127,10 @@ export default {
 <style lang="scss" scoped>
 .landing-section-3 {
   position: relative;
-  // margin-top: -13vw;
-  // padding-bottom: 10vw;
+
+  @include breakpoint(small) {
+    margin-bottom: 40px;
+  }
 
   .inner {
     position: relative;
@@ -103,17 +139,34 @@ export default {
     @include gutter(padding-right);
     z-index: 1;
 
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
+
     .copy {
       display: flex;
       flex-direction: column;
       width: 50%;
       flex-shrink: 0;
 
+      @include breakpoint(small) {
+        width: 100%;
+      }
+
       .toggle-btns {
         display: flex;
-        margin-bottom: 3vw;
+        flex-wrap: wrap;
+        margin-bottom: 2vw;
 
-        .toggle-btn {
+        @include breakpoint(small) {
+          order: 2;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          margin-top: 10px;
+          margin-bottom: 35px;
+        }
+
+        .toggle-btn.desktop {
           font-family: "Gronland";
           font-style: normal;
           font-weight: 400;
@@ -125,6 +178,8 @@ export default {
           border-bottom: 4px solid transparent;
           transition: 0.15s color, 0.15s border-color;
           margin-right: 1.25em;
+          margin-bottom: 1vw;
+          white-space: nowrap;
 
           &:hover {
             color: $text_color;
@@ -135,11 +190,35 @@ export default {
             color: $text_color;
             border-color: $bright_green;
           }
+
+          @include breakpoint(small) {
+            display: none;
+          }
+        }
+
+        .toggle-btn.mobile {
+          display: none;
+          cursor: pointer;
+          width: calc(50% - 10px);
+
+          &.selected {
+            background-color: $dark_evergreen;
+            color: $light_green;
+            border-color: $dark_evergreen;
+          }
+
+          @include breakpoint(small) {
+            display: flex;
+          }
         }
       }
 
       .content {
         padding-right: 16%;
+
+        @include breakpoint(small) {
+          padding-right: 0;
+        }
 
         .section {
           &.hidden {
@@ -148,14 +227,32 @@ export default {
 
           h3 {
             margin-bottom: 0.35em;
+
+            @include breakpoint(small) {
+              @include h2;
+            }
+
+            br {
+              @include breakpoint(small) {
+                display: none;
+              }
+            }
           }
 
           p {
             margin-bottom: 1em;
+
+            @include breakpoint(small) {
+              @include body-copy-small;
+            }
           }
 
           a {
             margin-top: 3em;
+
+            @include breakpoint(small) {
+              display: none;
+            }
           }
         }
       }
@@ -166,6 +263,11 @@ export default {
       width: 50%;
       flex-shrink: 0;
       padding-bottom: 48.4%;
+
+      @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 97%;
+      }
 
       img {
         position: absolute;
@@ -179,6 +281,25 @@ export default {
 
         &.visible {
           opacity: 1;
+        }
+      }
+    }
+
+    .mobile-ctas {
+      display: none;
+      margin-top: 25px;
+
+      @include breakpoint(small) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        display: none;
+        margin-bottom: 1em;
+
+        &.visible {
+          display: flex;
         }
       }
     }

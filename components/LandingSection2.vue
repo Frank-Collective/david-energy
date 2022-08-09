@@ -1,10 +1,20 @@
 <template>
   <div class="landing-section-2">
     <div class="bg-image-1">
-      <img src="/images/landing-section-2-bg1.png" alt="" />
+      <img class="desktop" src="/images/landing-section-2-bg1.png" alt="" />
+      <img
+        class="mobile"
+        src="/images/landing-section-2-bg1-mobile.jpg"
+        alt=""
+      />
     </div>
     <div class="bg-image-2">
-      <img src="/images/landing-section-2-bg2.png" alt="" />
+      <img class="desktop" src="/images/landing-section-2-bg2.png" alt="" />
+      <img
+        class="mobile"
+        src="/images/landing-section-2-bg2-mobile.png"
+        alt=""
+      />
     </div>
     <div class="inner">
       <h1>We’re building a better future by building a better grid.</h1>
@@ -37,8 +47,11 @@ export default {
 <style lang="scss" scoped>
 .landing-section-2 {
   position: relative;
-  margin-top: -13vw;
   padding-bottom: 10vw;
+
+  @include breakpoint(medium) {
+    margin-bottom: 50px;
+  }
 
   .bg-image-1 {
     position: absolute;
@@ -47,10 +60,29 @@ export default {
     width: 67%;
     pointer-events: none;
 
+    @include breakpoint(small) {
+      top: -40%;
+      width: 100%;
+    }
+
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
   }
 
@@ -61,10 +93,30 @@ export default {
     width: 32%;
     pointer-events: none;
 
+    @include breakpoint(small) {
+      bottom: -70%;
+      right: 0%;
+      width: 120%;
+    }
+
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
   }
 
@@ -76,6 +128,11 @@ export default {
     h1 {
       width: 80%;
       margin-bottom: 1em;
+
+      @include breakpoint(small) {
+        @include h2;
+        width: auto;
+      }
     }
 
     .content {
@@ -83,8 +140,18 @@ export default {
       align-items: center;
       justify-content: space-between;
 
+      @include breakpoint(small) {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
       .image {
         width: 56%;
+
+        @include breakpoint(small) {
+          width: auto;
+          margin-bottom: 50px;
+        }
 
         img {
           display: block;
@@ -92,14 +159,23 @@ export default {
           height: auto;
         }
       }
+
       .copy {
         width: 40%;
+
+        @include breakpoint(small) {
+          width: auto;
+        }
 
         h4 {
           margin-bottom: 1.5em;
 
           &:last-of-type {
             margin-bottom: 0.75em;
+          }
+
+          @include breakpoint(small) {
+            @include body-copy-small;
           }
         }
       }

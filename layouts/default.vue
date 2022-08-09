@@ -23,6 +23,7 @@ export default {
   position: relative;
   min-height: 100vh;
   margin: 0 auto;
+  overflow: hidden;
 
   .page-content {
     width: 100%;
