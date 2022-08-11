@@ -1,15 +1,5 @@
 body {
-  font-family: "Gronland";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  @include clamp("font-size", 24px, 1.46vw, 28px);
-  letter-spacing: 0em;
-  color: $text_color;
-
-  @include breakpoint(small) {
-    line-height: 140%;
-  }
+  @include body-copy;
 }
 
 h1,
