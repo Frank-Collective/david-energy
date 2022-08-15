@@ -287,7 +287,7 @@ export default {
 <style lang="scss" scoped>
 .landing-section-4 {
   position: relative;
-  padding-top: 10.4vw;
+  padding-bottom: 10vw;
 
   @include breakpoint(small) {
     margin-bottom: 40px;

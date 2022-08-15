@@ -68,7 +68,6 @@ export default {
 <style lang="scss" scoped>
 .why-section-5 {
   position: relative;
-  padding-top: 8vw;
   padding-bottom: 10vw;
   @include gutter(padding-left);
   @include gutter(padding-right);

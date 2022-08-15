@@ -42,6 +42,7 @@ export default {
 .why-section-1 {
   position: relative;
   padding-top: 11vw;
+  padding-bottom: 6vw;
 
   @include breakpoint(medium) {
     margin-bottom: 130px;

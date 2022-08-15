@@ -288,3 +288,13 @@
 @mixin indented-text-link {
   @extend .indented-text-link;
 }
+
+.eyebrow {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

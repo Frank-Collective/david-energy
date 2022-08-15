@@ -124,6 +124,7 @@ export default {
 <style lang="scss" scoped>
 .why-section-4 {
   position: relative;
+  padding-bottom: 8vw;
 
   @include breakpoint(small) {
     margin-bottom: 40px;

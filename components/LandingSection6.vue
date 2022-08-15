@@ -108,7 +108,6 @@ export default {
 <style lang="scss" scoped>
 .landing-section-6 {
   position: relative;
-  padding-top: 2vw;
   padding-bottom: 12vw;
   @include gutter(padding-left);
   @include gutter(padding-right);

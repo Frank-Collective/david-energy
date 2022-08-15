@@ -66,6 +66,7 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
+    z-index: 1;
 
     @include breakpoint(small) {
       padding: 0;
