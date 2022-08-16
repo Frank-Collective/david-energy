@@ -1,5 +1,8 @@
 <template>
   <div class="for-business-section-3">
+    <div class="bg-image">
+      <img class="desktop" src="/images/for-business-section-3-bg.png" alt="" />
+    </div>
     <div class="inner">
       <h4>
         Our powerful platform is the one-stop shop for all your energy needs.
@@ -85,7 +88,36 @@ export default {
   @include breakpoint(small) {
   }
 
+  .bg-image {
+    position: absolute;
+    top: -17%;
+    right: 0;
+    width: 80%;
+    pointer-events: none;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
   .inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     @include gutter(padding-left);

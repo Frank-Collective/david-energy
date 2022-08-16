@@ -3,8 +3,8 @@
     <ForBusinessSection1 />
     <ForBusinessSection2 />
     <ForBusinessSection3 />
-    <LandingSection5 />
-    <WhySection4 />
+    <ForBusinessSection4 />
+    <ForBusinessSection5 />
   </div>
 </template>
 
