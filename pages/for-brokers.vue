@@ -1,10 +1,10 @@
 <template>
   <div id="top">
-    <div class="for-business-section-1">
+    <div class="for-brokers-section-1">
       <div class="bg-image">
         <img
           class="desktop"
-          src="/images/for-business-section-1-bg1.jpg"
+          src="/images/for-brokers-section-1-bg.jpg"
           alt=""
         />
         <img
@@ -14,30 +14,31 @@
         />
       </div>
       <div class="inner">
-        <div class="copy">
-          <div class="eyebrow">For Businesses</div>
-          <h1>The power of simplicity.</h1>
-          <p>
-            With David Energy you can manage the energy of all your facilities
-            and pay your bills from one convenient platform.
-          </p>
-          <nuxt-link class="button" to="#">Get Started</nuxt-link>
+        <div class="image">
+          <img src="/images/for-brokers-section-1-image.png" alt="" />
         </div>
 
-        <div class="image">
-          <img src="/images/for-business-section-1-image.png" alt="" />
+        <div class="copy">
+          <div class="eyebrow">for brokers</div>
+          <h1>Go beyond the broker’s fee.</h1>
+          <p>
+            A win for you and your customers. Enhance your bottom line with
+            David Energy by delivering savings and lowering your customers’
+            bills partner with us
+          </p>
+          <nuxt-link class="button" to="#">Partner with us</nuxt-link>
         </div>
       </div>
     </div>
 
-    <div class="for-business-section-2">
+    <div class="for-brokers-section-2">
       <div class="inner">
-        <h1>Do more with David.</h1>
+        <h1>Partner with David.</h1>
 
         <div class="info-cards">
           <InfoCard
             :data="{
-              title: 'One simple platform, all your energy needs',
+              title: 'Get paid to save the planet.',
               icons: [
                 '/images/icon-house.svg',
                 '/images/icon-house-active.svg',
@@ -47,14 +48,14 @@
           />
           <InfoCard
             :data="{
-              title: 'Groundbreaking shared savings program',
+              title: 'One platform to manage all your smart devices',
               icons: ['/images/icon-cash.svg', '/images/icon-cash-active.svg'],
               copy: 'Give your thumbs a rest and consolidate all your smart device apps into one centralized platform.',
             }"
           />
           <InfoCard
             :data="{
-              title: 'More green in the bank, more green on the Earth',
+              title: 'Be picky about your energy partner',
               icons: [
                 '/images/icon-house.svg',
                 '/images/icon-house-active.svg',
@@ -66,33 +67,52 @@
       </div>
     </div>
 
-    <div class="for-business-section-3">
+    <div class="for-brokers-section-3">
       <div class="bg-image">
         <img
           class="desktop"
-          src="/images/for-business-section-3-bg.jpg"
+          src="/images/for-brokers-section-3-bg.jpg"
+          alt=""
+        />
+        <img
+          class="mobile"
+          src="/images/landing-section-1-bg-mobile.jpg"
           alt=""
         />
       </div>
+      <CaseStudies />
+    </div>
+
+    <div class="for-brokers-section-4">
       <PlatformFeatures />
     </div>
 
-    <div class="for-business-section-4">
-      <div class="bg-image-1">
-        <img
-          class="mobile"
-          src="/images/landing-section-5-bg1-mobile.png"
-          alt=""
-        />
-      </div>
+    <div class="for-brokers-section-5">
       <BrandsWeWorkWith />
     </div>
 
-    <div class="for-business-section-5">
+    <div class="for-brokers-section-6">
       <div class="bg-image">
         <img
           class="desktop"
-          src="/images/for-business-section-5-bg.jpg"
+          src="/images/for-brokers-section-6-bg.jpg"
+          alt=""
+        />
+        <img
+          class="mobile"
+          src="/images/landing-section-4-bg1-mobile.png"
+          alt=""
+        />
+      </div>
+
+      <DevicesWeWorkWith />
+    </div>
+
+    <div class="for-brokers-section-7">
+      <div class="bg-image">
+        <img
+          class="desktop"
+          src="/images/for-brokers-section-7-bg.jpg"
           alt=""
         />
       </div>
@@ -112,10 +132,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.for-business-section-1 {
+.for-brokers-section-1 {
   position: relative;
   padding-top: 13vw;
-  padding-bottom: 14vw;
+  padding-bottom: 6vw;
 
   .bg-image {
     position: absolute;
@@ -123,7 +143,6 @@ export default {
     left: 0;
     width: 100%;
     pointer-events: none;
-    mix-blend-mode: darken;
 
     img.desktop {
       display: block;
@@ -151,15 +170,29 @@ export default {
     z-index: 1;
     display: flex;
     justify-content: space-between;
-    @include gutter(padding-left);
+    @include gutter(padding-right);
 
     @include breakpoint(small) {
       flex-direction: column;
       justify-content: flex-start;
     }
 
+    .image {
+      position: relative;
+      width: 46%;
+
+      @include breakpoint(small) {
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
     .copy {
-      width: 41%;
+      width: 48%;
       flex-shrink: 0;
 
       @include breakpoint(small) {
@@ -176,30 +209,13 @@ export default {
       p {
         @include body-copy-small;
         margin-bottom: 1.5em;
-      }
-    }
-
-    .image {
-      position: relative;
-      width: 59%;
-      flex-shrink: 0;
-      padding-bottom: 39.5%;
-
-      @include breakpoint(small) {
-      }
-
-      img {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        width: 116%;
-        height: auto;
+        padding-right: 6vw;
       }
     }
   }
 }
-.for-business-section-2 {
+
+.for-brokers-section-2 {
   position: relative;
   @include gutter(padding-left);
   @include gutter(padding-right);
@@ -209,6 +225,8 @@ export default {
   }
 
   .inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     padding: 0 8vw;
@@ -244,16 +262,15 @@ export default {
     }
   }
 }
-.for-business-section-3 {
-  position: relative;
-  padding-bottom: 9vw;
 
-  @include breakpoint(small) {
-  }
+.for-brokers-section-3 {
+  position: relative;
+  padding-bottom: 10vw;
 
   .bg-image {
     position: absolute;
-    top: -17%;
+    top: 0;
+    transform: translateY(-29%);
     right: 0;
     width: 80%;
     pointer-events: none;
@@ -280,32 +297,47 @@ export default {
     }
   }
 }
-.for-business-section-4 {
+
+.for-brokers-section-4 {
+  position: relative;
+  padding-bottom: 10vw;
+}
+
+.for-brokers-section-5 {
   position: relative;
   padding-bottom: 12vw;
+}
+
+.for-brokers-section-6 {
+  position: relative;
+  padding-bottom: 7vw;
 
   @include breakpoint(small) {
-    padding-bottom: 80px;
+    margin-bottom: 40px;
   }
 
-  .bg-image-1 {
+  .bg-image {
     position: absolute;
     top: 0%;
-    left: 0%;
-    width: 100%;
+    left: 0;
+    width: 80%;
     pointer-events: none;
+    transform: translateY(-21%);
     mix-blend-mode: darken;
 
     @include breakpoint(small) {
-      top: 7%;
-      left: 0%;
-      width: 60%;
     }
 
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
     }
 
     img.mobile {
@@ -317,7 +349,8 @@ export default {
     }
   }
 }
-.for-business-section-5 {
+
+.for-brokers-section-7 {
   position: relative;
   padding-bottom: 8vw;
 
@@ -327,9 +360,9 @@ export default {
 
   .bg-image {
     position: absolute;
-    top: -11%;
-    left: 0;
-    width: 50%;
+    bottom: -100%;
+    right: 0;
+    width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
 

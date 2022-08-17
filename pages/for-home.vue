@@ -1,12 +1,8 @@
 <template>
   <div id="top">
-    <div class="for-business-section-1">
+    <div class="for-home-section-1">
       <div class="bg-image">
-        <img
-          class="desktop"
-          src="/images/for-business-section-1-bg1.jpg"
-          alt=""
-        />
+        <img class="desktop" src="/images/for-home-section-1-bg.jpg" alt="" />
         <img
           class="mobile"
           src="/images/landing-section-1-bg-mobile.jpg"
@@ -15,29 +11,29 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <div class="eyebrow">For Businesses</div>
-          <h1>The power of simplicity.</h1>
+          <div class="eyebrow">For Home</div>
+          <h1>Your home powered your way.</h1>
           <p>
-            With David Energy you can manage the energy of all your facilities
-            and pay your bills from one convenient platform.
+            David Energy gives you total control over how much energy you use
+            and where it comes from.
           </p>
           <nuxt-link class="button" to="#">Get Started</nuxt-link>
         </div>
 
         <div class="image">
-          <img src="/images/for-business-section-1-image.png" alt="" />
+          <img src="/images/for-home-section-1-image.png" alt="" />
         </div>
       </div>
     </div>
 
-    <div class="for-business-section-2">
+    <div class="for-home-section-2">
       <div class="inner">
-        <h1>Do more with David.</h1>
+        <h1>Take charge with David.</h1>
 
         <div class="info-cards">
           <InfoCard
             :data="{
-              title: 'One simple platform, all your energy needs',
+              title: 'Get paid to save the planet.',
               icons: [
                 '/images/icon-house.svg',
                 '/images/icon-house-active.svg',
@@ -47,14 +43,14 @@
           />
           <InfoCard
             :data="{
-              title: 'Groundbreaking shared savings program',
+              title: 'One platform to manage all your smart devices',
               icons: ['/images/icon-cash.svg', '/images/icon-cash-active.svg'],
               copy: 'Give your thumbs a rest and consolidate all your smart device apps into one centralized platform.',
             }"
           />
           <InfoCard
             :data="{
-              title: 'More green in the bank, more green on the Earth',
+              title: 'Be picky about your energy partner',
               icons: [
                 '/images/icon-house.svg',
                 '/images/icon-house-active.svg',
@@ -66,35 +62,29 @@
       </div>
     </div>
 
-    <div class="for-business-section-3">
+    <div class="for-home-section-3">
       <div class="bg-image">
-        <img
-          class="desktop"
-          src="/images/for-business-section-3-bg.jpg"
-          alt=""
-        />
+        <img class="desktop" src="/images/for-home-section-3-bg.jpg" alt="" />
       </div>
       <PlatformFeatures />
     </div>
 
-    <div class="for-business-section-4">
-      <div class="bg-image-1">
+    <div class="for-home-section-4">
+      <div class="bg-image">
+        <img class="desktop" src="/images/for-home-section-4-bg.jpg" alt="" />
         <img
           class="mobile"
-          src="/images/landing-section-5-bg1-mobile.png"
+          src="/images/landing-section-4-bg1-mobile.png"
           alt=""
         />
       </div>
-      <BrandsWeWorkWith />
+
+      <DevicesWeWorkWith />
     </div>
 
-    <div class="for-business-section-5">
+    <div class="for-home-section-5">
       <div class="bg-image">
-        <img
-          class="desktop"
-          src="/images/for-business-section-5-bg.jpg"
-          alt=""
-        />
+        <img class="desktop" src="/images/for-home-section-5-bg.jpg" alt="" />
       </div>
       <ToggleGraphs />
     </div>
@@ -112,7 +102,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.for-business-section-1 {
+.for-home-section-1 {
   position: relative;
   padding-top: 13vw;
   padding-bottom: 14vw;
@@ -123,7 +113,6 @@ export default {
     left: 0;
     width: 100%;
     pointer-events: none;
-    mix-blend-mode: darken;
 
     img.desktop {
       display: block;
@@ -159,7 +148,7 @@ export default {
     }
 
     .copy {
-      width: 41%;
+      width: 43%;
       flex-shrink: 0;
 
       @include breakpoint(small) {
@@ -176,14 +165,14 @@ export default {
       p {
         @include body-copy-small;
         margin-bottom: 1.5em;
+        padding-right: 6vw;
       }
     }
 
     .image {
       position: relative;
-      width: 59%;
-      flex-shrink: 0;
-      padding-bottom: 39.5%;
+      flex-grow: 1;
+      padding-bottom: 40.5%;
 
       @include breakpoint(small) {
       }
@@ -193,13 +182,13 @@ export default {
         display: block;
         top: 0;
         right: 0;
-        width: 116%;
+        width: 120%;
         height: auto;
       }
     }
   }
 }
-.for-business-section-2 {
+.for-home-section-2 {
   position: relative;
   @include gutter(padding-left);
   @include gutter(padding-right);
@@ -244,7 +233,7 @@ export default {
     }
   }
 }
-.for-business-section-3 {
+.for-home-section-3 {
   position: relative;
   padding-bottom: 9vw;
 
@@ -255,7 +244,7 @@ export default {
     position: absolute;
     top: -17%;
     right: 0;
-    width: 80%;
+    width: 70%;
     pointer-events: none;
     mix-blend-mode: darken;
 
@@ -280,32 +269,35 @@ export default {
     }
   }
 }
-.for-business-section-4 {
+.for-home-section-4 {
   position: relative;
-  padding-bottom: 12vw;
+  padding-bottom: 10vw;
 
   @include breakpoint(small) {
-    padding-bottom: 80px;
+    margin-bottom: 40px;
   }
 
-  .bg-image-1 {
+  .bg-image {
     position: absolute;
-    top: 0%;
-    left: 0%;
-    width: 100%;
+    top: -70%;
+    left: 0;
+    width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
 
     @include breakpoint(small) {
-      top: 7%;
-      left: 0%;
-      width: 60%;
     }
 
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    img.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
     }
 
     img.mobile {
@@ -317,7 +309,7 @@ export default {
     }
   }
 }
-.for-business-section-5 {
+.for-home-section-5 {
   position: relative;
   padding-bottom: 8vw;
 
@@ -327,8 +319,8 @@ export default {
 
   .bg-image {
     position: absolute;
-    top: -11%;
-    left: 0;
+    top: -50%;
+    right: 0;
     width: 50%;
     pointer-events: none;
     mix-blend-mode: darken;

@@ -143,7 +143,7 @@ nav.nav {
     justify-content: space-between;
     background-color: $white;
     border-radius: 18px;
-    padding: 14px 10px 14px 35px;
+    padding: 14px 10px 14px 32px;
 
     @include breakpoint(mobile_nav_breakpoint) {
       border-radius: 0;
@@ -188,7 +188,7 @@ nav.nav {
 
       img.desktop {
         display: block;
-        width: 130px;
+        width: 180px;
         height: auto;
 
         @include breakpoint(mobile_nav_breakpoint) {
