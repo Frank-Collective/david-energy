@@ -132,6 +132,66 @@
         <LeadershipTeam />
       </div>
     </div>
+
+    <div class="about-us-section-4">
+      <div class="bg-image">
+        <img class="desktop" src="/images/about-us-section-4-bg.jpg" alt="" />
+      </div>
+      <div class="inner">
+        <div class="image">
+          <img src="/images/about-us-section-4-image.png" alt="" />
+        </div>
+        <div class="copy">
+          <h3>Make a difference with David</h3>
+          <p>
+            We’re always looking for talented, high-energy additions to our
+            team.
+          </p>
+          <nuxt-link class="button" to="#">Careers</nuxt-link>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-us-section-5">
+      <div class="bg-image">
+        <img class="desktop" src="/images/about-us-section-5-bg.jpg" alt="" />
+      </div>
+      <div class="inner">
+        <div class="copy">
+          <h3>Knowledge is Power</h3>
+          <p>Stay smart on the future of energy</p>
+          <nuxt-link class="button" to="#">Blog</nuxt-link>
+        </div>
+        <div class="articles">
+          <article>
+            <div class="eyebrow">Post Type</div>
+            <div class="title-excerpt">
+              <h4>Post title goes here</h4>
+              <div class="excerpt">
+                <p>
+                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                  amet sint. Velit officia consequat duis enim velit mollit.
+                </p>
+                <nuxt-link to="#" target="_blank">Read More</nuxt-link>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="eyebrow">Post Type</div>
+            <div class="title-excerpt">
+              <h4>Post title goes here</h4>
+              <div class="excerpt">
+                <p>
+                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                  amet sint. Velit officia consequat duis enim velit mollit.
+                </p>
+                <nuxt-link to="#" target="_blank">Read More</nuxt-link>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -278,12 +338,12 @@ export default {
 
 .about-us-section-3 {
   position: relative;
-  padding-top: 13vw;
-  padding-bottom: 5vw;
+  padding-top: 10vw;
+  padding-bottom: 12vw;
 
   .bg-image {
     position: absolute;
-    top: -57%;
+    top: -20%;
     left: 0;
     width: 29%;
     pointer-events: none;
@@ -329,6 +389,208 @@ export default {
 
       p {
         @include body-copy-small;
+      }
+    }
+  }
+}
+
+.about-us-section-4 {
+  position: relative;
+  padding-bottom: 10vw;
+
+  .bg-image {
+    position: absolute;
+    top: -120%;
+    right: 0;
+    width: 80%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include gutter(padding-right);
+
+    .image {
+      width: 54%;
+      flex-shrink: 0;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .copy {
+      padding-left: 8vw;
+
+      h3 {
+        margin-bottom: 0.35em;
+      }
+
+      p {
+        @include body-copy-small;
+        margin-bottom: 1em;
+        width: 90%;
+      }
+    }
+  }
+}
+.about-us-section-5 {
+  position: relative;
+  padding-bottom: 10vw;
+
+  .bg-image {
+    position: absolute;
+    top: -41%;
+    left: 0;
+    width: 35%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    @include gutter(padding-left);
+    @include gutter(padding-right);
+
+    .copy {
+      h3 {
+        margin-bottom: 0.35em;
+      }
+
+      p {
+        @include body-copy-small;
+        margin-bottom: 1em;
+        width: 90%;
+      }
+    }
+
+    .articles {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      flex-shrink: 0;
+
+      article {
+        border-top: 2px solid $bright_green;
+        padding-top: 1vw;
+        padding-bottom: 3vw;
+        color: $dark_evergreen;
+
+        .eyebrow {
+          font-family: "Gronland";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 150%;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 1em;
+        }
+
+        .title-excerpt {
+          display: flex;
+
+          h4 {
+            width: 50%;
+            flex-shrink: 0;
+            padding-right: 2vw;
+          }
+
+          .excerpt {
+            p {
+              font-family: "Gronland";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 150%;
+              margin-bottom: 1em;
+            }
+
+            a {
+              font-family: "Gronland";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 111%;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              text-decoration: none;
+              color: $dark_evergreen;
+
+              &:hover {
+                &:after {
+                  left: 10px;
+                }
+              }
+
+              &:after {
+                content: "";
+                position: relative;
+                top: -2px;
+                display: inline-block;
+                width: 10px;
+                height: 8px;
+                background-image: url("/images/icon-read-more-arrow.svg");
+                left: 0.35em;
+                transition: 0.15s left;
+                pointer-events: none;
+              }
+            }
+          }
+        }
       }
     }
   }
