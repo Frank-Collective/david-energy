@@ -1,0 +1,257 @@
+<template>
+  <div id="top">
+    <div class="about-us-section-1">
+      <div class="bg-image">
+        <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/landing-section-1-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+      <div class="inner">
+        <div class="copy">
+          <div class="eyebrow">About us</div>
+          <h1>A better energy grid starts with a better energy provider.</h1>
+          <p>
+            David Energy is revolutionizing energy supply with an integrated
+            software platform that puts the consumer in the driver’s seat.
+          </p>
+        </div>
+
+        <div class="image">
+          <img src="/images/about-us-section-1-image.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="about-us-section-2">
+      <div class="bg-image">
+        <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/landing-section-1-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+      <div class="inner">
+        <ExpandingDropdown
+          :data="{
+            title: 'How we think',
+            summary: null,
+            flex_content: [
+              {
+                type: 'paragraph',
+                content:
+                  'We’re entering an energy renaissance. A time when the one-way flow of energy from centralized, fossil fuel sources will be replaced by a network of renewable resources all communicating together to intelligently direct energy to where it’s needed and away from where it’s not.',
+              },
+              {
+                type: 'paragraph',
+                content:
+                  'With smart management, a decentralized grid will be more efficient, more reliable, and more powerful than the old model. But this shift requires a new type of energy provider. One that understands the power of software to inform and direct the flow of energy.',
+              },
+            ],
+          }"
+        />
+        <ExpandingDropdown
+          :data="{
+            title: 'What we do',
+            summary:
+              'We partner with like-minded energy users + businesses, offering them an all-in-one solution to help them build a better grid.',
+            flex_content: [
+              {
+                type: 'list-item-text',
+                title: 'Retail Energy Provider',
+                copy: 'We source clean and affordable energy for our customers.',
+              },
+              {
+                type: 'list-item-text',
+                title: 'Automated Device Management',
+                copy: 'Our software learns when you need energy and adjusts your devices’ usage accordingly.',
+              },
+              {
+                type: 'list-item-text',
+                title: 'Demand Response',
+                copy: 'We automatically modulate your usage during times when energy is the most expensive and dirty.',
+              },
+              {
+                type: 'list-item-text',
+                title: 'Shared Savings Program',
+                copy: 'By selling some of your surplus energy when you don’t need it, we generate revenue that also saves you money.',
+              },
+            ],
+          }"
+        />
+        <ExpandingDropdown
+          :data="{
+            title: 'Who we serve',
+            summary:
+              'Whether you’re powering a multi-location small-business, your home, or a multi-family housing development, David Energy has the tools to help you modernize your energy.',
+            flex_content: [
+              {
+                type: 'list-item-icon',
+                icon: '/images/icon-house.svg',
+                title: 'Home',
+                copy: 'Save money and reduce your carbon footprint.',
+              },
+              {
+                type: 'list-item-icon',
+                icon: '/images/icon-cash.svg',
+                title: 'Business',
+                copy: 'Manage all your buildings and devices from a single platform.',
+              },
+              {
+                type: 'list-item-icon',
+                icon: '/images/icon-house.svg',
+                title: 'Partners',
+                copy: 'Boost profits and simplify your energy processes.',
+              },
+            ],
+          }"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  head() {
+    return {
+      title: "About us",
+    };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.about-us-section-1 {
+  position: relative;
+  padding-top: 13vw;
+  padding-bottom: 5vw;
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    @include gutter(padding-left);
+
+    @include breakpoint(small) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .copy {
+      width: 63%;
+      flex-shrink: 0;
+
+      @include breakpoint(small) {
+      }
+
+      .eyebrow {
+        margin-bottom: 2em;
+      }
+
+      h1 {
+        margin-bottom: 0.35em;
+      }
+
+      p {
+        @include body-copy-small;
+        margin-bottom: 1.5em;
+        padding-right: 23vw;
+      }
+    }
+
+    .image {
+      position: relative;
+      flex-grow: 1;
+      padding-bottom: 45.2%;
+      margin-top: 3vw;
+
+      @include breakpoint(small) {
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        width: 170%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.about-us-section-2 {
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    @include gutter(padding-left);
+    @include gutter(padding-right);
+
+    @include breakpoint(small) {
+    }
+  }
+}
+</style>
