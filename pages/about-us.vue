@@ -111,6 +111,27 @@
         />
       </div>
     </div>
+
+    <div class="about-us-section-3">
+      <div class="bg-image">
+        <img class="desktop" src="/images/about-us-section-3-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/landing-section-1-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+      <div class="inner">
+        <div class="copy">
+          <h3>Leadership Team</h3>
+          <p>
+            Meet the folks who are putting all their energy into improving
+            yours.
+          </p>
+        </div>
+        <LeadershipTeam />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -251,6 +272,64 @@ export default {
     @include gutter(padding-right);
 
     @include breakpoint(small) {
+    }
+  }
+}
+
+.about-us-section-3 {
+  position: relative;
+  padding-top: 13vw;
+  padding-bottom: 5vw;
+
+  .bg-image {
+    position: absolute;
+    top: -57%;
+    left: 0;
+    width: 29%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include gutter(padding-left);
+
+    .copy {
+      width: 30%;
+      flex-shrink: 0;
+      padding-right: 5vw;
+
+      h3 {
+        margin-bottom: 0.35em;
+      }
+
+      p {
+        @include body-copy-small;
+      }
     }
   }
 }

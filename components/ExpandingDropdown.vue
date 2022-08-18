@@ -1,12 +1,15 @@
 <template>
   <div
+    :id="make_id(data.title.toLowerCase())"
     v-if="data"
     class="expanding-dropdown"
     v-bind:class="[{ expanded: expanded }]"
   >
     <div
       class="expanding-dropdown-hit-area"
-      v-on:click="openContent"
+      v-on:click="
+        (e) => openContent(e, '#' + make_id(data.title.toLowerCase()))
+      "
       v-mouse-click="onMouseClick"
     ></div>
     <div class="inner">
@@ -93,10 +96,16 @@ export default {
     }
   },
   methods: {
-    openContent: function () {
+    openContent: function (e, el) {
       this.expanded = true;
       if (this.data.callback != null) {
         this.data.callback(this.data.index);
+      }
+      // scroll to element
+      if (this.expanded) {
+        setTimeout(() => {
+          this.$scrollTo(el, 1000, { offset: -120 });
+        }, 500);
       }
     },
     closeContent: function () {
@@ -125,6 +134,10 @@ export default {
       if (e.target.classList.contains("expanding-dropdown-hit-area")) {
         this.closeContent();
       }
+    },
+    make_id(str) {
+      str = str.replace(/[^\w\s]|_/g, "");
+      return str.replace(/\s/g, "-");
     },
   },
 };

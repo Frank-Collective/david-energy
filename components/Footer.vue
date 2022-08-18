@@ -12,11 +12,11 @@
       <div class="inner">
         <div class="logo">
           <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
-            <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+            <img class="desktop" src="/images/logo-footer.svg" alt="" />
             <img class="mobile" src="/images/logo-mobile.svg" alt="" />
           </a>
           <nuxt-link v-if="currentRoute != 'index'" to="/">
-            <img class="desktop" src="/images/logo-desktop.svg" alt="" />
+            <img class="desktop" src="/images/logo-footer.svg" alt="" />
             <img class="mobile" src="/images/logo-mobile.svg" alt="" />
           </nuxt-link>
           <ul class="social-media-links">
