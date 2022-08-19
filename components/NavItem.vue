@@ -145,7 +145,7 @@ export default {
     text-decoration: none;
     color: $dark_evergreen;
     padding: 15px 0 12px;
-    margin: 7px 1.5em 0;
+    margin: 7px 1.17vw 0;
     transition: 0.15s color;
 
     @include breakpoint(mobile_nav_breakpoint) {

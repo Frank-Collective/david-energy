@@ -91,6 +91,12 @@ export default {
   padding: 1em;
   transition: 0.5s border-color, 0.15s box-shadow, 0.15s padding-bottom;
 
+  @include breakpoint(small) {
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 0.75em;
+  }
+
   &.expanded {
     border-color: transparent;
     box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
@@ -101,6 +107,10 @@ export default {
         h4 {
           color: $bright_green;
           transition: 0.15s color;
+
+          @include breakpoint(small) {
+            margin-bottom: 1em;
+          }
         }
 
         .icon {
@@ -144,6 +154,10 @@ export default {
 
       h4 {
         width: 75%;
+
+        @include breakpoint(small) {
+          // font-size: 18px;
+        }
       }
 
       .icon {
@@ -156,6 +170,7 @@ export default {
           transform: translate(calc(-50% - 55%), -50%);
           width: auto;
           height: 5.8vw;
+          min-height: 55px;
 
           &.active-image {
             opacity: 0;
@@ -178,6 +193,10 @@ export default {
       p {
         @include body-copy;
         margin-bottom: 1em;
+
+        @include breakpoint(small) {
+          font-size: 15px;
+        }
       }
 
       a {

@@ -66,6 +66,20 @@
           v-bind:class="{ visible: selected_index == 1 }"
         />
       </div>
+      <div class="mobile-ctas">
+        <nuxt-link
+          to="#"
+          class="button"
+          v-bind:class="{ visible: selected_index == 0 }"
+          >About Us</nuxt-link
+        >
+        <nuxt-link
+          to="#"
+          class="button"
+          v-bind:class="{ visible: selected_index == 1 }"
+          >Learn More</nuxt-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -192,9 +206,23 @@ export default {
   .titles {
     margin-bottom: 3.5vw;
 
+    @include breakpoint(small) {
+      order: 1;
+    }
+
     h3 {
       &.hidden {
         display: none;
+      }
+
+      @include breakpoint(small) {
+        @include h2;
+      }
+
+      br {
+        @include breakpoint(small) {
+          display: none;
+        }
       }
     }
   }
@@ -206,7 +234,8 @@ export default {
     flex-shrink: 0;
 
     @include breakpoint(small) {
-      // width: 100%;
+      flex-direction: column;
+      order: 3;
     }
 
     .copy {
@@ -262,7 +291,7 @@ export default {
 
     @include breakpoint(small) {
       width: 100%;
-      padding-bottom: 97%;
+      padding-bottom: 44%;
     }
 
     img {

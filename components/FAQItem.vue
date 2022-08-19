@@ -98,6 +98,10 @@ export default {
   border-top: 2px solid $bright_green;
   padding: 0.5em 0 0.8em;
 
+  @include breakpoint(small) {
+    border-width: 1px;
+  }
+
   &.expanded {
     .inner {
       .question {
@@ -137,7 +141,13 @@ export default {
       @include body-copy-small;
 
       img {
+        display: block;
+        height: auto;
         transition: 0.15s transform;
+
+        @include breakpoint(small) {
+          width: 12px;
+        }
       }
     }
 

@@ -1,11 +1,11 @@
 <template>
   <div
     v-if="data"
-    class="landing-section-4-menu-item"
-    v-bind:class="[{ expanded: expanded }]"
+    class="devices-we-work-with-item"
+    v-bind:class="[{ expanded: expanded }, { disabled: !data.logos }]"
   >
     <div
-      class="landing-section-4-menu-item-hit-area"
+      class="devices-we-work-with-item-hit-area"
       v-on:click="toggleContent"
       v-if="data.logos"
     ></div>
@@ -80,7 +80,7 @@ export default {
       el.style.height = 0;
     },
     onMouseClick(e) {
-      if (e.target.classList.contains("landing-section-4-menu-item-hit-area")) {
+      if (e.target.classList.contains("devices-we-work-with-item-hit-area")) {
         this.closeContent();
       }
     },
@@ -89,9 +89,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.landing-section-4-menu-item {
+.devices-we-work-with-item {
   position: relative;
   margin-bottom: 0.4em;
+
+  &.disabled {
+    pointer-events: none;
+  }
 
   &.expanded {
     .inner {
@@ -109,7 +113,7 @@ export default {
     }
   }
 
-  .landing-section-4-menu-item-hit-area {
+  .devices-we-work-with-item-hit-area {
     position: absolute;
     top: 0;
     left: 0;

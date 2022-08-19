@@ -59,6 +59,14 @@
       </div>
     </div>
     <div class="inner" v-bind:class="{ mobile_menu_open: mobileMenuOpen }">
+      <div class="logomark">
+        <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
+          <img src="/images/logomark.svg" alt="" />
+        </a>
+        <nuxt-link v-if="currentRoute != 'index'" to="/">
+          <img src="/images/logomark.svg" alt="" />
+        </nuxt-link>
+      </div>
       <div class="logo">
         <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
           <img class="desktop" src="/images/logo-desktop.svg" alt="" />
@@ -347,6 +355,7 @@ nav.nav {
       padding: 0 15px 0 13px;
       height: 56px;
       align-items: center;
+      justify-content: center;
     }
 
     &.mobile_menu_open {
@@ -370,6 +379,32 @@ nav.nav {
 
       @include breakpoint(mobile_nav_breakpoint) {
         display: block;
+      }
+    }
+
+    .logomark {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      z-index: 1;
+      cursor: pointer;
+
+      @include breakpoint(mobile_nav_breakpoint) {
+        display: block;
+      }
+
+      a {
+        display: block;
+        width: 20px;
+        height: 26px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
       }
     }
 
@@ -405,7 +440,10 @@ nav.nav {
     }
 
     .burger {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
       z-index: 1;
       display: none;
       align-items: center;
@@ -439,9 +477,8 @@ nav.nav {
       > li {
         &.divider {
           width: 2px;
-          // height: 50px;
           background-color: $bright_green;
-          margin: 0 30px;
+          margin: 0 1.55vw;
 
           @include breakpoint(mobile_nav_breakpoint) {
             display: none;

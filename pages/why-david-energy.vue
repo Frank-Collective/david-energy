@@ -3,14 +3,12 @@
     <div class="why-section-1">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-1-bg.jpg" alt="" />
-        <img
-          class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
-          alt=""
-        />
+        <img class="mobile" src="/images/why-section-1-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h1>It’s not only better for the planet.<br />It’s just better.</h1>
+        <h1>
+          It’s not only <br />better for the planet. <br />It’s just better.
+        </h1>
         <div class="content">
           <div class="copy">
             <h4>
@@ -29,11 +27,7 @@
     <div class="why-section-2">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-2-bg.jpg" alt="" />
-        <img
-          class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
-          alt=""
-        />
+        <img class="mobile" src="/images/why-section-2-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
         <h3>How we think about energy</h3>
@@ -55,6 +49,12 @@
       </div>
     </div>
     <div class="why-section-3">
+      <div class="bg-image">
+        <img class="mobile" src="/images/why-section-3-bg-mobile.jpg" alt="" />
+      </div>
+      <div class="bg-image2">
+        <img class="mobile" src="/images/why-section-3-bg2-mobile.jpg" alt="" />
+      </div>
       <div class="inner">
         <h1>The future is bright</h1>
         <div class="copy">
@@ -95,17 +95,14 @@
     <div class="why-section-4">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
+        <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>
       <ToggleGraphs />
     </div>
     <div class="why-section-5">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-5-bg.jpg" alt="" />
-        <img
-          class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
-          alt=""
-        />
+        <img class="mobile" src="/images/why-section-5-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
         <div class="copy">
@@ -149,6 +146,9 @@
             }"
           />
         </div>
+        <div class="cta">
+          <nuxt-link class="button" to="">See More</nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -171,11 +171,11 @@ export default {
   padding-bottom: 6vw;
 
   @include breakpoint(medium) {
-    margin-bottom: 130px;
+    padding-bottom: 120px;
   }
 
   @include breakpoint(small) {
-    padding-top: 75px;
+    padding-top: 85px;
   }
 
   .bg-image {
@@ -210,22 +210,19 @@ export default {
     position: relative;
     z-index: 1;
 
-    @include breakpoint(small) {
-      padding: 0;
-    }
-
     h1 {
       @include h1-medium;
       @include gutter(padding-left);
       @include gutter(padding-right);
 
       @include breakpoint(small) {
-        // font-size: 56px;
-        // line-height: 110%;
-        // letter-spacing: -0.03em;
-        // position: relative;
-        // z-index: 1;
-        // width: auto;
+        letter-spacing: -0.06em;
+      }
+
+      br {
+        @include breakpoint(small) {
+          display: none;
+        }
       }
     }
 
@@ -245,6 +242,9 @@ export default {
         @include gutter(padding-left);
 
         @include breakpoint(small) {
+          width: auto;
+          @include gutter(padding-right);
+          order: 2;
         }
       }
 
@@ -256,6 +256,9 @@ export default {
         padding-bottom: 44%;
 
         @include breakpoint(small) {
+          width: 100%;
+          margin-top: -9%;
+          padding-bottom: 100%;
         }
 
         img {
@@ -265,6 +268,11 @@ export default {
           right: 0;
           width: 112%;
           height: auto;
+
+          @include breakpoint(small) {
+            width: 140%;
+            right: -29%;
+          }
         }
       }
     }
@@ -277,11 +285,10 @@ export default {
   @include gutter(padding-right);
 
   @include breakpoint(medium) {
-    margin-bottom: 130px;
+    padding-bottom: 120px;
   }
 
   @include breakpoint(small) {
-    padding-top: 75px;
   }
 
   .bg-image {
@@ -291,6 +298,11 @@ export default {
     width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: -23%;
+      width: 94%;
+    }
 
     img.desktop {
       display: block;
@@ -321,13 +333,13 @@ export default {
 
     @include breakpoint(small) {
       padding: 0;
+      flex-direction: column;
     }
 
     h3 {
-      // width: 38%;
-      // flex-shrink: 0;
-
       @include breakpoint(small) {
+        @include h2;
+        margin-bottom: 0.8em;
       }
     }
 
@@ -338,21 +350,30 @@ export default {
       @include gutter(padding-left);
       padding-left: 32px;
 
+      @include breakpoint(small) {
+        width: auto;
+      }
+
       &:before {
         content: "";
         display: block;
         position: absolute;
         left: 0;
         width: 2px;
-        height: calc(100% - 1.5em);
+        height: 100%;
         background-color: $bright_green;
-      }
-
-      @include breakpoint(small) {
       }
 
       p {
         margin-bottom: 1.5em;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        @include breakpoint(small) {
+          font-size: 18px;
+        }
       }
     }
   }
@@ -364,11 +385,53 @@ export default {
   @include gutter(padding-right);
 
   @include breakpoint(medium) {
-    margin-bottom: 130px;
+    padding-bottom: 120px;
   }
 
   @include breakpoint(small) {
-    padding-top: 75px;
+  }
+
+  .bg-image,
+  .bg-image2 {
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: -6%;
+      left: 0;
+      width: 94%;
+    }
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .bg-image2 {
+    @include breakpoint(small) {
+      top: auto;
+      bottom: -11%;
+      left: auto;
+      right: 0;
+      width: 80%;
+    }
   }
 
   .inner {
@@ -385,6 +448,7 @@ export default {
       margin-bottom: 1em;
 
       @include breakpoint(small) {
+        margin-bottom: 0.5em;
       }
     }
 
@@ -395,10 +459,16 @@ export default {
       padding-left: 15vw;
 
       @include breakpoint(small) {
+        width: auto;
+        padding: 0;
       }
 
       h4 {
         margin-bottom: 1.5em;
+
+        @include breakpoint(small) {
+          @include body-copy-small;
+        }
       }
     }
 
@@ -409,8 +479,18 @@ export default {
       padding-left: 15vw;
       margin-top: 1vw;
 
+      @include breakpoint(small) {
+        flex-direction: column;
+        padding: 0;
+      }
+
       :deep(.expanding-cta) {
         width: calc(50% - 10px);
+
+        @include breakpoint(small) {
+          width: 100%;
+          margin-bottom: 10px;
+        }
       }
     }
   }
@@ -419,16 +499,22 @@ export default {
   position: relative;
   padding-bottom: 8vw;
 
-  @include breakpoint(small) {
-    margin-bottom: 40px;
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
   }
 
   .bg-image {
     position: absolute;
-    top: -100%;
+    top: -80%;
     left: 0;
     width: 43%;
     pointer-events: none;
+
+    @include breakpoint(small) {
+      top: auto;
+      bottom: -15%;
+      width: 100%;
+    }
 
     img.desktop {
       display: block;
@@ -458,20 +544,27 @@ export default {
   @include gutter(padding-right);
 
   @include breakpoint(medium) {
-    margin-bottom: 130px;
+    padding-bottom: 100px;
   }
 
   @include breakpoint(small) {
-    padding-top: 75px;
   }
 
   .bg-image {
     position: absolute;
-    top: -30%;
+    top: -110%;
     left: 0;
-    width: 50%;
+    width: 60%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: auto;
+      left: auto;
+      bottom: -50%;
+      right: 0;
+      width: 100%;
+    }
 
     img.desktop {
       display: block;
@@ -500,7 +593,7 @@ export default {
     justify-content: space-between;
 
     @include breakpoint(small) {
-      padding: 0;
+      flex-direction: column;
     }
 
     .copy {
@@ -509,6 +602,7 @@ export default {
       flex-shrink: 0;
 
       @include breakpoint(small) {
+        width: auto;
       }
 
       h2 {
@@ -528,11 +622,30 @@ export default {
       p {
         margin-bottom: 1.5em;
       }
+
+      a {
+        @include breakpoint(small) {
+          display: none;
+        }
+      }
     }
 
     .faqs {
       width: 43%;
       flex-shrink: 0;
+
+      @include breakpoint(small) {
+        width: 100%;
+      }
+    }
+
+    .cta {
+      display: none;
+      margin-top: 1em;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
   }
 }
