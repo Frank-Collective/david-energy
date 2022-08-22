@@ -5,6 +5,11 @@
     v-bind:class="[{ expanded: expanded }]"
     v-on:mouseover="openMenu"
     v-on:mouseout="closeMenu"
+    v-on:click="
+      if (!data.dropdown) {
+        data.callback();
+      }
+    "
   >
     <nuxt-link :to="data.url" v-bind:class="{ green_hover: !data.dropdown }">
       {{ data.title }}
@@ -30,7 +35,11 @@
       v-on:leave="leave"
     >
       <ul class="dropdown" v-show="expanded">
-        <li v-for="(item, index) in data.dropdown" :key="index">
+        <li
+          v-for="(item, index) in data.dropdown"
+          :key="index"
+          v-on:click="data.callback()"
+        >
           <nuxt-link :to="item.url">{{ item.title }}</nuxt-link>
         </li>
       </ul>

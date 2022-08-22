@@ -9,7 +9,7 @@
         />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/for-brokers-section-1-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -21,6 +21,17 @@
         <div class="copy">
           <div class="eyebrow">for brokers</div>
           <h1>Go beyond the broker’s fee.</h1>
+          <p class="hide-small">
+            A win for you and your customers. Enhance your bottom line with
+            David Energy by delivering savings and lowering your customers’
+            bills partner with us
+          </p>
+          <nuxt-link class="button hide-small" to="#"
+            >Partner with us</nuxt-link
+          >
+        </div>
+
+        <div class="copy show-small">
           <p>
             A win for you and your customers. Enhance your bottom line with
             David Energy by delivering savings and lowering your customers’
@@ -32,6 +43,14 @@
     </div>
 
     <div class="for-brokers-section-2">
+      <div class="bg-image">
+        <img
+          class="mobile"
+          src="/images/for-brokers-section-2-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+
       <div class="inner">
         <h1>Partner with David.</h1>
 
@@ -76,7 +95,7 @@
         />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/for-brokers-section-3-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -84,6 +103,13 @@
     </div>
 
     <div class="for-brokers-section-4">
+      <div class="bg-image">
+        <img
+          src="/images/for-brokers-section-4-bg-mobile.jpg"
+          alt=""
+          class="mobile"
+        />
+      </div>
       <PlatformFeatures />
     </div>
 
@@ -100,7 +126,7 @@
         />
         <img
           class="mobile"
-          src="/images/landing-section-4-bg1-mobile.png"
+          src="/images/for-brokers-section-6-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -113,6 +139,11 @@
         <img
           class="desktop"
           src="/images/for-brokers-section-7-bg.jpg"
+          alt=""
+        />
+        <img
+          class="mobile"
+          src="/images/for-brokers-section-7-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -136,6 +167,15 @@ export default {
   position: relative;
   padding-top: 13vw;
   padding-bottom: 6vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
 
   .bg-image {
     position: absolute;
@@ -173,6 +213,7 @@ export default {
     @include gutter(padding-right);
 
     @include breakpoint(small) {
+      padding: 0;
       flex-direction: column;
       justify-content: flex-start;
     }
@@ -182,12 +223,22 @@ export default {
       width: 46%;
 
       @include breakpoint(small) {
+        width: 100%;
+        order: 2;
+        margin-top: -20vw;
+        margin-bottom: 40px;
       }
 
       img {
+        position: relative;
         display: block;
         width: 100%;
         height: auto;
+
+        @include breakpoint(small) {
+          left: 0%;
+          width: 111%;
+        }
       }
     }
 
@@ -196,10 +247,17 @@ export default {
       flex-shrink: 0;
 
       @include breakpoint(small) {
+        width: auto;
+        @include gutter(padding-left);
+        @include gutter(padding-right);
       }
 
       .eyebrow {
         margin-bottom: 2em;
+
+        @include breakpoint(small) {
+          margin-bottom: 1.5em;
+        }
       }
 
       h1 {
@@ -210,6 +268,18 @@ export default {
         @include body-copy-small;
         margin-bottom: 1.5em;
         padding-right: 6vw;
+
+        @include breakpoint(small) {
+          @include body-copy;
+          margin-bottom: 1em;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .copy.show-small {
+      @include breakpoint(small) {
+        order: 3;
       }
     }
   }
@@ -222,6 +292,36 @@ export default {
   padding-bottom: 12vw;
 
   @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: -76vw;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
   }
 
   .inner {
@@ -238,6 +338,12 @@ export default {
     h1 {
       text-align: right;
       margin-bottom: 0.5em;
+
+      @include breakpoint(small) {
+        text-align: left;
+        @include h2;
+        margin-bottom: 0.25em;
+      }
     }
 
     .info-cards {
@@ -249,15 +355,9 @@ export default {
         flex-direction: column;
       }
 
-      :deep(.expanding-cta) {
+      :deep(.info-card) {
         width: calc(33.333333% - 20px);
         min-height: 29.5vw;
-
-        @include breakpoint(small) {
-          width: 100%;
-          height: auto;
-          min-height: 0;
-        }
       }
     }
   }
@@ -267,6 +367,10 @@ export default {
   position: relative;
   padding-bottom: 10vw;
 
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
+
   .bg-image {
     position: absolute;
     top: 0;
@@ -275,6 +379,13 @@ export default {
     width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: 10%;
+      right: auto;
+      left: 0;
+      width: 100%;
+    }
 
     img.desktop {
       display: block;
@@ -301,11 +412,54 @@ export default {
 .for-brokers-section-4 {
   position: relative;
   padding-bottom: 10vw;
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: -22%;
+      right: 0;
+      width: 100%;
+    }
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
 }
 
 .for-brokers-section-5 {
   position: relative;
   padding-bottom: 12vw;
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
 }
 
 .for-brokers-section-6 {
@@ -326,6 +480,8 @@ export default {
     mix-blend-mode: darken;
 
     @include breakpoint(small) {
+      width: 100%;
+      top: -6%;
     }
 
     img {
@@ -365,6 +521,13 @@ export default {
     width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      width: 100%;
+      right: auto;
+      left: 0;
+      bottom: -60%;
+    }
 
     img.desktop {
       display: block;

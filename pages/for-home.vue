@@ -5,7 +5,7 @@
         <img class="desktop" src="/images/for-home-section-1-bg.jpg" alt="" />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/for-home-section-1-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -13,20 +13,35 @@
         <div class="copy">
           <div class="eyebrow">For Home</div>
           <h1>Your home powered your way.</h1>
+          <p class="hide-small">
+            David Energy gives you total control over how much energy you use
+            and where it comes from.
+          </p>
+          <nuxt-link class="button hide-small" to="#">Get Started</nuxt-link>
+        </div>
+
+        <div class="image">
+          <img src="/images/for-home-section-1-image.png" alt="" />
+        </div>
+
+        <div class="copy show-small">
           <p>
             David Energy gives you total control over how much energy you use
             and where it comes from.
           </p>
           <nuxt-link class="button" to="#">Get Started</nuxt-link>
         </div>
-
-        <div class="image">
-          <img src="/images/for-home-section-1-image.png" alt="" />
-        </div>
       </div>
     </div>
 
     <div class="for-home-section-2">
+      <div class="bg-image">
+        <img
+          class="mobile"
+          src="/images/for-home-section-2-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
       <div class="inner">
         <h1>Take charge with David.</h1>
 
@@ -65,6 +80,18 @@
     <div class="for-home-section-3">
       <div class="bg-image">
         <img class="desktop" src="/images/for-home-section-3-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/for-home-section-3-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+      <div class="bg-image bg-image2">
+        <img
+          src="/images/for-home-section-3-bg2-mobile.jpg"
+          alt=""
+          class="mobile"
+        />
       </div>
       <PlatformFeatures />
     </div>
@@ -74,7 +101,7 @@
         <img class="desktop" src="/images/for-home-section-4-bg.jpg" alt="" />
         <img
           class="mobile"
-          src="/images/landing-section-4-bg1-mobile.png"
+          src="/images/for-home-section-4-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -85,6 +112,11 @@
     <div class="for-home-section-5">
       <div class="bg-image">
         <img class="desktop" src="/images/for-home-section-5-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/for-home-section-5-bg-mobile.jpg"
+          alt=""
+        />
       </div>
       <ToggleGraphs />
     </div>
@@ -106,6 +138,15 @@ export default {
   position: relative;
   padding-top: 13vw;
   padding-bottom: 14vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
 
   .bg-image {
     position: absolute;
@@ -143,6 +184,7 @@ export default {
     @include gutter(padding-left);
 
     @include breakpoint(small) {
+      padding: 0;
       flex-direction: column;
       justify-content: flex-start;
     }
@@ -152,10 +194,17 @@ export default {
       flex-shrink: 0;
 
       @include breakpoint(small) {
+        width: auto;
+        @include gutter(padding-left);
+        @include gutter(padding-right);
       }
 
       .eyebrow {
         margin-bottom: 2em;
+
+        @include breakpoint(small) {
+          margin-bottom: 1.5em;
+        }
       }
 
       h1 {
@@ -166,6 +215,12 @@ export default {
         @include body-copy-small;
         margin-bottom: 1.5em;
         padding-right: 6vw;
+
+        @include breakpoint(small) {
+          @include body-copy;
+          margin-bottom: 1em;
+          padding-right: 0;
+        }
       }
     }
 
@@ -175,6 +230,8 @@ export default {
       padding-bottom: 40.5%;
 
       @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 0;
       }
 
       img {
@@ -184,6 +241,12 @@ export default {
         right: 0;
         width: 120%;
         height: auto;
+
+        @include breakpoint(small) {
+          position: relative;
+          right: 17%;
+          width: 152%;
+        }
       }
     }
   }
@@ -195,56 +258,14 @@ export default {
   padding-bottom: 12vw;
 
   @include breakpoint(small) {
-  }
-
-  .inner {
-    display: flex;
-    flex-direction: column;
-    padding: 0 8vw;
-
-    @include breakpoint(small) {
-      padding: 0;
-    }
-
-    h1 {
-      text-align: right;
-      margin-bottom: 0.5em;
-    }
-
-    .info-cards {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      @include breakpoint(small) {
-        flex-direction: column;
-      }
-
-      :deep(.expanding-cta) {
-        width: calc(33.333333% - 20px);
-        min-height: 29.5vw;
-
-        @include breakpoint(small) {
-          width: 100%;
-          height: auto;
-          min-height: 0;
-        }
-      }
-    }
-  }
-}
-.for-home-section-3 {
-  position: relative;
-  padding-bottom: 9vw;
-
-  @include breakpoint(small) {
+    padding-bottom: 80px;
   }
 
   .bg-image {
     position: absolute;
-    top: -17%;
+    top: -112vw;
     right: 0;
-    width: 70%;
+    width: 80%;
     pointer-events: none;
     mix-blend-mode: darken;
 
@@ -268,6 +289,92 @@ export default {
       }
     }
   }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8vw;
+
+    @include breakpoint(small) {
+      padding: 0;
+    }
+
+    h1 {
+      text-align: right;
+      margin-bottom: 0.5em;
+
+      @include breakpoint(small) {
+        text-align: left;
+        @include h2;
+        margin-bottom: 0.25em;
+      }
+    }
+
+    .info-cards {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+      }
+
+      :deep(.info-card) {
+        width: calc(33.333333% - 20px);
+        min-height: 29.5vw;
+      }
+    }
+  }
+}
+.for-home-section-3 {
+  position: relative;
+  padding-bottom: 9vw;
+
+  @include breakpoint(small) {
+  }
+
+  .bg-image {
+    position: absolute;
+    top: -17%;
+    right: 0;
+    width: 70%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      right: auto;
+      left: 0;
+      top: -9%;
+      width: 100%;
+    }
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .bg-image2 {
+    top: 25%;
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
 }
 .for-home-section-4 {
   position: relative;
@@ -286,6 +393,9 @@ export default {
     mix-blend-mode: darken;
 
     @include breakpoint(small) {
+      top: -92vw;
+      left: 0;
+      width: 120%;
     }
 
     img {
@@ -324,6 +434,14 @@ export default {
     width: 50%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: auto;
+      right: auto;
+      bottom: -57%;
+      left: 0;
+      width: 100%;
+    }
 
     img.desktop {
       display: block;

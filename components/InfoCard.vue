@@ -1,10 +1,6 @@
 <template>
-  <div
-    v-if="data"
-    class="expanding-cta"
-    v-bind:class="[{ expanded: expanded }]"
-  >
-    <div class="expanding-cta-hit-area" v-on:click="toggleContent"></div>
+  <div v-if="data" class="info-card" v-bind:class="[{ expanded: expanded }]">
+    <div class="info-card-hit-area" v-on:click="toggleContent"></div>
     <div class="inner">
       <div class="title">
         <h4>{{ data.title }}</h4>
@@ -84,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.expanding-cta {
+.info-card {
   position: relative;
   background-color: $white;
   border-radius: 20px;
@@ -93,14 +89,32 @@ export default {
   padding: 1em;
   transition: 0.5s border-color, 0.15s box-shadow, 0.15s padding-bottom;
 
+  @include breakpoint(small) {
+    border-width: 1px;
+    border-radius: 8px;
+    padding: 0.75em;
+    width: 100% !important;
+    height: auto;
+    min-height: 0 !important;
+    margin-bottom: 10px;
+  }
+
   &.expanded {
     @include breakpoint(small) {
       border-color: transparent;
       box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
       padding-bottom: 40px;
 
+      @include breakpoint(small) {
+        padding-bottom: 0;
+      }
+
       .inner {
         .title {
+          @include breakpoint(small) {
+            margin-bottom: 0.75em;
+          }
+
           h4 {
             color: $bright_green;
             transition: 0.15s color;
@@ -158,7 +172,7 @@ export default {
     }
   }
 
-  .expanding-cta-hit-area {
+  .info-card-hit-area {
     position: absolute;
     top: 0;
     left: 0;
@@ -173,6 +187,11 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: 0.25s margin-bottom;
+
+      @include breakpoint(small) {
+        min-height: 40px;
+      }
 
       h4 {
         font-family: "Gronland";
@@ -183,12 +202,20 @@ export default {
         letter-spacing: -0.01em;
         opacity: 1;
         transition: 0.25s opacity;
+
+        @include breakpoint(small) {
+          width: 75%;
+        }
       }
 
       .icon {
         position: absolute;
         right: 1em;
         bottom: 1em;
+
+        @include breakpoint(small) {
+          position: relative;
+        }
 
         img {
           position: absolute;
@@ -197,10 +224,15 @@ export default {
           transform: translate(-100%, -100%);
           width: auto;
           height: 5.8vw;
+          min-height: 55px;
 
           &.active-image {
             opacity: 0;
             transition: 0.15s opacity;
+          }
+
+          @include breakpoint(small) {
+            transform: translate(-50%, 0%);
           }
         }
       }
@@ -220,6 +252,10 @@ export default {
 
       p {
         @include body-copy-small;
+
+        @include breakpoint(medium) {
+          font-size: 15px;
+        }
       }
     }
 
@@ -241,6 +277,10 @@ export default {
       p {
         @include body-copy;
         margin-bottom: 1em;
+
+        @include breakpoint(small) {
+          font-size: 15px;
+        }
       }
 
       a {

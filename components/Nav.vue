@@ -98,6 +98,7 @@
               { title: 'Charge The Future', url: '/charge-the-future' },
               { title: 'FAQ', url: '/faq' },
             ],
+            callback: closeMenu,
           }"
         />
 
@@ -105,6 +106,7 @@
           :data="{
             title: 'For Business',
             url: '/for-business',
+            callback: closeMenu,
           }"
         />
 
@@ -112,6 +114,7 @@
           :data="{
             title: 'For Home',
             url: '/for-home',
+            callback: closeMenu,
           }"
         />
 
@@ -123,6 +126,7 @@
               { title: 'For Brokers', url: '/for-brokers' },
               { title: 'For Developers', url: '/for-developers' },
             ],
+            callback: closeMenu,
           }"
         />
 
@@ -134,6 +138,7 @@
               { title: 'Who We Are', url: '/who-we-are' },
               { title: 'Careers', url: '/careers' },
             ],
+            callback: closeMenu,
           }"
         />
 

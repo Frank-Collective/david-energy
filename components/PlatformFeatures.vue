@@ -76,12 +76,12 @@
   @include gutter(padding-left);
   @include gutter(padding-right);
 
-  @include breakpoint(small) {
-    padding: 0;
-  }
-
   h4 {
     margin-bottom: 2.5em;
+
+    @include breakpoint(small) {
+      @include body-copy;
+    }
   }
 
   .cta {
@@ -115,6 +115,11 @@
         width: 100%;
         height: auto;
         min-height: 0;
+        margin-bottom: 40px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
 
       .image {
@@ -122,6 +127,13 @@
         border: 2px solid $bright_green;
         background-color: $white;
         padding: 4vw;
+        overflow: hidden;
+
+        @include breakpoint(small) {
+          border-width: 1px;
+          border-radius: 8px;
+          padding: 0;
+        }
 
         img {
           display: block;
@@ -135,11 +147,23 @@
         align-items: flex-start;
         margin-top: 1em;
 
+        @include breakpoint(small) {
+          flex-direction: column;
+          margin-top: 0.5em;
+        }
+
         h3 {
           @include body-copy-small;
           color: $green;
           width: 34%;
           flex-shrink: 0;
+
+          @include breakpoint(small) {
+            width: auto;
+            @include body-copy;
+            color: $green;
+            margin-bottom: 0.25em;
+          }
         }
 
         p {
@@ -150,6 +174,10 @@
           line-height: 160%;
           letter-spacing: -0.01em;
           padding-left: 3em;
+
+          @include breakpoint(small) {
+            padding: 0;
+          }
         }
       }
     }

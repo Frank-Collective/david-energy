@@ -5,7 +5,7 @@
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/about-us-section-1-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -13,7 +13,7 @@
         <div class="copy">
           <div class="eyebrow">About us</div>
           <h1>A better energy grid starts with a better energy provider.</h1>
-          <p>
+          <p class="hide-small">
             David Energy is revolutionizing energy supply with an integrated
             software platform that puts the consumer in the driver’s seat.
           </p>
@@ -22,17 +22,24 @@
         <div class="image">
           <img src="/images/about-us-section-1-image.png" alt="" />
         </div>
+
+        <div class="copy show-small">
+          <p>
+            David Energy is revolutionizing energy supply with an integrated
+            software platform that puts the consumer in the driver’s seat.
+          </p>
+        </div>
       </div>
     </div>
 
     <div class="about-us-section-2">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
-        <img
+        <!-- <img
           class="mobile"
           src="/images/landing-section-1-bg-mobile.jpg"
           alt=""
-        />
+        /> -->
       </div>
       <div class="inner">
         <ExpandingDropdown
@@ -211,12 +218,25 @@ export default {
   padding-top: 13vw;
   padding-bottom: 5vw;
 
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
   .bg-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     pointer-events: none;
+
+    @include breakpoint(small) {
+      width: 110%;
+    }
 
     img.desktop {
       display: block;
@@ -247,6 +267,7 @@ export default {
     @include gutter(padding-left);
 
     @include breakpoint(small) {
+      padding: 0;
       flex-direction: column;
       justify-content: flex-start;
     }
@@ -256,20 +277,40 @@ export default {
       flex-shrink: 0;
 
       @include breakpoint(small) {
+        width: auto;
+        @include gutter(padding-left);
+        @include gutter(padding-right);
       }
 
       .eyebrow {
         margin-bottom: 2em;
+
+        @include breakpoint(small) {
+          margin-bottom: 1.5em;
+        }
       }
 
       h1 {
         margin-bottom: 0.35em;
+
+        @include breakpoint(small) {
+          @include h2;
+        }
       }
 
       p {
         @include body-copy-small;
         margin-bottom: 1.5em;
         padding-right: 23vw;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        @include breakpoint(small) {
+          padding: 0;
+          @include body-copy;
+        }
       }
     }
 
@@ -280,6 +321,9 @@ export default {
       margin-top: 3vw;
 
       @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: -28vw;
       }
 
       img {
@@ -289,6 +333,12 @@ export default {
         right: 0;
         width: 170%;
         height: auto;
+
+        @include breakpoint(small) {
+          position: relative;
+          width: 165%;
+          right: 27%;
+        }
       }
     }
   }

@@ -51,7 +51,11 @@
             <div class="column column--3">
               <div class="eyebrow">savings</div>
               <div class="big-headline">42%</div>
-              <h4>Reduced Costs Across Individual Savings</h4>
+              <h4>
+                Reduced Costs Across Individual Savings Reduced Costs Across
+                Individual Savings Reduced Costs Across Individual Savings
+                Reduced Costs Across Individual Savings
+              </h4>
             </div>
           </div>
         </flickity>
@@ -70,12 +74,13 @@ export default {
       initialized: false,
       flickityOptions: {
         prevNextButtons: false,
-        pageDots: false,
+        pageDots: true,
         draggable: true,
         cellAlign: "left",
         imagesLoaded: true,
         contain: true,
         cellSelector: ".slide",
+        adaptiveHeight: true,
       },
     };
   },
@@ -133,6 +138,10 @@ export default {
     background-color: $bright_green;
     border-radius: 22px;
 
+    @include breakpoint(small) {
+      border-radius: 8px;
+    }
+
     .carousel {
       width: 100%;
       height: 100%;
@@ -148,6 +157,10 @@ export default {
         width: 100%;
         pointer-events: none;
         padding: 0 3vw;
+
+        @include breakpoint(small) {
+          display: none;
+        }
 
         .btn {
           width: 22px;
@@ -195,8 +208,22 @@ export default {
         width: 100%;
         padding: 5.2vw 6.5vw 3.7vw;
 
+        @include breakpoint(small) {
+          flex-direction: column;
+          padding: 44px 30px 70px;
+        }
+
         .column {
           width: calc(33.333333% - 20px);
+
+          @include breakpoint(small) {
+            width: 100%;
+            margin-bottom: 40px;
+
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+          }
 
           .eyebrow {
             font-family: "Gronland";
@@ -208,6 +235,13 @@ export default {
             text-transform: uppercase;
             color: $white;
             margin-bottom: 2em;
+
+            @include breakpoint(small) {
+              border-bottom: 1px solid $white;
+              font-size: 14px;
+              padding-bottom: 0.75em;
+              margin-bottom: 1em;
+            }
           }
 
           h4,
@@ -215,9 +249,20 @@ export default {
             color: $white;
           }
 
+          h4 {
+            @include breakpoint(small) {
+              @include body-copy-small;
+            }
+          }
+
           .big-headline {
             color: $white;
             @include h1-large;
+
+            @include breakpoint(small) {
+              font-size: 96px;
+              margin-top: 0.25em;
+            }
           }
 
           p {
@@ -226,17 +271,51 @@ export default {
 
           &--1 {
             width: 27%;
+
+            @include breakpoint(small) {
+              width: 100%;
+            }
           }
 
           &--2 {
             width: 29%;
+
+            @include breakpoint(small) {
+              width: 100%;
+            }
           }
 
           &--3 {
             width: 35%;
+
+            @include breakpoint(small) {
+              width: 100%;
+            }
           }
         }
       }
+    }
+  }
+}
+
+:deep(.flickity-page-dots) {
+  display: none;
+
+  @include breakpoint(small) {
+    display: block;
+    bottom: 15px;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    background-color: transparent;
+    border: 1px solid $white;
+    opacity: 1;
+    margin: 0 4px;
+
+    &.is-selected {
+      background-color: $white;
     }
   }
 }

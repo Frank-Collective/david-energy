@@ -4,12 +4,12 @@
       <div class="bg-image">
         <img
           class="desktop"
-          src="/images/for-business-section-1-bg1.jpg"
+          src="/images/for-business-section-1-bg.jpg"
           alt=""
         />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/for-business-section-1-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -17,20 +17,35 @@
         <div class="copy">
           <div class="eyebrow">For Businesses</div>
           <h1>The power of simplicity.</h1>
+          <p class="hide-small">
+            With David Energy you can manage the energy of all your facilities
+            and pay your bills from one convenient platform.
+          </p>
+          <nuxt-link class="button hide-small" to="#">Get Started</nuxt-link>
+        </div>
+
+        <div class="image">
+          <img src="/images/for-business-section-1-image.png" alt="" />
+        </div>
+
+        <div class="copy show-small">
           <p>
             With David Energy you can manage the energy of all your facilities
             and pay your bills from one convenient platform.
           </p>
           <nuxt-link class="button" to="#">Get Started</nuxt-link>
         </div>
-
-        <div class="image">
-          <img src="/images/for-business-section-1-image.png" alt="" />
-        </div>
       </div>
     </div>
 
     <div class="for-business-section-2">
+      <div class="bg-image">
+        <img
+          class="mobile"
+          src="/images/for-business-section-2-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
       <div class="inner">
         <h1>Do more with David.</h1>
 
@@ -73,15 +88,34 @@
           src="/images/for-business-section-3-bg.jpg"
           alt=""
         />
+        <img
+          class="mobile"
+          src="/images/for-business-section-3-bg-mobile.jpg"
+          alt=""
+        />
+      </div>
+      <div class="bg-image bg-image2">
+        <img
+          src="/images/for-business-section-3-bg2-mobile.jpg"
+          alt=""
+          class="mobile"
+        />
+      </div>
+      <div class="bg-image bg-image3">
+        <img
+          src="/images/for-business-section-3-bg3-mobile.jpg"
+          alt=""
+          class="mobile"
+        />
       </div>
       <PlatformFeatures />
     </div>
 
     <div class="for-business-section-4">
-      <div class="bg-image-1">
+      <div class="bg-image">
         <img
           class="mobile"
-          src="/images/landing-section-5-bg1-mobile.png"
+          src="/images/for-business-section-4-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -116,6 +150,15 @@ export default {
   position: relative;
   padding-top: 13vw;
   padding-bottom: 14vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
 
   .bg-image {
     position: absolute;
@@ -154,6 +197,7 @@ export default {
     @include gutter(padding-left);
 
     @include breakpoint(small) {
+      padding: 0;
       flex-direction: column;
       justify-content: flex-start;
     }
@@ -163,10 +207,17 @@ export default {
       flex-shrink: 0;
 
       @include breakpoint(small) {
+        width: auto;
+        @include gutter(padding-left);
+        @include gutter(padding-right);
       }
 
       .eyebrow {
         margin-bottom: 2em;
+
+        @include breakpoint(small) {
+          margin-bottom: 1.5em;
+        }
       }
 
       h1 {
@@ -176,6 +227,11 @@ export default {
       p {
         @include body-copy-small;
         margin-bottom: 1.5em;
+
+        @include breakpoint(small) {
+          @include body-copy;
+          margin-bottom: 1em;
+        }
       }
     }
 
@@ -186,6 +242,8 @@ export default {
       padding-bottom: 39.5%;
 
       @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 0;
       }
 
       img {
@@ -195,6 +253,12 @@ export default {
         right: 0;
         width: 116%;
         height: auto;
+
+        @include breakpoint(small) {
+          position: relative;
+          right: 16%;
+          width: 140%;
+        }
       }
     }
   }
@@ -206,56 +270,14 @@ export default {
   padding-bottom: 12vw;
 
   @include breakpoint(small) {
-  }
-
-  .inner {
-    display: flex;
-    flex-direction: column;
-    padding: 0 8vw;
-
-    @include breakpoint(small) {
-      padding: 0;
-    }
-
-    h1 {
-      text-align: right;
-      margin-bottom: 0.5em;
-    }
-
-    .info-cards {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      @include breakpoint(small) {
-        flex-direction: column;
-      }
-
-      :deep(.expanding-cta) {
-        width: calc(33.333333% - 20px);
-        min-height: 29.5vw;
-
-        @include breakpoint(small) {
-          width: 100%;
-          height: auto;
-          min-height: 0;
-        }
-      }
-    }
-  }
-}
-.for-business-section-3 {
-  position: relative;
-  padding-bottom: 9vw;
-
-  @include breakpoint(small) {
+    padding-bottom: 80px;
   }
 
   .bg-image {
     position: absolute;
-    top: -17%;
+    top: -100vw;
     right: 0;
-    width: 80%;
+    width: 70%;
     pointer-events: none;
     mix-blend-mode: darken;
 
@@ -279,6 +301,107 @@ export default {
       }
     }
   }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8vw;
+
+    @include breakpoint(small) {
+      padding: 0;
+    }
+
+    h1 {
+      text-align: right;
+      margin-bottom: 0.5em;
+
+      @include breakpoint(small) {
+        text-align: left;
+        @include h2;
+        margin-bottom: 0.25em;
+      }
+    }
+
+    .info-cards {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+      }
+
+      :deep(.info-card) {
+        width: calc(33.333333% - 20px);
+        min-height: 29.5vw;
+      }
+    }
+  }
+}
+.for-business-section-3 {
+  position: relative;
+  padding-bottom: 9vw;
+
+  @include breakpoint(small) {
+  }
+
+  .bg-image {
+    position: absolute;
+    top: -17%;
+    right: 0;
+    width: 80%;
+    pointer-events: none;
+    mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      right: auto;
+      left: 0;
+      top: 0%;
+    }
+
+    img.desktop {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    img.mobile {
+      display: none;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+
+  .bg-image2 {
+    top: 35%;
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+
+  .bg-image2 {
+    top: auto;
+    bottom: 0%;
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+
+  .bg-image3 {
+    top: auto;
+    bottom: -17%;
+    left: auto;
+    right: 0;
+    width: 64%;
+  }
 }
 .for-business-section-4 {
   position: relative;
@@ -288,7 +411,7 @@ export default {
     padding-bottom: 80px;
   }
 
-  .bg-image-1 {
+  .bg-image {
     position: absolute;
     top: 0%;
     left: 0%;
@@ -297,7 +420,8 @@ export default {
     mix-blend-mode: darken;
 
     @include breakpoint(small) {
-      top: 7%;
+      top: auto;
+      bottom: -38%;
       left: 0%;
       width: 60%;
     }
