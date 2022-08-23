@@ -289,6 +289,14 @@
   @extend .indented-text-link;
 }
 
+@mixin indented-text-link--medium {
+  @extend .indented-text-link--medium;
+}
+
+@mixin indented-text-link--small {
+  @extend .indented-text-link--small;
+}
+
 .eyebrow {
   font-family: "Gronland";
   font-style: normal;

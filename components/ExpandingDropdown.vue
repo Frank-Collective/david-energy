@@ -25,9 +25,9 @@
         v-on:leave="leave"
       >
         <div class="content" v-show="expanded">
-          <div class="summary">
+          <div class="summary" v-if="data.summary">
             <div class="spacer"></div>
-            <p class="body-copy-small">
+            <p>
               {{ data.summary }}
             </p>
           </div>
@@ -153,6 +153,12 @@ export default {
   margin-bottom: 2.1vw;
   transition: 0.5s border-color, 0.15s box-shadow;
 
+  @include breakpoint(small) {
+    border-width: 1px;
+    border-radius: 8px;
+    padding: 19px 17px 15px;
+  }
+
   &.expanded {
     border-color: transparent;
     box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
@@ -197,8 +203,19 @@ export default {
       justify-content: space-between;
       @include body-copy-small;
 
+      h3 {
+        @include breakpoint(small) {
+          @include h4;
+        }
+      }
+
       img {
         transition: 0.15s transform;
+
+        @include breakpoint(small) {
+          width: 20px;
+          height: 11px;
+        }
       }
     }
 
@@ -210,13 +227,25 @@ export default {
       display: flex;
       justify-content: space-between;
 
+      @include breakpoint(small) {
+        flex-direction: column;
+      }
+
       .spacer {
         height: 1vw;
+
+        @include breakpoint(small) {
+          height: 18px;
+        }
       }
 
       .summary {
         width: 29%;
         flex-shrink: 0;
+
+        @include breakpoint(small) {
+          width: auto;
+        }
 
         p {
           @include body-copy-small;
@@ -227,6 +256,11 @@ export default {
         width: 60%;
         flex-shrink: 0;
         padding-right: 7vw;
+
+        @include breakpoint(small) {
+          width: auto;
+          padding: 0;
+        }
 
         .content-item {
           .paragraph {
@@ -254,13 +288,27 @@ export default {
               padding-left: 0.5em;
               color: $bright_green;
 
+              @include breakpoint(small) {
+                font-size: 18px;
+                margin-bottom: 0.25em;
+              }
+
               &:before {
                 opacity: 1;
+
+                @include breakpoint(small) {
+                  width: 4px;
+                  height: 7px;
+                }
               }
             }
 
             p {
               @include body-copy-small;
+
+              @include breakpoint(small) {
+                font-size: 15px;
+              }
             }
           }
 
@@ -268,16 +316,29 @@ export default {
             display: flex;
             margin-bottom: 2em;
 
+            @include breakpoint(small) {
+              margin-bottom: 0.5em;
+            }
+
             .icon {
               flex-shrink: 0;
               width: 165px;
               display: flex;
               justify-content: center;
 
+              @include breakpoint(small) {
+                width: 70px;
+                margin-right: 20px;
+              }
+
               img {
                 display: block;
                 width: auto;
                 height: 5.8vw;
+
+                @include breakpoint(small) {
+                  height: 60px;
+                }
               }
             }
 
@@ -285,11 +346,19 @@ export default {
               h4 {
                 color: $bright_green;
                 margin-bottom: 0.25em;
+
+                @include breakpoint(small) {
+                  font-size: 18px;
+                }
               }
 
               p {
                 @include body-copy-small;
                 margin-bottom: 0;
+
+                @include breakpoint(small) {
+                  font-size: 15px;
+                }
 
                 &:after {
                   content: "";

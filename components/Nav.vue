@@ -3,6 +3,7 @@
     <div
       class="leadership-modal"
       v-bind:class="{ visible: this.$store.state.team_modal_open }"
+      v-if="this.$store.state.team_modal_open"
     >
       <div class="bg" v-on:click="closeTeamModal()"></div>
       <div class="inner">
@@ -17,6 +18,18 @@
             <path d="M26 1L1 26" stroke="#AEB9BF" />
             <path d="M1 1L26 26" stroke="#AEB9BF" />
           </svg>
+        </div>
+        <div class="close-x-btn-mobile" v-on:click="closeTeamModal()">
+          <svg
+            width="9"
+            height="16"
+            viewBox="0 0 9 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M8.5 0.5L1 8L8.5 15.5" stroke="black" />
+          </svg>
+          Close
         </div>
         <div class="image">
           <img src="/images/team-James.jpeg" alt="" />
@@ -213,6 +226,10 @@ export default {
   @include gutter(padding-left);
   @include gutter(padding-right);
 
+  @include breakpoint(small) {
+    padding: 0;
+  }
+
   &.visible {
     display: flex;
   }
@@ -235,26 +252,100 @@ export default {
     border-radius: 20px;
     background: $white;
     box-shadow: 0px 0px 8px $sun_glow;
-    padding: 65px 75px;
+    padding: 3.8vw 4vw 2.5vw;
     max-width: 1575px;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
+
+    @include breakpoint(medium) {
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 60px;
+      @include gutter(padding-left);
+      @include gutter(padding-right);
+    }
+
+    @include breakpoint(small) {
+      max-height: 100vh;
+      border-radius: 0;
+      box-shadow: none;
+      padding-top: 65px;
+    }
 
     .close-x-btn {
       position: absolute;
       top: 40px;
       right: 40px;
       cursor: pointer;
+
+      @include breakpoint(medium) {
+        top: 20px;
+        right: 20px;
+      }
+
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    .close-x-btn-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 46px;
+      background-color: $white;
+      z-index: 1;
+      @include gutter(padding-left);
+      @include gutter(padding-right);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+
+      color: $black;
+
+      @include breakpoint(small) {
+        display: flex;
+        align-items: center;
+      }
+
+      svg {
+        position: relative;
+        top: -2px;
+        width: 8px;
+        height: 15px;
+        margin-right: 1.25em;
+      }
     }
 
     .image {
+      position: relative;
       width: 31.1%;
+      height: 29.2vw;
       flex-shrink: 0;
       border-radius: 20px;
       overflow: hidden;
 
+      @include breakpoint(medium) {
+        width: 100%;
+        max-width: 374px;
+        height: auto;
+        margin-bottom: 40px;
+      }
+
       img {
+        position: absolute;
         display: block;
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
+
+        @include breakpoint(medium) {
+          position: relative;
+          height: auto;
+          object-fit: unset;
+        }
       }
     }
 
@@ -262,14 +353,23 @@ export default {
       flex-grow: 1;
       padding: 0 6vw 0 2vw;
 
+      @include breakpoint(medium) {
+        margin-bottom: 30px;
+        padding: 0;
+      }
+
       .name {
         color: $dark_evergreen;
-        margin-bottom: 0.75em;
+        margin-bottom: 0.5em;
       }
 
       .title {
         color: $slate_gray;
-        margin-bottom: 3em;
+        margin-bottom: 2.5em;
+
+        @include breakpoint(medium) {
+          @include body-copy-small;
+        }
       }
 
       p {
@@ -285,6 +385,10 @@ export default {
     .history {
       width: 25%;
       flex-shrink: 0;
+
+      @include breakpoint(medium) {
+        width: 100%;
+      }
 
       .eyebrow {
         color: $slate_gray;

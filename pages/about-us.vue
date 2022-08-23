@@ -35,11 +35,6 @@
     <div class="about-us-section-2">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
-        <!-- <img
-          class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
-          alt=""
-        /> -->
       </div>
       <div class="inner">
         <ExpandingDropdown
@@ -124,7 +119,7 @@
         <img class="desktop" src="/images/about-us-section-3-bg.jpg" alt="" />
         <img
           class="mobile"
-          src="/images/landing-section-1-bg-mobile.jpg"
+          src="/images/about-us-section-3-bg-mobile.jpg"
           alt=""
         />
       </div>
@@ -162,6 +157,11 @@
     <div class="about-us-section-5">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-5-bg.jpg" alt="" />
+        <img
+          class="mobile"
+          src="/images/about-us-section-5-bg-mobile.jpg"
+          alt=""
+        />
       </div>
       <div class="inner">
         <div class="copy">
@@ -345,6 +345,16 @@ export default {
 }
 
 .about-us-section-2 {
+  padding-bottom: 10vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
+
   .bg-image {
     position: absolute;
     top: 0;
@@ -388,8 +398,15 @@ export default {
 
 .about-us-section-3 {
   position: relative;
-  padding-top: 10vw;
   padding-bottom: 12vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
 
   .bg-image {
     position: absolute;
@@ -398,6 +415,11 @@ export default {
     width: 29%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      width: 47%;
+      top: -37%;
+    }
 
     img.desktop {
       display: block;
@@ -426,15 +448,29 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include gutter(padding-left);
+
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
 
     .copy {
       width: 30%;
       flex-shrink: 0;
       padding-right: 5vw;
+      @include gutter(padding-left);
+
+      @include breakpoint(small) {
+        width: 100%;
+        @include gutter(padding-right);
+        margin-bottom: 1em;
+      }
 
       h3 {
         margin-bottom: 0.35em;
+
+        @include breakpoint(small) {
+          @include h2;
+        }
       }
 
       p {
@@ -447,6 +483,14 @@ export default {
 .about-us-section-4 {
   position: relative;
   padding-bottom: 10vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
 
   .bg-image {
     position: absolute;
@@ -485,35 +529,74 @@ export default {
     justify-content: space-between;
     @include gutter(padding-right);
 
+    @include breakpoint(small) {
+      flex-direction: column;
+      padding: 0;
+    }
+
     .image {
       width: 54%;
       flex-shrink: 0;
+
+      @include breakpoint(small) {
+        order: 2;
+        width: 100%;
+      }
 
       img {
         display: block;
         width: 100%;
         height: auto;
+
+        @include breakpoint(small) {
+          width: 112%;
+        }
       }
     }
 
     .copy {
       padding-left: 8vw;
 
+      @include breakpoint(small) {
+        @include gutter(padding-left);
+        @include gutter(padding-right);
+        margin-bottom: 1.5em;
+      }
+
       h3 {
         margin-bottom: 0.35em;
+
+        @include breakpoint(small) {
+          @include h2;
+        }
       }
 
       p {
         @include body-copy-small;
         margin-bottom: 1em;
         width: 90%;
+
+        @include breakpoint(small) {
+          width: 100%;
+          @include body-copy;
+          margin-bottom: 0.75em;
+        }
       }
     }
   }
 }
+
 .about-us-section-5 {
   position: relative;
   padding-bottom: 10vw;
+
+  @include breakpoint(medium) {
+    padding-bottom: 120px;
+  }
+
+  @include breakpoint(small) {
+    padding-bottom: 80px;
+  }
 
   .bg-image {
     position: absolute;
@@ -522,6 +605,11 @@ export default {
     width: 35%;
     pointer-events: none;
     mix-blend-mode: darken;
+
+    @include breakpoint(small) {
+      top: -55%;
+      width: 90%;
+    }
 
     img.desktop {
       display: block;
@@ -552,15 +640,33 @@ export default {
     @include gutter(padding-left);
     @include gutter(padding-right);
 
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
+
     .copy {
+      @include breakpoint(small) {
+        margin-bottom: 1.5em;
+      }
+
       h3 {
         margin-bottom: 0.35em;
+
+        @include breakpoint(small) {
+          @include h2;
+          margin-bottom: 0.1em;
+        }
       }
 
       p {
         @include body-copy-small;
         margin-bottom: 1em;
         width: 90%;
+
+        @include breakpoint(small) {
+          width: 100%;
+          @include body-copy;
+        }
       }
     }
 
@@ -570,11 +676,20 @@ export default {
       width: 50%;
       flex-shrink: 0;
 
+      @include breakpoint(small) {
+        width: 100%;
+      }
+
       article {
         border-top: 2px solid $bright_green;
         padding-top: 1vw;
         padding-bottom: 3vw;
         color: $dark_evergreen;
+
+        @include breakpoint(small) {
+          border-width: 1px;
+          padding-bottom: 25px;
+        }
 
         .eyebrow {
           font-family: "Gronland";
@@ -585,6 +700,10 @@ export default {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           margin-bottom: 1em;
+
+          @include breakpoint(small) {
+            font-size: 14px;
+          }
         }
 
         .title-excerpt {
@@ -594,6 +713,10 @@ export default {
             width: 50%;
             flex-shrink: 0;
             padding-right: 2vw;
+
+            @include breakpoint(small) {
+              font-size: 24px;
+            }
           }
 
           .excerpt {
@@ -604,6 +727,10 @@ export default {
               font-size: 16px;
               line-height: 150%;
               margin-bottom: 1em;
+
+              @include breakpoint(small) {
+                font-size: 15px;
+              }
             }
 
             a {
@@ -619,6 +746,10 @@ export default {
               text-transform: uppercase;
               text-decoration: none;
               color: $dark_evergreen;
+
+              @include breakpoint(small) {
+                font-size: 14px;
+              }
 
               &:hover {
                 &:after {
