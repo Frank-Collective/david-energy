@@ -64,6 +64,9 @@ export default {
         options: {
           credentials: "include",
           mode: "cors",
+          headers: {
+            authorization: "Basic ZGVtbzplbmVyZ3k=",
+          },
         },
       },
     },
