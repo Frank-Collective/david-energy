@@ -92,13 +92,49 @@
 </template>
 
 <script>
-import Testimonials from "../components/Testimonials.vue";
+import meta from "~/plugins/meta.js";
+import { gql } from "nuxt-graphql-request";
+import { basics, image, featured_image, link } from "~/gql/common";
+import FadeImage from "~/components/FadeImage.vue";
+
+const gql_content = `
+  ${basics}
+`;
 export default {
-  components: { Testimonials },
+  components: {
+    FadeImage,
+  },
+  async asyncData({ $graphql, route }) {
+    const query = gql`
+      query MyQuery {
+        page(id: "landing", idType: URI, asPreview: true) {
+          ${gql_content}
+          isPreview
+          preview {
+            node {
+              ${gql_content}
+            }
+          }  
+        }
+      }
+    `;
+    let { page } = await $graphql.default.request(query);
+    console.log(page);
+    if (route.query && route.query.preview && page.preview) {
+      page = page.preview.node;
+    }
+
+    return { page };
+  },
   head() {
-    return {
-      title: "Home",
-    };
+    if (this.page && this.page.SeoFields) {
+      return {
+        title: this.page.SeoFields.seoTitle
+          ? this.page.SeoFields.seoTitle
+          : this.page.title,
+        meta: meta(this.page.SeoFields),
+      };
+    }
   },
 };
 </script>
