@@ -94,11 +94,12 @@
 <script>
 import meta from "~/plugins/meta.js";
 import { gql } from "nuxt-graphql-request";
-import { basics, image, featured_image, link } from "~/gql/common";
+import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 
 const gql_content = `
   ${basics}
+  ${seo_fields}
 `;
 export default {
   components: {

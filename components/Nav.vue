@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" v-if="data">
     <div
       class="leadership-modal"
       v-bind:class="{ visible: this.$store.state.team_modal_open }"
@@ -72,22 +72,42 @@
       </div>
     </div>
     <div class="inner" v-bind:class="{ mobile_menu_open: mobileMenuOpen }">
-      <div class="logomark">
+      <div class="logomark" v-if="data.logomark">
         <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
-          <img src="/images/logomark.svg" alt="" />
+          <img :src="data.logomark.mediaItemUrl" alt="" />
         </a>
         <nuxt-link v-if="currentRoute != 'index'" to="/">
-          <img src="/images/logomark.svg" alt="" />
+          <img :src="data.logomark.mediaItemUrl" alt="" />
         </nuxt-link>
       </div>
       <div class="logo">
         <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
-          <img class="desktop" src="/images/logo-desktop.svg" alt="" />
-          <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+          <img
+            class="desktop"
+            v-if="data.desktopLogo"
+            :src="data.desktopLogo.mediaItemUrl"
+            alt=""
+          />
+          <img
+            class="mobile"
+            v-if="data.mobileLogo"
+            :src="data.mobileLogo.mediaItemUrl"
+            alt=""
+          />
         </a>
         <nuxt-link v-if="currentRoute != 'index'" to="/">
-          <img class="desktop" src="/images/logo-desktop.svg" alt="" />
-          <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+          <img
+            class="desktop"
+            v-if="data.desktopLogo"
+            :src="data.desktopLogo.mediaItemUrl"
+            alt=""
+          />
+          <img
+            class="mobile"
+            v-if="data.mobileLogo"
+            :src="data.mobileLogo.mediaItemUrl"
+            alt=""
+          />
         </nuxt-link>
       </div>
       <div class="burger" v-on:click="toggleMenu">
@@ -103,59 +123,29 @@
         />
       </div>
       <ul class="routes">
-        <NavItem
-          :data="{
-            title: 'Why David Energy',
-            url: '/why-david-energy',
-            dropdown: [
-              { title: 'Charge The Future', url: '/charge-the-future' },
-              { title: 'FAQ', url: '/faq' },
-            ],
-            callback: closeMenu,
-          }"
-        />
-
-        <NavItem
-          :data="{
-            title: 'For Business',
-            url: '/for-business',
-            callback: closeMenu,
-          }"
-        />
-
-        <NavItem
-          :data="{
-            title: 'For Home',
-            url: '/for-home',
-            callback: closeMenu,
-          }"
-        />
-
-        <NavItem
-          :data="{
-            title: 'Partners',
-            url: '/partners',
-            dropdown: [
-              { title: 'For Brokers', url: '/for-brokers' },
-              { title: 'For Developers', url: '/for-developers' },
-            ],
-            callback: closeMenu,
-          }"
-        />
-
-        <NavItem
-          :data="{
-            title: 'About Us',
-            url: '/about-us',
-            dropdown: [
-              { title: 'Who We Are', url: '/who-we-are' },
-              { title: 'Careers', url: '/careers' },
-            ],
-            callback: closeMenu,
-          }"
-        />
+        <template>
+          <NavItem
+            v-for="(nav_item, index) in data.navItems"
+            :key="index"
+            :data="
+              nav_item.hasDropdown == true
+                ? {
+                    title: nav_item.title,
+                    url: null,
+                    dropdown: nav_item.dropdownItems,
+                    callback: closeMenu,
+                  }
+                : {
+                    title: nav_item.title,
+                    url: nav_item.url,
+                    callback: closeMenu,
+                  }
+            "
+          />
+        </template>
 
         <li class="divider"></li>
+
         <li class="bright-green-button">
           <nuxt-link class="button" to="#">Get Started</nuxt-link>
         </li>
@@ -165,6 +155,7 @@
           :data="{
             title: 'Log In',
             url: '/login',
+            callback: closeMenu,
           }"
         />
 
@@ -177,12 +168,44 @@
 </template>
 
 <script>
+import { gql } from "nuxt-graphql-request";
+import { image, link } from "~/gql/common";
+
 export default {
   data() {
-    return {
-      currentRoute: null,
-      mobileMenuOpen: false,
-    };
+    return { data: null, currentRoute: null, mobileMenuOpen: false };
+  },
+  async fetch() {
+    const query = gql`
+      query MyQuery {
+        globalContent {
+          NavFields {
+            navFields {
+              desktopLogo {
+                ${image}
+              }
+              mobileLogo {
+                ${image}
+              }
+              logomark {
+                ${image}
+              }
+              navItems {
+                title
+                url
+                hasDropdown
+                dropdownItems {
+                  title
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+    const data = await this.$graphql.default.request(query);
+    this.data = data.globalContent.NavFields.navFields;
   },
   mounted() {
     this.currentRoute = this.$route.name;

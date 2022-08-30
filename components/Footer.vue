@@ -1,10 +1,13 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-if="data">
     <div class="cta">
       <div class="inner">
-        <h4>Join the Better Grid Movement</h4>
-        <nuxt-link class="button--light-green" to="#"
-          >Get Started Today</nuxt-link
+        <h4 v-if="data.cta.text">{{ data.cta.text }}</h4>
+        <nuxt-link
+          v-if="data.cta.link"
+          class="button--light-green"
+          :to="data.cta.link.url"
+          >{{ data.cta.link.title }}</nuxt-link
         >
       </div>
     </div>
@@ -12,88 +15,60 @@
       <div class="inner">
         <div class="logo">
           <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
-            <img class="desktop" src="/images/logo-footer.svg" alt="" />
-            <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+            <img
+              v-if="data.logoDesktop"
+              class="desktop"
+              :src="data.logoDesktop.mediaItemUrl"
+              alt=""
+            />
+            <img
+              v-if="data.logoMobile"
+              class="mobile"
+              :src="data.logoMobile.mediaItemUrl"
+              alt=""
+            />
           </a>
           <nuxt-link v-if="currentRoute != 'index'" to="/">
-            <img class="desktop" src="/images/logo-footer.svg" alt="" />
-            <img class="mobile" src="/images/logo-mobile.svg" alt="" />
+            <img
+              v-if="data.logoDesktop"
+              class="desktop"
+              :src="data.logoDesktop.mediaItemUrl"
+              alt=""
+            />
+            <img
+              v-if="data.logoMobile"
+              class="mobile"
+              :src="data.logoMobile.mediaItemUrl"
+              alt=""
+            />
           </nuxt-link>
           <ul class="social-media-links">
-            <li>
-              <a href="/" target="_blank">
-                <LogoLinkedin />
-              </a>
-            </li>
-            <li>
-              <a href="/" target="_blank">
-                <LogoTwitter />
-              </a>
-            </li>
-            <li>
-              <a href="/" target="_blank">
-                <LogoMedium />
-              </a>
+            <li v-for="(item, index) in data.socialMediaLinks" :key="index">
+              <a :href="item.url" target="_blank" v-html="item.iconSvgCode"></a>
             </li>
           </ul>
         </div>
         <div class="menu-1">
-          <ul>
-            <li>
-              <nuxt-link class="indented-text-link--medium" to="#"
-                >For Home</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--medium" to="#"
-                >For Business</nuxt-link
-              >
-            </li>
-          </ul>
-          <span>For Partners</span>
-          <ul>
-            <li>
-              <nuxt-link class="indented-text-link--medium" to="#"
-                >For Brokers</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--medium" to="#"
-                >For Developers</nuxt-link
-              >
-            </li>
-          </ul>
+          <template v-for="(menu, index) in data.menu1.linkList">
+            <span v-if="menu.title" :key="index">{{ menu.title }}</span>
+            <ul :key="index">
+              <li v-for="(item, index2) in menu.menuItems" :key="index2">
+                <nuxt-link
+                  class="indented-text-link--medium"
+                  :to="item.link.url"
+                  >{{ item.link.title }}</nuxt-link
+                >
+              </li>
+            </ul>
+          </template>
         </div>
         <div class="menu-2">
           <ul>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >Why David Energy?</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >FAQ</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >About Us</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >Careers</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >Contact Us</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link class="indented-text-link--small" to="#"
-                >Blog</nuxt-link
+            <li v-for="(item, index) in data.menu2.menuItems" :key="index">
+              <nuxt-link
+                class="indented-text-link--small"
+                :to="item.link.url"
+                >{{ item.link.title }}</nuxt-link
               >
             </li>
           </ul>
@@ -102,19 +77,82 @@
     </div>
     <div class="legal">
       <div class="inner">
-        <nuxt-link to="#">Terms & Conditions</nuxt-link>
-        <span>© 2022 David Energy. All rights reserved</span>
+        <nuxt-link
+          v-for="(link, index) in data.legalLinks"
+          :key="index"
+          :to="link.link.url"
+          >{{ link.link.title }}</nuxt-link
+        >
+        <span>{{ data.copyrightText }}</span>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
+import { gql } from "nuxt-graphql-request";
+import { image, link } from "~/gql/common";
+
 export default {
   data() {
     return {
+      data: null,
       currentRoute: null,
     };
+  },
+  async fetch() {
+    const query = gql`
+      query MyQuery {
+        globalContent {
+          FooterFields {
+            footerFields {
+              cta {
+                text
+                link {
+                  ${link}
+                }
+              }
+              logoDesktop {
+                ${image}
+              }
+              logoMobile {
+                ${image}
+              }
+              socialMediaLinks {
+                iconSvgCode
+                url
+              }
+              menu1 {
+                linkList {
+                  title
+                  menuItems {
+                    link {
+                      ${link}
+                    }
+                  }
+                }
+              }
+              menu2 {
+                menuItems {
+                  link {
+                    ${link}
+                  }
+                }
+              }
+              legalLinks {
+                link {
+                  ${link}
+                }
+              }
+              copyrightText
+            }
+          }
+        }
+      }
+    `;
+    const data = await this.$graphql.default.request(query);
+    this.data = data.globalContent.FooterFields.footerFields;
+    console.log(this.data);
   },
   mounted() {
     this.currentRoute = this.$route.name;
@@ -238,17 +276,18 @@ footer.footer {
 
             a {
               &:hover {
-                svg {
-                  :deep(path) {
+                :deep(svg) {
+                  path {
                     fill: $dark_evergreen;
                   }
                 }
               }
-              svg {
+
+              :deep(svg) {
                 width: auto;
                 height: 27px;
 
-                :deep(path) {
+                path {
                   transition: 0.15s fill;
                 }
               }

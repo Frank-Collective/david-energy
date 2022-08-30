@@ -11,7 +11,10 @@
       }
     "
   >
-    <nuxt-link :to="data.url" v-bind:class="{ green_hover: !data.dropdown }">
+    <nuxt-link v-if="!data.dropdown" :to="data.url" class="green_hover">
+      {{ data.title }}
+    </nuxt-link>
+    <span v-if="data.dropdown">
       {{ data.title }}
       <img
         class="desktop"
@@ -25,7 +28,7 @@
         src="/images/icon-dropdown-arrow-mobile.svg"
         alt=""
       />
-    </nuxt-link>
+    </span>
     <transition
       v-if="data.dropdown"
       v-on:before-enter="beforeEnter"
@@ -108,7 +111,8 @@ export default {
   }
 
   &:hover {
-    > a {
+    > a,
+    > span {
       border-bottom: 2px solid $bright_green;
 
       @include breakpoint(mobile_nav_breakpoint) {
@@ -143,7 +147,8 @@ export default {
     }
   }
 
-  a {
+  a,
+  span {
     display: block;
     font-family: "Gronland";
     font-style: normal;
@@ -156,6 +161,7 @@ export default {
     padding: 15px 0 12px;
     margin: 7px 1.17vw 0;
     transition: 0.15s color;
+    cursor: pointer;
 
     @include breakpoint(mobile_nav_breakpoint) {
       display: flex;
@@ -206,7 +212,7 @@ export default {
     li {
       a {
         display: block;
-        margin: 0 0 0 1.5em;
+        margin: 0 0 0 1.17vw;
         padding: 0;
         line-height: 180%;
         transition: 0.15s color;
