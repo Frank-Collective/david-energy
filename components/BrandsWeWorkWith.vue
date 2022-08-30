@@ -1,15 +1,29 @@
 <template>
-  <div class="inner">
-    <h4>Companies <br />Powered by David <br />Energy</h4>
+  <div class="inner" v-if="data">
+    <h4 v-html="data.title"></h4>
     <div class="logos">
-      <img src="/images/NAYA.svg" alt="" />
-      <img src="/images/BarrysBootcamp.svg" alt="" />
-      <img src="/images/NYSC.svg" alt="" />
-      <img src="/images/FiveIronGolf.svg" alt="" />
-      <img src="/images/Crunch.svg" alt="" />
+      <img
+        v-for="(logo, index) in data.logos"
+        :key="index"
+        :src="logo.logo.mediaItemUrl"
+        alt=""
+      />
     </div>
   </div>
 </template>
+
+<script>
+import gsap from "gsap";
+
+export default {
+  props: { data: Object },
+  data() {
+    return {};
+  },
+  mounted() {},
+  methods: {},
+};
+</script>
 
 <style lang="scss" scoped>
 .inner {
@@ -25,7 +39,7 @@
     flex-direction: column;
   }
 
-  h4 {
+  :deep(h4) {
     width: 27%;
     border-right: 2px solid $bright_green;
 

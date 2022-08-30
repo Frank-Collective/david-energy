@@ -1,31 +1,15 @@
 <template>
   <client-only>
-    <div class="inner">
+    <div class="inner" v-if="data">
       <flickity ref="flickity" :options="flickityOptions" class="carousel">
-        <blockquote>
+        <blockquote
+          v-for="(testimonial, index) in data.testimonials"
+          :key="index"
+        >
           <p>
-            “Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enim velit mollit. Exercitation
-            veniam consequat sunt nostrud amet”
+            {{ testimonial.quote }}
           </p>
-          <cite>Lorem Ipsum</cite>
-        </blockquote>
-        <blockquote>
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor
-            posuere ac ut consequat semper viverra. Risus pretium quam vulputate
-            dignissim suspendisse in est ante in. Viverra vitae congue eu
-            consequat ac felis donec et. ”
-          </p>
-          <cite>Lorem Ipsum</cite>
-        </blockquote>
-        <blockquote>
-          <p>
-            “Risus pretium quam vulputate dignissim suspendisse in est ante in.
-            Viverra vitae congue eu consequat ac felis donec et. ”
-          </p>
-          <cite>Lorem Ipsum</cite>
+          <cite>{{ testimonial.author }}</cite>
         </blockquote>
       </flickity>
     </div>
@@ -34,6 +18,7 @@
 
 <script>
 export default {
+  props: { data: Object },
   data() {
     return {
       initialized: false,

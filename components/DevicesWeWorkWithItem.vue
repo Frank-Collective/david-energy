@@ -30,7 +30,7 @@
           <img
             v-for="(logo, index) in data.logos"
             :key="index"
-            :src="logo"
+            :src="logo.logo.mediaItemUrl"
             alt=""
           />
         </div>

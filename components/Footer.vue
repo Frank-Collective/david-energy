@@ -51,7 +51,7 @@
         <div class="menu-1">
           <template v-for="(menu, index) in data.menu1.linkList">
             <span v-if="menu.title" :key="index">{{ menu.title }}</span>
-            <ul :key="index">
+            <ul :key="`${index}1`">
               <li v-for="(item, index2) in menu.menuItems" :key="index2">
                 <nuxt-link
                   class="indented-text-link--medium"
@@ -152,7 +152,6 @@ export default {
     `;
     const data = await this.$graphql.default.request(query);
     this.data = data.globalContent.FooterFields.footerFields;
-    console.log(this.data);
   },
   mounted() {
     this.currentRoute = this.$route.name;

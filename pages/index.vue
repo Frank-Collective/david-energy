@@ -1,5 +1,5 @@
 <template>
-  <div id="top">
+  <div id="top" v-if="page">
     <div class="landing-section-1">
       <div class="bg-image">
         <img class="desktop" src="/images/landing-section-1-bg.jpg" alt="" />
@@ -9,7 +9,12 @@
           alt=""
         />
       </div>
-      <AudienceCTA />
+      <AudienceCTA
+        :data="{
+          title: page.PageLandingFields.landingPageSection1.title,
+          ctas: page.PageLandingFields.landingPageSection1.audienceCtas,
+        }"
+      />
     </div>
 
     <div class="landing-section-2">
@@ -30,25 +35,49 @@
         />
       </div>
       <div class="inner">
-        <h1>We’re building a better future by building a better grid.</h1>
+        <h1 v-if="page.PageLandingFields.landingPageSection2.title">
+          {{ page.PageLandingFields.landingPageSection2.title }}
+        </h1>
         <div class="content">
           <div class="image">
-            <img src="/images/landing-section-2-image.png" alt="" />
+            <FadeImage
+              v-if="page.PageLandingFields.landingPageSection2.image"
+              :srcset="page.PageLandingFields.landingPageSection2.image.srcSet"
+              :sizes="page.PageLandingFields.landingPageSection2.image.sizes"
+              :src="
+                page.PageLandingFields.landingPageSection2.image.mediaItemUrl
+              "
+              :alt="page.PageLandingFields.landingPageSection2.image.altText"
+              :width="
+                page.PageLandingFields.landingPageSection2.image.mediaDetails
+                  .width
+              "
+              :height="
+                page.PageLandingFields.landingPageSection2.image.mediaDetails
+                  .height
+              "
+            />
           </div>
           <div class="copy">
-            <h4>
-              Together we can create a powerful network of integrated energy
-              devices that rapidly adapt to changing needs.
-            </h4>
-            <h4>A grid that’s better for you and better for the planet.</h4>
-            <nuxt-link class="button" to="#">Why David Energy?</nuxt-link>
+            <div
+              v-if="page.PageLandingFields.landingPageSection2.copy"
+              v-html="page.PageLandingFields.landingPageSection2.copy"
+            ></div>
+            <nuxt-link
+              class="button"
+              v-if="page.PageLandingFields.landingPageSection2.link.url"
+              :to="page.PageLandingFields.landingPageSection2.link.url"
+              >{{
+                page.PageLandingFields.landingPageSection2.link.title
+              }}</nuxt-link
+            >
           </div>
         </div>
       </div>
     </div>
 
     <div class="landing-section-3">
-      <Competitors />
+      <Competitors :data="page.PageLandingFields.landingPageSection3" />
     </div>
 
     <div class="landing-section-4">
@@ -63,7 +92,7 @@
       <div class="bg-image-2">
         <img src="/images/landing-section-4-bg2.jpg" alt="" />
       </div>
-      <DevicesWeWorkWith />
+      <DevicesWeWorkWith :data="page.PageLandingFields.landingPageSection4" />
     </div>
 
     <div class="landing-section-5">
@@ -74,7 +103,7 @@
           alt=""
         />
       </div>
-      <BrandsWeWorkWith />
+      <BrandsWeWorkWith :data="page.PageLandingFields.landingPageSection5" />
     </div>
 
     <div class="landing-section-6">
@@ -86,7 +115,7 @@
           alt=""
         />
       </div>
-      <Testimonials />
+      <Testimonials :data="page.PageLandingFields.landingPageSection6" />
     </div>
   </div>
 </template>
@@ -100,6 +129,93 @@ import FadeImage from "~/components/FadeImage.vue";
 const gql_content = `
   ${basics}
   ${seo_fields}
+  PageLandingFields {
+    landingPageSection1 {
+      title
+      audienceCtas {
+        title
+        copy
+        links {
+          link {
+            ${link}
+          }
+        }
+        image {
+          ${image}
+        }
+      }
+    }
+    landingPageSection2 {
+      title
+      copy
+      link {
+        ${link}
+      }
+      image {
+        ${image}
+      }
+    }
+    landingPageSection3 {
+      tab1 {
+        tabTitle
+        title
+        copy
+        links {
+          link {
+            ${link}
+          }
+        }
+        image {
+          ${image}
+        }
+      }
+      tab2 {
+        tabTitle
+        title
+        copy
+        links {
+          link {
+            ${link}
+          }
+        }
+        image {
+          ${image}
+        }
+      }
+    }
+    landingPageSection4 {
+      title
+      copy
+      devices {
+        title
+        logos {
+          logo {
+            ${image}
+          }
+        }
+      }
+      cta {
+        title
+        link {
+          ${link}
+        }
+      }
+    }
+    landingPageSection5 {
+      title
+      logos {
+        logo {
+          ${image}
+        }
+      }
+    }
+    landingPageSection6 {
+      testimonials {
+        quote
+        author
+      }
+    }
+  }
 `;
 export default {
   components: {
@@ -306,7 +422,8 @@ export default {
           width: auto;
         }
 
-        h4 {
+        :deep(p) {
+          @include h4;
           margin-bottom: 1.5em;
 
           &:last-of-type {

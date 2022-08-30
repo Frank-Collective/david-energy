@@ -1,35 +1,19 @@
 <template>
   <client-only>
-    <div class="inner">
-      <h1>We’re a new kind of power company.</h1>
+    <div class="inner" v-if="data">
+      <h1>{{ data.title }}</h1>
       <div class="content">
         <div class="copy">
           <AudienceCTAItem
+            v-for="(cta, index) in data.ctas"
+            :key="index"
             :data="{
-              title: 'For Home',
-              copy: 'Let us manage your energy while saving money and the planet, so you can focus on what matters most.',
-              link: { title: 'Get Started', url: '/get-started/' },
+              title: cta.title,
+              copy: cta.copy,
+              links: cta.links,
               callback: setSelectedImage,
-              index: 0,
-              expanded: true,
-            }"
-          />
-          <AudienceCTAItem
-            :data="{
-              title: 'For Business',
-              copy: 'Let us manage your energy while saving money and the planet, so you can focus on what matters most.',
-              link: { title: 'Get Started', url: '/get-started/' },
-              callback: setSelectedImage,
-              index: 1,
-            }"
-          />
-          <AudienceCTAItem
-            :data="{
-              title: 'For Partners',
-              copy: 'Let us manage your energy while saving money and the planet, so you can focus on what matters most.',
-              link: { title: 'Get Started', url: '/get-started/' },
-              callback: setSelectedImage,
-              index: 2,
+              index: index,
+              expanded: index == 0 ? true : false,
             }"
           />
         </div>
@@ -47,56 +31,38 @@
             :options="flickityOptions1"
             class="titles-carousel"
           >
-            <span class="h2">For Home</span>
-            <span class="h2">For Business</span>
-            <span class="h2">For Partners</span>
+            <span class="h2" v-for="(cta, index) in data.ctas" :key="index">{{
+              cta.title
+            }}</span>
           </flickity>
           <flickity
             ref="flickity2"
             :options="flickityOptions2"
             class="content-carousel"
           >
-            <div class="landing-header-menu-item">
-              <p class="body-copy-small">
-                Let us manage your energy while saving money and the planet, so
-                you can focus on what matters most.
-              </p>
-              <nuxt-link to="#" class="button">Get Started</nuxt-link>
-            </div>
-            <div class="landing-header-menu-item">
-              <p class="body-copy-small">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <nuxt-link to="#" class="button">Learn More</nuxt-link>
-            </div>
-            <div class="landing-header-menu-item">
-              <p class="body-copy-small">
-                Let us manage your energy while saving money and the planet, so
-                you can focus on what matters most. Let us manage your energy
-                while saving money and the planet, so you can focus on what
-                matters most. Let us manage your energy while saving money and
-                the planet, so you can focus on what matters most.
-              </p>
-              <nuxt-link to="#" class="button">Get Started</nuxt-link>
+            <div
+              class="landing-header-menu-item"
+              v-for="(cta, index) in data.ctas"
+              :key="index"
+            >
+              <p class="body-copy-small">{{ cta.copy }}</p>
+              <nuxt-link
+                class="button"
+                v-for="(link, index2) in cta.links"
+                :key="index2"
+                :to="link.link.url"
+                >{{ link.link.title }}</nuxt-link
+              >
             </div>
           </flickity>
         </div>
         <div class="images">
           <img
-            src="/images/landing-header-image-1.png"
+            v-for="(cta, index) in data.ctas"
+            :key="index"
+            :src="cta.image.mediaItemUrl"
             alt=""
-            v-bind:class="{ visible: selected_image_index == 0 }"
-          />
-          <img
-            src="/images/landing-header-image-2.png"
-            alt=""
-            v-bind:class="{ visible: selected_image_index == 1 }"
-          />
-          <img
-            src="/images/landing-header-image-3.png"
-            alt=""
-            v-bind:class="{ visible: selected_image_index == 2 }"
+            v-bind:class="{ visible: selected_image_index == index }"
           />
         </div>
       </div>
@@ -106,6 +72,9 @@
 
 <script>
 export default {
+  props: {
+    data: null,
+  },
   data() {
     return {
       selected_image_index: 0,
@@ -283,6 +252,10 @@ export default {
 
           .landing-header-menu-item {
             p {
+              margin-bottom: 1em;
+            }
+
+            a {
               margin-bottom: 1em;
             }
           }

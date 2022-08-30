@@ -1,118 +1,57 @@
 <template>
   <client-only>
-    <div class="inner">
-      <h3>Seamless integration<br />with your devices</h3>
+    <div class="inner" v-if="data">
+      <h3 v-html="data.title"></h3>
       <div class="content">
         <div class="copy">
           <p class="body-copy-small">
-            We automatically manage your smart devices to reduce costs and
-            ensure you have the power you need, when you need it
+            {{ data.copy }}
           </p>
         </div>
         <div class="toggle-btns">
           <div
+            v-for="(device, index) in data.devices"
+            :key="index"
             class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 0 }"
-            v-on:click="toggleContent(0)"
+            v-bind:class="{ selected: selected_index == index }"
+            v-on:click="
+              if (device.logos != null) {
+                toggleContent(index);
+              }
+            "
           >
-            Thermostats
+            {{ device.title }}
+            <span v-if="device.logos == null">Coming<br />Soon</span>
           </div>
           <div
             class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 1 }"
-            v-on:click="toggleContent(1)"
-          >
-            Electric Vehicles
-          </div>
-          <div
-            class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 2 }"
-            v-on:click="toggleContent(2)"
-          >
-            Solar
-          </div>
-          <div
-            class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 3 }"
-          >
-            Batteries
-            <span>Coming<br />Soon</span>
-          </div>
-          <div
-            class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 4 }"
-            v-on:click="toggleContent(4)"
-          >
-            Generators
-          </div>
-          <div
-            class="indented-text-link--medium"
-            v-bind:class="{ selected: selected_index == 5 }"
-            v-on:click="toggleContent(5)"
+            v-bind:class="{ selected: selected_index == data.devices.length }"
+            v-on:click="toggleContent(data.devices.length)"
           >
             View All
           </div>
         </div>
         <div class="logos">
-          <!-- TODO: when wiring, get number of children in this case its child_count--4 -->
           <ul
+            v-for="(logo_group, index) in data.devices"
+            :key="index"
             class="group"
             v-bind:class="[
-              { visible: selected_index == 0 },
-              `child_count--${4}`,
+              { visible: selected_index == index },
+              logo_group.logos && `child_count--${logo_group.logos.length}`,
+              !logo_group.logos && `child_count--0`,
             ]"
           >
-            <li><img src="/images/Sensibo.svg" alt="" /></li>
-            <li><img src="/images/Senisi.svg" alt="" /></li>
-            <li><img src="/images/Ecobee.svg" alt="" /></li>
-            <li><img src="/images/Honeywell.svg" alt="" /></li>
+            <li v-for="(logo, index) in logo_group.logos" :key="index">
+              <img :src="logo.logo.mediaItemUrl" alt="" />
+            </li>
           </ul>
-          <ul
-            class="group"
-            v-bind:class="[
-              { visible: selected_index == 1 },
-              `child_count--${6}`,
-            ]"
-          >
-            <li><img src="/images/Tesla.svg" alt="" /></li>
-            <li><img src="/images/Ford.svg" alt="" /></li>
-            <li><img src="/images/BMW.svg" alt="" /></li>
-            <li><img src="/images/Volkswagen.svg" alt="" /></li>
-            <li><img src="/images/Audi.svg" alt="" /></li>
-            <li><img src="/images/Jaguar.svg" alt="" /></li>
-          </ul>
-          <ul
-            class="group"
-            v-bind:class="[
-              { visible: selected_index == 2 },
-              `child_count--${3}`,
-            ]"
-          >
-            <li><img src="/images/SolarEdge.svg" alt="" /></li>
-            <li><img src="/images/Enphase.svg" alt="" /></li>
-            <li><img src="/images/SMA.svg" alt="" /></li>
-          </ul>
-          <ul
-            class="group"
-            v-bind:class="[
-              { visible: selected_index == 3 },
-              `child_count--${0}`,
-            ]"
-          ></ul>
-          <ul
-            class="group"
-            v-bind:class="[
-              { visible: selected_index == 4 },
-              `child_count--${1}`,
-            ]"
-          >
-            <li><img src="/images/Generac.svg" alt="" /></li>
-          </ul>
+
           <flickity
             ref="flickity"
             :options="flickityOptions"
             class="carousel"
-            v-bind:class="{ visible: selected_index == 5 }"
+            v-bind:class="{ visible: selected_index == data.devices.length }"
           >
             <div class="prev-next-btns">
               <div class="btn--prev" v-on:click="prevSlide">
@@ -122,96 +61,48 @@
                 <IconCarouselArrowRight />
               </div>
             </div>
-            <div class="slide">
-              <div><img src="/images/Sensibo.svg" alt="" /></div>
-              <div><img src="/images/Senisi.svg" alt="" /></div>
-              <div><img src="/images/Ecobee.svg" alt="" /></div>
-              <div><img src="/images/Honeywell.svg" alt="" /></div>
-              <div><img src="/images/Tesla.svg" alt="" /></div>
-              <div><img src="/images/Ford.svg" alt="" /></div>
-            </div>
-            <div class="slide">
-              <div><img src="/images/BMW.svg" alt="" /></div>
-              <div><img src="/images/Volkswagen.svg" alt="" /></div>
-              <div><img src="/images/Audi.svg" alt="" /></div>
-              <div><img src="/images/Jaguar.svg" alt="" /></div>
-              <div><img src="/images/SolarEdge.svg" alt="" /></div>
-              <div><img src="/images/Enphase.svg" alt="" /></div>
-            </div>
-            <div class="slide">
-              <div><img src="/images/SMA.svg" alt="" /></div>
-              <div><img src="/images/Generac.svg" alt="" /></div>
-            </div>
+            <template v-for="(logo_group, index) in all_logos">
+              <div class="slide" :key="index">
+                <div v-for="(logo, index2) in logo_group" :key="index2">
+                  <img :src="logo.logo.mediaItemUrl" alt="" />
+                </div>
+              </div>
+            </template>
           </flickity>
         </div>
+
         <div class="expandable-btns">
           <DevicesWeWorkWithItem
+            v-for="(device, index) in data.devices"
+            :key="index"
             :data="{
-              title: 'Thermostats',
-              logos: [
-                '/images/Sensibo.svg',
-                '/images/Senisi.svg',
-                '/images/Ecobee.svg',
-                '/images/Honeywell.svg',
-              ],
+              title: device.title,
+              logos: device.logos,
               callback: toggleContent,
-              index: 0,
-            }"
-          />
-          <DevicesWeWorkWithItem
-            :data="{
-              title: 'Electric Vehicles',
-              logos: [
-                '/images/Tesla.svg',
-                '/images/Ford.svg',
-                '/images/BMW.svg',
-                '/images/Volkswagen.svg',
-                '/images/Audi.svg',
-                '/images/Jaguar.svg',
-              ],
-              callback: toggleContent,
-              index: 1,
-            }"
-          />
-          <DevicesWeWorkWithItem
-            :data="{
-              title: 'Solar',
-              logos: [
-                '/images/SolarEdge.svg',
-                '/images/Enphase.svg',
-                '/images/SMA.svg',
-              ],
-              callback: toggleContent,
-              index: 2,
-            }"
-          />
-          <DevicesWeWorkWithItem
-            :data="{
-              title: 'Batteries',
-            }"
-          />
-          <DevicesWeWorkWithItem
-            :data="{
-              title: 'Generators',
-              logos: ['/images/Generac.svg'],
-              callback: toggleContent,
-              index: 4,
+              index: index,
             }"
           />
         </div>
       </div>
+
       <div class="cta">
-        <p>Don’t see your device here?</p>
-        <nuxt-link class="button--light-green" to="#">Request It</nuxt-link>
+        <p v-if="data.cta.title">{{ data.cta.title }}</p>
+        <nuxt-link
+          class="button--light-green"
+          v-if="data.cta.link.url"
+          :to="data.cta.link.url"
+          >{{ data.cta.link.title }}</nuxt-link
+        >
       </div>
-    </div></client-only
-  >
+    </div>
+  </client-only>
 </template>
 
 <script>
 import gsap from "gsap";
 
 export default {
+  props: { data: Object },
   data() {
     return {
       selected_index: 0,
@@ -225,10 +116,12 @@ export default {
         contain: true,
         cellSelector: ".slide",
       },
+      all_logos: [],
     };
   },
   mounted() {
     this.init();
+    this.parseLogos();
   },
   updated() {
     this.init();
@@ -258,7 +151,6 @@ export default {
       }
     },
     nextSlide() {
-      console.log("nextSlide");
       this.$refs.flickity.next();
     },
     prevSlide() {
@@ -266,6 +158,31 @@ export default {
     },
     toggleContent(index) {
       this.selected_index = index;
+    },
+    parseLogos() {
+      let logos_array = [];
+      this.data.devices.forEach((device, index) => {
+        if (device.logos != null) {
+          device.logos.forEach((logo, index) => {
+            logos_array.push(logo);
+          });
+        }
+      });
+
+      // chunk out logos into groups of 6
+      const perChunk = 6;
+      const inputArray = logos_array;
+      const result = inputArray.reduce((resultArray, item, index) => {
+        const chunkIndex = Math.floor(index / perChunk);
+        if (!resultArray[chunkIndex]) {
+          resultArray[chunkIndex] = []; // start a new chunk
+        }
+        resultArray[chunkIndex].push(item);
+        return resultArray;
+      }, []);
+
+      this.all_logos = result;
+      // console.log(this.all_logos);
     },
   },
 };

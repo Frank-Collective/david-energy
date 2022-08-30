@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="inner" v-if="data">
     <div class="copy">
       <div class="toggle-btns">
         <div
@@ -7,84 +7,88 @@
           v-bind:class="{ selected: selected_index == 0 }"
           v-on:click="toggleContent(0)"
         >
-          For Business
+          {{ data.tab1.tabTitle }}
         </div>
         <div
           class="toggle-btn mobile button--outline"
           v-bind:class="{ selected: selected_index == 0 }"
           v-on:click="toggleContent(0)"
         >
-          For Business
+          {{ data.tab1.tabTitle }}
         </div>
         <div
           class="toggle-btn desktop"
           v-bind:class="{ selected: selected_index == 1 }"
           v-on:click="toggleContent(1)"
         >
-          For Home
+          {{ data.tab2.tabTitle }}
         </div>
         <div
           class="toggle-btn mobile button--outline"
           v-bind:class="{ selected: selected_index == 1 }"
           v-on:click="toggleContent(1)"
         >
-          For Home
+          {{ data.tab2.tabTitle }}
         </div>
       </div>
 
       <div class="content">
         <div class="section" ref="section0">
-          <h3>
-            One platform. <br />One bill. <br />One less thing to worry about.
-          </h3>
+          <h3 v-html="data.tab1.title"></h3>
           <p>
-            We consolidate 5+ point solutions, streamlining energy supply,
-            device management, billing and more. It’s never been so easy to keep
-            the lights on.
+            {{ data.tab1.copy }}
           </p>
-          <nuxt-link to="#" class="button">About Us</nuxt-link>
+          <nuxt-link
+            v-for="(link, index) in data.tab1.links"
+            :key="index"
+            :to="link.link.url"
+            class="button"
+            >{{ link.link.title }}</nuxt-link
+          >
         </div>
         <div class="section hidden" ref="section1">
-          <h3>For Home. For You.</h3>
+          <h3 v-html="data.tab2.title"></h3>
           <p>
-            We consolidate 5+ point solutions, streamlining energy supply,
-            device management, billing and more. It’s never been so easy to keep
-            the lights on.
+            {{ data.tab2.copy }}
           </p>
-          <nuxt-link to="#" class="button">About Us</nuxt-link>
+          <nuxt-link
+            v-for="(link, index) in data.tab2.links"
+            :key="index"
+            :to="link.link.url"
+            class="button"
+            >{{ link.link.title }}</nuxt-link
+          >
         </div>
       </div>
     </div>
     <div class="graphs">
       <img
-        src="/images/landing-section-3-graph2.png"
+        :src="data.tab1.image.mediaItemUrl"
         alt=""
         v-bind:class="{ visible: selected_index == 0 }"
       />
       <img
-        src="/images/landing-section-3-graph.png"
+        :src="data.tab2.image.mediaItemUrl"
         alt=""
         v-bind:class="{ visible: selected_index == 1 }"
       />
     </div>
     <div class="mobile-ctas">
       <nuxt-link
-        to="#"
+        v-for="(link, index) in data.tab1.links"
+        :key="index"
+        :to="link.link.url"
         class="button"
         v-bind:class="{ visible: selected_index == 0 }"
-        >About Us</nuxt-link
+        >{{ link.link.title }}</nuxt-link
       >
       <nuxt-link
-        to="#"
+        v-for="(link, index) in data.tab2.links"
+        :key="index"
+        :to="link.link.url"
         class="button"
         v-bind:class="{ visible: selected_index == 1 }"
-        >Learn More</nuxt-link
-      >
-      <nuxt-link
-        to="#"
-        class="button"
-        v-bind:class="{ visible: selected_index == 1 }"
-        >More Learning Here!</nuxt-link
+        >{{ link.link.title }}</nuxt-link
       >
     </div>
   </div>
@@ -94,6 +98,9 @@
 import gsap from "gsap";
 
 export default {
+  props: {
+    data: Object,
+  },
   data() {
     return {
       currently_visible: 0,
@@ -216,7 +223,7 @@ export default {
           display: none;
         }
 
-        h3 {
+        :deep(h3) {
           margin-bottom: 0.35em;
 
           @include breakpoint(small) {
@@ -231,7 +238,7 @@ export default {
         }
 
         p {
-          margin-bottom: 1em;
+          margin-bottom: 2em;
 
           @include breakpoint(small) {
             @include body-copy-small;
@@ -239,7 +246,7 @@ export default {
         }
 
         a {
-          margin-top: 3em;
+          margin-bottom: 1em;
 
           @include breakpoint(small) {
             display: none;

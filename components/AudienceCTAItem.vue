@@ -22,9 +22,13 @@
           <p class="body-copy-small">
             {{ data.copy }}
           </p>
-          <nuxt-link :to="data.link.url" class="button">{{
-            data.link.title
-          }}</nuxt-link>
+          <nuxt-link
+            v-for="(link, index) in data.links"
+            :key="index"
+            :to="link.link.url"
+            class="button"
+            >{{ link.link.title }}</nuxt-link
+          >
         </div>
       </transition>
     </div>
@@ -141,14 +145,12 @@ export default {
   .inner {
     padding-bottom: 0.75em;
 
-    .indented-text-link {
-    }
     .content {
       position: relative;
       height: 0px;
       overflow: hidden;
       transition: 0.5s;
-      padding-left: 40px;
+      padding-left: 2.1vw;
 
       &:before {
         content: "";
@@ -173,6 +175,7 @@ export default {
       a {
         position: relative;
         z-index: 2;
+        margin-bottom: 1em;
       }
     }
   }
