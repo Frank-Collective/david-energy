@@ -78,10 +78,14 @@ Vue.directive("mouse-click", {
         vnode.context[binding.expression](event);
       }
     };
-    document.body.addEventListener("click", el.mouseClickEvent);
+    if (document) {
+      document.body.addEventListener("click", el.mouseClickEvent);
+    }
   },
   unbind(el) {
-    document.body.removeEventListener("click", el.mouseClickEvent);
+    if (document) {
+      document.body.removeEventListener("click", el.mouseClickEvent);
+    }
   },
 });
 

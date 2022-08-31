@@ -45,10 +45,14 @@ Vue.directive("mouse-over", {
         vnode.context[binding.expression](event);
       }
     };
-    document.body.addEventListener("mouseover", el.mouseOverEvent);
+    if (document) {
+      document.body.addEventListener("mouseover", el.mouseOverEvent);
+    }
   },
   unbind(el) {
-    document.body.removeEventListener("mouseover", el.mouseOverEvent);
+    if (document) {
+      document.body.removeEventListener("mouseover", el.mouseOverEvent);
+    }
   },
 });
 
