@@ -125,6 +125,7 @@ import meta from "~/plugins/meta.js";
 import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
+import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
 
 const gql_content = `
   ${basics}
@@ -165,9 +166,7 @@ const gql_content = `
             ${link}
           }
         }
-        image {
-          ${image}
-        }
+        svgImageCode
       }
       tab2 {
         tabTitle
@@ -178,9 +177,7 @@ const gql_content = `
             ${link}
           }
         }
-        image {
-          ${image}
-        }
+        svgImageCode
       }
     }
     landingPageSection4 {
@@ -218,6 +215,7 @@ const gql_content = `
   }
 `;
 export default {
+  mixins: [scrollTriggerHub],
   components: {
     FadeImage,
   },

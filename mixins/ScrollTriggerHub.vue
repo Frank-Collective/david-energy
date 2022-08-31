@@ -1,7 +1,9 @@
 <script>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { DrawSVGPlugin } from "gsap/dist/DrawSVGPlugin";
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(DrawSVGPlugin);
 
 export default {
   data() {
@@ -12,6 +14,7 @@ export default {
       slide_up_enter_half_els: [],
       slide_up_leave_els: [],
       animate_in_class_els: [],
+      draw_svgs_els: [],
     };
   },
   mounted() {
@@ -67,7 +70,29 @@ export default {
           "[data-st-animate_in_class]"
         );
         this.animate_in_class_els.forEach(this.toggle_animate_in_class);
+
+        // Draw SVG elements
+        this.draw_svgs_els = document.querySelectorAll("[data-st-draw_svg]");
+        this.draw_svgs_els.forEach(this.add_draw_svg_animation);
       }
+    },
+    add_draw_svg_animation(el, index) {
+      let draw_paths = el.querySelectorAll(".draw-svg");
+      const draw_svg_stagger = gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: el,
+            start: "top center",
+            ease: "power2",
+            toggleActions: "play none none none",
+          },
+        })
+        .from(draw_paths, 1.5, {
+          drawSVG: "0%",
+          ease: "none",
+          stagger: 0.5,
+          delay: 0,
+        });
     },
     add_fade_up_animation(el, index) {
       const timeline = gsap

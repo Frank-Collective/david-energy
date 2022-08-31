@@ -99,7 +99,7 @@
       </div>
       <ToggleGraphs />
     </div>
-    <div class="why-section-5">
+    <div class="why-section-5" id="faqs">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-5-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-5-bg-mobile.jpg" alt="" />

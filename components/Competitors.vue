@@ -62,21 +62,21 @@
       </div>
     </div>
     <div class="graphs">
-      <img
-        :src="data.tab1.image.mediaItemUrl"
-        alt=""
+      <div
+        ref="graph0"
         v-bind:class="{ visible: selected_index == 0 }"
-      />
-      <img
-        :src="data.tab2.image.mediaItemUrl"
-        alt=""
+        v-html="data.tab1.svgImageCode"
+      ></div>
+      <div
+        ref="graph1"
         v-bind:class="{ visible: selected_index == 1 }"
-      />
+        v-html="data.tab2.svgImageCode"
+      ></div>
     </div>
     <div class="mobile-ctas">
       <nuxt-link
         v-for="(link, index) in data.tab1.links"
-        :key="index"
+        :key="`${index}0`"
         :to="link.link.url"
         class="button"
         v-bind:class="{ visible: selected_index == 0 }"
@@ -84,7 +84,7 @@
       >
       <nuxt-link
         v-for="(link, index) in data.tab2.links"
-        :key="index"
+        :key="`${index}1`"
         :to="link.link.url"
         class="button"
         v-bind:class="{ visible: selected_index == 1 }"
@@ -112,6 +112,7 @@ export default {
       let fade_out_el = this.$refs["section" + this.currently_visible];
       this.selected_index = index;
       let fade_in_el = this.$refs["section" + this.selected_index];
+      let draw_in_graph = this.$refs["graph" + this.selected_index];
 
       gsap.to(fade_out_el, 0.25, {
         autoAlpha: 0,
@@ -123,6 +124,15 @@ export default {
 
           this.currently_visible = this.selected_index;
         },
+      });
+
+      // Draw SVGs
+      let draw_paths = draw_in_graph.querySelectorAll(".draw-svg");
+      gsap.from(draw_paths, 1.5, {
+        drawSVG: "0%",
+        ease: "power2",
+        stagger: 0.5,
+        delay: 0,
       });
     },
   },
@@ -267,18 +277,27 @@ export default {
       padding-bottom: 97%;
     }
 
-    img {
+    div {
       position: absolute;
-      display: block;
-      width: 100%;
-      height: auto;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
       opacity: 0;
       transition: 0.5s opacity;
 
       &.visible {
         opacity: 1;
+      }
+
+      img,
+      svg {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
       }
     }
   }
