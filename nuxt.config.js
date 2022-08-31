@@ -75,17 +75,17 @@ export default {
     fallback: true,
     interval: 50,
     concurrency: 10,
-    routes() {
-      return request(process.env.WP_GRAPHQL_ENDPOINT, generate_query).then(
-        (res) => {
-          return res.pages.nodes.map((page) => {
-            return {
-              route: `/${page.slug}`,
-            };
-          });
-        }
-      );
-    },
+    // routes() {
+    //   return request(process.env.WP_GRAPHQL_ENDPOINT, generate_query).then(
+    //     (res) => {
+    //       return res.pages.nodes.map((page) => {
+    //         return {
+    //           route: `/${page.slug}`,
+    //         };
+    //       });
+    //     }
+    //   );
+    // },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -28,7 +28,9 @@ export default {
     }
 
     setTimeout(() => {
-      this.scrollTriggerInit();
+      if (document) {
+        this.scrollTriggerInit();
+      }
     }, 1000);
   },
   methods: {
