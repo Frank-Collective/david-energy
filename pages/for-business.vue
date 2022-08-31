@@ -1,5 +1,5 @@
 <template>
-  <div id="top">
+  <div id="top" v-if="page">
     <div class="for-business-section-1">
       <div class="bg-image">
         <img
@@ -15,25 +15,46 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <div class="eyebrow">For Businesses</div>
-          <h1>The power of simplicity.</h1>
-          <p class="hide-small">
-            With David Energy you can manage the energy of all your facilities
-            and pay your bills from one convenient platform.
+          <div class="eyebrow" v-if="page.forBusinessSection1.eyebrow">
+            {{ page.forBusinessSection1.eyebrow }}
+          </div>
+          <h1
+            v-if="page.forBusinessSection1.title"
+            v-html="page.forBusinessSection1.title"
+          ></h1>
+          <p class="hide-small" v-if="page.forBusinessSection1.copy">
+            {{ page.forBusinessSection1.copy }}
           </p>
-          <nuxt-link class="button hide-small" to="#">Get Started</nuxt-link>
+          <nuxt-link
+            class="button hide-small"
+            v-if="page.forBusinessSection1.link"
+            :to="page.forBusinessSection1.link.url"
+            >{{ page.forBusinessSection1.link.title }}</nuxt-link
+          >
         </div>
 
         <div class="image">
-          <img src="/images/for-business-section-1-image.png" alt="" />
+          <FadeImage
+            v-if="page.forBusinessSection1.image"
+            :srcset="page.forBusinessSection1.image.srcSet"
+            :sizes="page.forBusinessSection1.image.sizes"
+            :src="page.forBusinessSection1.image.mediaItemUrl"
+            :alt="page.forBusinessSection1.image.altText"
+            :width="page.forBusinessSection1.image.mediaDetails.width"
+            :height="page.forBusinessSection1.image.mediaDetails.height"
+          />
         </div>
 
         <div class="copy show-small">
-          <p>
-            With David Energy you can manage the energy of all your facilities
-            and pay your bills from one convenient platform.
+          <p v-if="page.forBusinessSection1.copy">
+            {{ page.forBusinessSection1.copy }}
           </p>
-          <nuxt-link class="button" to="#">Get Started</nuxt-link>
+          <nuxt-link
+            class="button"
+            v-if="page.forBusinessSection1.link"
+            :to="page.forBusinessSection1.link.url"
+            >{{ page.forBusinessSection1.link.title }}</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -47,34 +68,19 @@
         />
       </div>
       <div class="inner">
-        <h1>Do more with David.</h1>
+        <h1
+          v-if="page.forBusinessSection2.title"
+          v-html="page.forBusinessSection2.title"
+        ></h1>
 
         <div class="info-cards">
           <InfoCard
+            v-for="(card, index) in page.forBusinessSection2.infoCards"
+            :key="index"
             :data="{
-              title: 'One simple platform, all your energy needs',
-              icons: [
-                '/images/icon-house.svg',
-                '/images/icon-house-active.svg',
-              ],
-              copy: 'Purchase green energy and reduce usage at the priciest times, which also reduces the need for our dirtiest power plants.',
-            }"
-          />
-          <InfoCard
-            :data="{
-              title: 'Groundbreaking shared savings program',
-              icons: ['/images/icon-cash.svg', '/images/icon-cash-active.svg'],
-              copy: 'Give your thumbs a rest and consolidate all your smart device apps into one centralized platform.',
-            }"
-          />
-          <InfoCard
-            :data="{
-              title: 'More green in the bank, more green on the Earth',
-              icons: [
-                '/images/icon-house.svg',
-                '/images/icon-house-active.svg',
-              ],
-              copy: 'Say goodbye to price spikes and outages, and say hello to power that’s tailored to fit your needs.',
+              title: card.title,
+              icons: [card.icon.mediaItemUrl, card.iconActive.mediaItemUrl],
+              copy: card.copy,
             }"
           />
         </div>
@@ -108,7 +114,7 @@
           class="mobile"
         />
       </div>
-      <PlatformFeatures />
+      <PlatformFeatures :data="page.forBusinessSection3" />
     </div>
 
     <div class="for-business-section-4">
@@ -119,7 +125,7 @@
           alt=""
         />
       </div>
-      <BrandsWeWorkWith />
+      <BrandsWeWorkWith :data="page.forBusinessSection4" />
     </div>
 
     <div class="for-business-section-5">
@@ -130,17 +136,163 @@
           alt=""
         />
       </div>
-      <ToggleGraphs />
+      <div class="inner">
+        <div class="title">
+          <h3
+            v-if="page.forBusinessSection5.title"
+            v-html="page.forBusinessSection5.title"
+          ></h3>
+        </div>
+        <div class="content">
+          <div class="copy">
+            <div class="section">
+              <p>
+                {{ page.forBusinessSection5.copy }}
+              </p>
+              <nuxt-link
+                v-for="(link, index) in page.forBusinessSection5.links"
+                :key="index"
+                :to="link.link.url"
+                class="button"
+              >
+                {{ link.link.title }}</nuxt-link
+              >
+            </div>
+          </div>
+          <div class="graph">
+            <FadeImage
+              v-if="page.forBusinessSection5.image"
+              :srcset="page.forBusinessSection5.image.srcSet"
+              :sizes="page.forBusinessSection5.image.sizes"
+              :src="page.forBusinessSection5.image.mediaItemUrl"
+              :alt="page.forBusinessSection5.image.altText"
+              :width="page.forBusinessSection5.image.mediaDetails.width"
+              :height="page.forBusinessSection5.image.mediaDetails.height"
+            />
+          </div>
+          <div class="mobile-ctas">
+            <nuxt-link
+              v-for="(link, index) in page.forBusinessSection5.links"
+              :key="index"
+              :to="link.link.url"
+              class="button"
+            >
+              {{ link.link.title }}</nuxt-link
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import meta from "~/plugins/meta.js";
+import { gql } from "nuxt-graphql-request";
+import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
+import FadeImage from "~/components/FadeImage.vue";
+import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+
+const gql_content = `
+  ${basics}
+  ${seo_fields}
+  PageForBusinessFields {
+    forBusinessSection1 {
+      eyebrow
+      title
+      copy
+      link {
+        ${link}
+      }
+      image {
+        ${image}
+      }
+    }
+    forBusinessSection2 {
+      title
+      infoCards {
+        title
+        copy
+        icon {
+          ${image}
+        }
+        iconActive {
+          ${image}
+        }
+      }
+    }
+    forBusinessSection3 {
+      copy
+      link {
+        ${link}
+      }
+      infoCards {
+        title
+        copy
+        image {
+          ${image}
+        }
+      }
+    }
+    forBusinessSection4 {
+      title
+      logos {
+        logo {
+          ${image}
+        }
+      }
+    }
+    forBusinessSection5 {
+      title
+      copy
+      links {
+        link {
+          ${link}
+        }
+      }
+      image {
+        ${image}
+      }
+    }
+  }
+`;
 export default {
+  mixins: [scrollTriggerHub],
+  components: {
+    FadeImage,
+  },
+  async asyncData({ $graphql, route }) {
+    const query = gql`
+      query MyQuery {
+        page(id: "for-business", idType: URI, asPreview: true) {
+          ${gql_content}
+          isPreview
+          preview {
+            node {
+              ${gql_content}
+            }
+          }  
+        }
+      }
+    `;
+    let { page } = await $graphql.default.request(query);
+    page = page.PageForBusinessFields;
+
+    if (route.query && route.query.preview && page.preview) {
+      page = page.preview.node;
+    }
+
+    return { page };
+  },
   head() {
-    return {
-      title: "Home",
-    };
+    if (this.page && this.page.SeoFields) {
+      return {
+        title: this.page.SeoFields.seoTitle
+          ? this.page.SeoFields.seoTitle
+          : this.page.title,
+        meta: meta(this.page.SeoFields),
+      };
+    }
   },
 };
 </script>
@@ -474,6 +626,136 @@ export default {
 
       @include breakpoint(small) {
         display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    @include gutter(padding-left);
+    @include gutter(padding-right);
+    z-index: 1;
+
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
+
+    .title {
+      margin-bottom: 3.5vw;
+
+      @include breakpoint(small) {
+        order: 1;
+      }
+
+      h3 {
+        &.hidden {
+          display: none;
+        }
+
+        @include breakpoint(small) {
+          @include h2;
+        }
+
+        br {
+          @include breakpoint(small) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-shrink: 0;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+        order: 3;
+      }
+
+      .copy {
+        padding-right: 5%;
+
+        @include breakpoint(small) {
+          padding-right: 0;
+        }
+
+        .section {
+          h3 {
+            margin-bottom: 0.35em;
+
+            @include breakpoint(small) {
+              @include h2;
+            }
+
+            br {
+              @include breakpoint(small) {
+                display: none;
+              }
+            }
+          }
+
+          p {
+            margin-bottom: 1em;
+
+            @include breakpoint(small) {
+              @include body-copy-small;
+            }
+          }
+
+          a {
+            margin-bottom: 1em;
+
+            @include breakpoint(small) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .graph {
+      position: relative;
+      width: 66%;
+      flex-shrink: 0;
+      padding-bottom: 32%;
+
+      @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 44%;
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 0.5s opacity;
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+    }
+
+    .mobile-ctas {
+      display: none;
+      margin-top: 25px;
+
+      @include breakpoint(small) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        margin-bottom: 1em;
       }
     }
   }

@@ -6,26 +6,23 @@
         <img class="mobile" src="/images/why-section-1-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h1
-          v-if="page.PageWhyFields.whySection1.title"
-          v-html="page.PageWhyFields.whySection1.title"
-        ></h1>
+        <h1 v-if="page.whySection1.title" v-html="page.whySection1.title"></h1>
         <div class="content">
           <div class="copy">
-            <h4 v-if="page.PageWhyFields.whySection1.copy">
-              {{ page.PageWhyFields.whySection1.copy }}
+            <h4 v-if="page.whySection1.copy">
+              {{ page.whySection1.copy }}
             </h4>
           </div>
 
           <div class="image">
             <FadeImage
-              v-if="page.PageWhyFields.whySection1.image"
-              :srcset="page.PageWhyFields.whySection1.image.srcSet"
-              :sizes="page.PageWhyFields.whySection1.image.sizes"
-              :src="page.PageWhyFields.whySection1.image.mediaItemUrl"
-              :alt="page.PageWhyFields.whySection1.image.altText"
-              :width="page.PageWhyFields.whySection1.image.mediaDetails.width"
-              :height="page.PageWhyFields.whySection1.image.mediaDetails.height"
+              v-if="page.whySection1.image"
+              :srcset="page.whySection1.image.srcSet"
+              :sizes="page.whySection1.image.sizes"
+              :src="page.whySection1.image.mediaItemUrl"
+              :alt="page.whySection1.image.altText"
+              :width="page.whySection1.image.mediaDetails.width"
+              :height="page.whySection1.image.mediaDetails.height"
             />
           </div>
         </div>
@@ -37,14 +34,11 @@
         <img class="mobile" src="/images/why-section-2-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h3
-          v-if="page.PageWhyFields.whySection2.title"
-          v-html="page.PageWhyFields.whySection2.title"
-        ></h3>
+        <h3 v-if="page.whySection2.title" v-html="page.whySection2.title"></h3>
         <div
           class="copy"
-          v-if="page.PageWhyFields.whySection2.copy"
-          v-html="page.PageWhyFields.whySection2.copy"
+          v-if="page.whySection2.copy"
+          v-html="page.whySection2.copy"
         ></div>
       </div>
     </div>
@@ -56,18 +50,15 @@
         <img class="mobile" src="/images/why-section-3-bg2-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h1
-          v-if="page.PageWhyFields.whySection3.title"
-          v-html="page.PageWhyFields.whySection3.title"
-        ></h1>
+        <h1 v-if="page.whySection3.title" v-html="page.whySection3.title"></h1>
         <div
           class="copy"
-          v-if="page.PageWhyFields.whySection3.copy"
-          v-html="page.PageWhyFields.whySection3.copy"
+          v-if="page.whySection3.copy"
+          v-html="page.whySection3.copy"
         ></div>
         <div class="ctas">
           <ExpandingCTA
-            v-for="(cta, index) in page.PageWhyFields.whySection3.expandingCtas"
+            v-for="(cta, index) in page.whySection3.expandingCtas"
             :key="index"
             :data="{
               title: cta.title,
@@ -84,7 +75,7 @@
         <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>
-      <ToggleGraphs :data="page.PageWhyFields.whySection4" />
+      <ToggleGraphs :data="page.whySection4" />
     </div>
     <div class="why-section-5" id="faqs">
       <div class="bg-image">
@@ -94,19 +85,19 @@
       <div class="inner">
         <div class="copy">
           <h2
-            v-if="page.PageWhyFields.whySection5.title"
-            v-html="page.PageWhyFields.whySection5.title"
+            v-if="page.whySection5.title"
+            v-html="page.whySection5.title"
           ></h2>
           <nuxt-link
             class="button"
-            v-if="page.PageWhyFields.whySection5.link"
-            :to="page.PageWhyFields.whySection5.link.url"
-            >{{ page.PageWhyFields.whySection5.link.title }}</nuxt-link
+            v-if="page.whySection5.link"
+            :to="page.whySection5.link.url"
+            >{{ page.whySection5.link.title }}</nuxt-link
           >
         </div>
         <div class="faqs">
           <FAQItem
-            v-for="(faq, index) in page.PageWhyFields.whySection5.faqs"
+            v-for="(faq, index) in page.whySection5.faqs"
             :key="index"
             :data="{
               question: faq.question,
@@ -117,9 +108,9 @@
         <div class="cta">
           <nuxt-link
             class="button"
-            v-if="page.PageWhyFields.whySection5.link"
-            :to="page.PageWhyFields.whySection5.link.url"
-            >{{ page.PageWhyFields.whySection5.link.title }}</nuxt-link
+            v-if="page.whySection5.link"
+            :to="page.whySection5.link.url"
+            >{{ page.whySection5.link.title }}</nuxt-link
           >
         </div>
       </div>
@@ -226,6 +217,7 @@ export default {
       }
     `;
     let { page } = await $graphql.default.request(query);
+    page = page.PageWhyFields;
     console.log(page);
     if (route.query && route.query.preview && page.preview) {
       page = page.preview.node;

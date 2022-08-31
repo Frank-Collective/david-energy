@@ -1,72 +1,42 @@
 <template>
-  <div class="inner">
-    <h4>
-      Our powerful platform is the one-stop shop for all your energy needs.
-      We’ve combined intelligent DER management, deep insights & analytics, and
-      consolidated billing into one intuitive workspace.
-    </h4>
+  <div class="inner" v-if="data">
+    <h4 v-if="data.copy" v-html="data.copy"></h4>
 
     <div class="cta">
-      <nuxt-link class="button" to="">See Plans</nuxt-link>
+      <nuxt-link class="button" v-if="data.link.url" :to="data.link.url">{{
+        data.link.title
+      }}</nuxt-link>
     </div>
 
     <div class="info-cards">
-      <article>
+      <article v-for="(card, index) in data.infoCards" :key="index">
         <div class="image">
-          <img src="/images/fpo-feature.jpg" alt="" />
+          <FadeImage
+            v-if="card.image"
+            :srcset="card.image.srcSet"
+            :sizes="card.image.sizes"
+            :src="card.image.mediaItemUrl"
+            :alt="card.image.altText"
+            :width="card.image.mediaDetails.width"
+            :height="card.image.mediaDetails.height"
+          />
         </div>
         <div class="copy">
-          <h3>Reduce multi-location operational complexity.</h3>
+          <h3>{{ card.title }}</h3>
           <p>
-            Easily manage all the devices across your portfolio from one
-            dashboard. Set schedules, monitor each location’s climate, and
-            override onsite changes remotely.
-          </p>
-        </div>
-      </article>
-      <article>
-        <div class="image">
-          <img src="/images/fpo-feature.jpg" alt="" />
-        </div>
-        <div class="copy">
-          <h3>Simplify energy finances</h3>
-          <p>
-            Easily manage billing for all your locations, audit your bill, and
-            reduce your risk of late payment with a modern centralized billing
-            experience.
-          </p>
-        </div>
-      </article>
-      <article>
-        <div class="image">
-          <img src="/images/fpo-feature.jpg" alt="" />
-        </div>
-        <div class="copy">
-          <h3>Earn revenue and lower your bills</h3>
-          <p>
-            Save 10-15% on your electricity by optimizing your energy
-            consumption with direct, automated management of smart devices. We
-            integrate with thermostats, batteries, EV chargers, and more, and
-            automatically enroll you in lucrative energy market programs.
-          </p>
-        </div>
-      </article>
-      <article>
-        <div class="image">
-          <img src="/images/fpo-feature.jpg" alt="" />
-        </div>
-        <div class="copy">
-          <h3>Work with a supplier who has your back</h3>
-          <p>
-            We only profit when you save. This aligned incentive structure helps
-            protect you from energy market risk and month-to-month fluctuations
-            in your bill.
+            {{ card.copy }}
           </p>
         </div>
       </article>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: { data: Object },
+};
+</script>
 
 <style lang="scss" scoped>
 .inner {

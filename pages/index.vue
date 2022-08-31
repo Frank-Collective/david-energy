@@ -11,8 +11,8 @@
       </div>
       <AudienceCTA
         :data="{
-          title: page.PageLandingFields.landingPageSection1.title,
-          ctas: page.PageLandingFields.landingPageSection1.audienceCtas,
+          title: page.landingPageSection1.title,
+          ctas: page.landingPageSection1.audienceCtas,
         }"
       />
     </div>
@@ -35,41 +35,31 @@
         />
       </div>
       <div class="inner">
-        <h1 v-if="page.PageLandingFields.landingPageSection2.title">
-          {{ page.PageLandingFields.landingPageSection2.title }}
+        <h1 v-if="page.landingPageSection2.title">
+          {{ page.landingPageSection2.title }}
         </h1>
         <div class="content">
           <div class="image">
             <FadeImage
-              v-if="page.PageLandingFields.landingPageSection2.image"
-              :srcset="page.PageLandingFields.landingPageSection2.image.srcSet"
-              :sizes="page.PageLandingFields.landingPageSection2.image.sizes"
-              :src="
-                page.PageLandingFields.landingPageSection2.image.mediaItemUrl
-              "
-              :alt="page.PageLandingFields.landingPageSection2.image.altText"
-              :width="
-                page.PageLandingFields.landingPageSection2.image.mediaDetails
-                  .width
-              "
-              :height="
-                page.PageLandingFields.landingPageSection2.image.mediaDetails
-                  .height
-              "
+              v-if="page.landingPageSection2.image"
+              :srcset="page.landingPageSection2.image.srcSet"
+              :sizes="page.landingPageSection2.image.sizes"
+              :src="page.landingPageSection2.image.mediaItemUrl"
+              :alt="page.landingPageSection2.image.altText"
+              :width="page.landingPageSection2.image.mediaDetails.width"
+              :height="page.landingPageSection2.image.mediaDetails.height"
             />
           </div>
           <div class="copy">
             <div
-              v-if="page.PageLandingFields.landingPageSection2.copy"
-              v-html="page.PageLandingFields.landingPageSection2.copy"
+              v-if="page.landingPageSection2.copy"
+              v-html="page.landingPageSection2.copy"
             ></div>
             <nuxt-link
               class="button"
-              v-if="page.PageLandingFields.landingPageSection2.link.url"
-              :to="page.PageLandingFields.landingPageSection2.link.url"
-              >{{
-                page.PageLandingFields.landingPageSection2.link.title
-              }}</nuxt-link
+              v-if="page.landingPageSection2.link.url"
+              :to="page.landingPageSection2.link.url"
+              >{{ page.landingPageSection2.link.title }}</nuxt-link
             >
           </div>
         </div>
@@ -77,7 +67,7 @@
     </div>
 
     <div class="landing-section-3">
-      <Competitors :data="page.PageLandingFields.landingPageSection3" />
+      <Competitors :data="page.landingPageSection3" />
     </div>
 
     <div class="landing-section-4">
@@ -92,7 +82,7 @@
       <div class="bg-image-2">
         <img src="/images/landing-section-4-bg2.jpg" alt="" />
       </div>
-      <DevicesWeWorkWith :data="page.PageLandingFields.landingPageSection4" />
+      <DevicesWeWorkWith :data="page.landingPageSection4" />
     </div>
 
     <div class="landing-section-5">
@@ -103,7 +93,7 @@
           alt=""
         />
       </div>
-      <BrandsWeWorkWith :data="page.PageLandingFields.landingPageSection5" />
+      <BrandsWeWorkWith :data="page.landingPageSection5" />
     </div>
 
     <div class="landing-section-6">
@@ -115,7 +105,7 @@
           alt=""
         />
       </div>
-      <Testimonials :data="page.PageLandingFields.landingPageSection6" />
+      <Testimonials :data="page.landingPageSection6" />
     </div>
   </div>
 </template>
@@ -234,6 +224,7 @@ export default {
       }
     `;
     let { page } = await $graphql.default.request(query);
+    page = page.PageLandingFields;
     console.log(page);
     if (route.query && route.query.preview && page.preview) {
       page = page.preview.node;
