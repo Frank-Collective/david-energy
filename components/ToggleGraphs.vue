@@ -1,83 +1,96 @@
 <template>
-  <div class="inner">
+  <div class="inner" v-if="data">
     <div class="toggle-btns">
       <div
         class="toggle-btn desktop"
         v-bind:class="{ selected: selected_index == 0 }"
         v-on:click="toggleContent(0)"
       >
-        For Business
+        {{ data.tab1.tabTitle }}
       </div>
       <div
         class="toggle-btn mobile button--outline"
         v-bind:class="{ selected: selected_index == 0 }"
         v-on:click="toggleContent(0)"
       >
-        For Business
+        {{ data.tab1.tabTitle }}
       </div>
       <div
         class="toggle-btn desktop"
         v-bind:class="{ selected: selected_index == 1 }"
         v-on:click="toggleContent(1)"
       >
-        For Home
+        {{ data.tab2.tabTitle }}
       </div>
       <div
         class="toggle-btn mobile button--outline"
         v-bind:class="{ selected: selected_index == 1 }"
         v-on:click="toggleContent(1)"
       >
-        For Home
+        {{ data.tab2.tabTitle }}
       </div>
     </div>
     <div class="titles">
-      <h3 ref="title0">
-        One platform. One bill. <br />One less thing to worry about.
-      </h3>
-      <h3 class="hidden" ref="title1">For Home. For You.</h3>
+      <h3 ref="title0" v-html="data.tab1.title"></h3>
+      <h3 class="hidden" ref="title1" v-html="data.tab2.title"></h3>
     </div>
     <div class="content">
       <div class="copy">
         <div class="section" ref="section0">
           <p>
-            We automatically manage your smart devices to reduce costs and
-            ensure you have the power you need, when you need it.
+            {{ data.tab1.copy }}
           </p>
-          <nuxt-link to="#" class="button">About Us</nuxt-link>
+          <nuxt-link
+            v-for="(link, index) in data.tab1.links"
+            :key="index"
+            :to="link.link.url"
+            class="button"
+          >
+            {{ link.link.title }}</nuxt-link
+          >
         </div>
         <div class="section hidden" ref="section1">
           <p>
-            We consolidate 5+ point solutions, streamlining energy supply,
-            device management, billing and more. It’s never been so easy to keep
-            the lights on.
+            {{ data.tab2.copy }}
           </p>
-          <nuxt-link to="#" class="button">About Us</nuxt-link>
+          <nuxt-link
+            v-for="(link, index) in data.tab2.links"
+            :key="index"
+            :to="link.link.url"
+            class="button"
+          >
+            {{ link.link.title }}</nuxt-link
+          >
         </div>
       </div>
       <div class="graphs">
         <img
-          src="/images/chart-business.svg"
+          :src="data.tab1.image.mediaItemUrl"
           alt=""
           v-bind:class="{ visible: selected_index == 0 }"
         />
         <img
-          src="/images/chart-home.svg"
+          :src="data.tab2.image.mediaItemUrl"
           alt=""
           v-bind:class="{ visible: selected_index == 1 }"
         />
       </div>
       <div class="mobile-ctas">
         <nuxt-link
-          to="#"
+          v-for="(link, index) in data.tab1.links"
+          :key="`${index}0`"
+          :to="link.link.url"
           class="button"
           v-bind:class="{ visible: selected_index == 0 }"
-          >About Us</nuxt-link
+          >{{ link.link.title }}</nuxt-link
         >
         <nuxt-link
-          to="#"
+          v-for="(link, index) in data.tab2.links"
+          :key="`${index}1`"
+          :to="link.link.url"
           class="button"
           v-bind:class="{ visible: selected_index == 1 }"
-          >Learn More</nuxt-link
+          >{{ link.link.title }}</nuxt-link
         >
       </div>
     </div>
@@ -88,6 +101,9 @@
 import gsap from "gsap";
 
 export default {
+  props: {
+    data: Object,
+  },
   data() {
     return {
       currently_visible: 0,
@@ -273,7 +289,7 @@ export default {
         }
 
         a {
-          margin-top: 2em;
+          margin-bottom: 1em;
 
           @include breakpoint(small) {
             display: none;

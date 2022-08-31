@@ -128,8 +128,10 @@ export default {
 
       // Draw SVGs
       let draw_paths = draw_in_graph.querySelectorAll(".draw-svg");
-      gsap.from(draw_paths, 1.5, {
-        drawSVG: "0%",
+      gsap.killTweensOf(draw_paths);
+      gsap.set(draw_paths, { drawSVG: 0 });
+      gsap.to(draw_paths, 1.5, {
+        drawSVG: "100%",
         ease: "power2",
         stagger: 0.5,
         delay: 0,

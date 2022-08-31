@@ -78,6 +78,7 @@ export default {
     },
     add_draw_svg_animation(el, index) {
       let draw_paths = el.querySelectorAll(".draw-svg");
+      gsap.set(draw_paths, { drawSVG: 0 });
       const draw_svg_stagger = gsap
         .timeline({
           scrollTrigger: {
@@ -87,8 +88,8 @@ export default {
             toggleActions: "play none none none",
           },
         })
-        .from(draw_paths, 1.5, {
-          drawSVG: "0%",
+        .to(draw_paths, 1.5, {
+          drawSVG: "100%",
           ease: "none",
           stagger: 0.5,
           delay: 0,

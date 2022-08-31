@@ -1,25 +1,32 @@
 <template>
-  <div id="top">
+  <div id="top" v-if="page">
     <div class="why-section-1">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-1-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-1-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h1>
-          It’s not only <br />better for the planet. <br />It’s just better.
-        </h1>
+        <h1
+          v-if="page.PageWhyFields.whySection1.title"
+          v-html="page.PageWhyFields.whySection1.title"
+        ></h1>
         <div class="content">
           <div class="copy">
-            <h4>
-              We’re empowering customers to build a cleaner, cheaper and more
-              resilient energy grid by working with the planet rather than
-              against it.
+            <h4 v-if="page.PageWhyFields.whySection1.copy">
+              {{ page.PageWhyFields.whySection1.copy }}
             </h4>
           </div>
 
           <div class="image">
-            <img src="/images/why-section-1-house.png" alt="" />
+            <FadeImage
+              v-if="page.PageWhyFields.whySection1.image"
+              :srcset="page.PageWhyFields.whySection1.image.srcSet"
+              :sizes="page.PageWhyFields.whySection1.image.sizes"
+              :src="page.PageWhyFields.whySection1.image.mediaItemUrl"
+              :alt="page.PageWhyFields.whySection1.image.altText"
+              :width="page.PageWhyFields.whySection1.image.mediaDetails.width"
+              :height="page.PageWhyFields.whySection1.image.mediaDetails.height"
+            />
           </div>
         </div>
       </div>
@@ -30,22 +37,15 @@
         <img class="mobile" src="/images/why-section-2-bg-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h3>How we think about energy</h3>
-        <div class="copy">
-          <p>
-            We’re entering an energy renaissance. A time when the one-way flow
-            of energy from centralized, fossil fuel sources will be replaced by
-            a network of renewable resources all communicating together to
-            intelligently direct energy to where it’s needed and away from where
-            it’s not.
-          </p>
-          <p>
-            With smart management, a decentralized grid will be more efficient,
-            more reliable, and more powerful than the old model. But this shift
-            requires a new kind of energy company – one that leverages the power
-            of software and integrates with and manages customer devices.
-          </p>
-        </div>
+        <h3
+          v-if="page.PageWhyFields.whySection2.title"
+          v-html="page.PageWhyFields.whySection2.title"
+        ></h3>
+        <div
+          class="copy"
+          v-if="page.PageWhyFields.whySection2.copy"
+          v-html="page.PageWhyFields.whySection2.copy"
+        ></div>
       </div>
     </div>
     <div class="why-section-3">
@@ -56,37 +56,24 @@
         <img class="mobile" src="/images/why-section-3-bg2-mobile.jpg" alt="" />
       </div>
       <div class="inner">
-        <h1>The future is bright</h1>
-        <div class="copy">
-          <h4>
-            We don’t believe in “conserving” energy. The Earth is teeming with
-            it. We don’t have a shortage of supply, but we do have a shortage of
-            intelligent energy management.
-          </h4>
-          <h4>
-            Together we can create a powerful network of integrated energy
-            devices that rapidly adapts to changing needs. A grid that’s better
-            for you and better for the planet.
-          </h4>
-        </div>
+        <h1
+          v-if="page.PageWhyFields.whySection3.title"
+          v-html="page.PageWhyFields.whySection3.title"
+        ></h1>
+        <div
+          class="copy"
+          v-if="page.PageWhyFields.whySection3.copy"
+          v-html="page.PageWhyFields.whySection3.copy"
+        ></div>
         <div class="ctas">
           <ExpandingCTA
+            v-for="(cta, index) in page.PageWhyFields.whySection3.expandingCtas"
+            :key="index"
             :data="{
-              title: 'How we do it better for Home',
-              icons: [
-                '/images/icon-house.svg',
-                '/images/icon-house-active.svg',
-              ],
-              copy: 'Let us manage your energy while saving money and the planet, so you can focus on what matters most.',
-              link: { title: 'Learn More', url: '/for-home/' },
-            }"
-          />
-          <ExpandingCTA
-            :data="{
-              title: 'How we do it better for Business',
-              icons: ['/images/icon-cash.svg', '/images/icon-cash-active.svg'],
-              copy: 'Let us manage your energy while saving money and the planet, so you can focus on what matters most.Let us manage your energy while saving money and the planet, so you can focus on what matters most.',
-              link: { title: 'Learn More', url: '/for-business/' },
+              title: cta.title,
+              icons: [cta.icon.mediaItemUrl, cta.iconActive.mediaItemUrl],
+              copy: cta.copy,
+              link: cta.link,
             }"
           />
         </div>
@@ -97,7 +84,7 @@
         <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>
-      <ToggleGraphs />
+      <ToggleGraphs :data="page.PageWhyFields.whySection4" />
     </div>
     <div class="why-section-5" id="faqs">
       <div class="bg-image">
@@ -106,48 +93,34 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <h2>Frequently Asked Questions</h2>
-          <nuxt-link class="button" to="">See More</nuxt-link>
+          <h2
+            v-if="page.PageWhyFields.whySection5.title"
+            v-html="page.PageWhyFields.whySection5.title"
+          ></h2>
+          <nuxt-link
+            class="button"
+            v-if="page.PageWhyFields.whySection5.link"
+            :to="page.PageWhyFields.whySection5.link.url"
+            >{{ page.PageWhyFields.whySection5.link.title }}</nuxt-link
+          >
         </div>
         <div class="faqs">
           <FAQItem
+            v-for="(faq, index) in page.PageWhyFields.whySection5.faqs"
+            :key="index"
             :data="{
-              question: 'FAQ question goes here',
-              answer:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            }"
-          />
-          <FAQItem
-            :data="{
-              question: 'FAQ question goes here',
-              answer:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            }"
-          />
-          <FAQItem
-            :data="{
-              question: 'FAQ question goes here',
-              answer:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            }"
-          />
-          <FAQItem
-            :data="{
-              question: 'FAQ question goes here',
-              answer:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            }"
-          />
-          <FAQItem
-            :data="{
-              question: 'FAQ question goes here',
-              answer:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              question: faq.question,
+              answer: faq.answer,
             }"
           />
         </div>
         <div class="cta">
-          <nuxt-link class="button" to="">See More</nuxt-link>
+          <nuxt-link
+            class="button"
+            v-if="page.PageWhyFields.whySection5.link"
+            :to="page.PageWhyFields.whySection5.link.url"
+            >{{ page.PageWhyFields.whySection5.link.title }}</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -155,11 +128,120 @@
 </template>
 
 <script>
+import meta from "~/plugins/meta.js";
+import { gql } from "nuxt-graphql-request";
+import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
+import FadeImage from "~/components/FadeImage.vue";
+import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+
+const gql_content = `
+  ${basics}
+  ${seo_fields}
+   PageWhyFields {
+    whySection1 {
+      title
+      copy
+      image {
+        ${image}
+      }
+    }
+    whySection2 {
+      title
+      copy
+    }
+    whySection3 {
+      title
+      copy
+      expandingCtas {
+        title
+        copy
+        icon {
+          ${image}
+        }
+        iconActive {
+          ${image}
+        }
+        link {
+          ${link}
+        }
+      }
+    }
+    whySection4 {
+      tab1 {
+        tabTitle
+        title
+        copy
+        links {
+          link {
+            ${link}
+          }
+        }
+        image {
+          ${image}
+        }
+      }
+      tab2 {
+        tabTitle
+        title
+        copy
+        links {
+          link {
+            ${link}
+          }
+        }
+        image {
+          ${image}
+        }
+      }
+    }
+    whySection5 {
+      title
+      link {
+        ${link}
+      }
+      faqs {
+        question
+        answer
+      }
+    }
+  }
+`;
 export default {
+  mixins: [scrollTriggerHub],
+  components: {
+    FadeImage,
+  },
+  async asyncData({ $graphql, route }) {
+    const query = gql`
+      query MyQuery {
+        page(id: "why-david-energy", idType: URI, asPreview: true) {
+          ${gql_content}
+          isPreview
+          preview {
+            node {
+              ${gql_content}
+            }
+          }  
+        }
+      }
+    `;
+    let { page } = await $graphql.default.request(query);
+    console.log(page);
+    if (route.query && route.query.preview && page.preview) {
+      page = page.preview.node;
+    }
+
+    return { page };
+  },
   head() {
-    return {
-      title: "Home",
-    };
+    if (this.page && this.page.SeoFields) {
+      return {
+        title: this.page.SeoFields.seoTitle
+          ? this.page.SeoFields.seoTitle
+          : this.page.title,
+        meta: meta(this.page.SeoFields),
+      };
+    }
   },
 };
 </script>
@@ -364,7 +446,7 @@ export default {
         background-color: $bright_green;
       }
 
-      p {
+      :deep(p) {
         margin-bottom: 1.5em;
 
         &:last-of-type {
@@ -463,7 +545,8 @@ export default {
         padding: 0;
       }
 
-      h4 {
+      :deep(p) {
+        @include h4;
         margin-bottom: 1.5em;
 
         @include breakpoint(small) {
@@ -509,6 +592,7 @@ export default {
     left: 0;
     width: 43%;
     pointer-events: none;
+    mix-blend-mode: darken;
 
     @include breakpoint(small) {
       top: auto;
