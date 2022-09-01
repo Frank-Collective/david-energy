@@ -2,8 +2,8 @@
   <div class="inner" v-if="data">
     <h4 v-if="data.copy" v-html="data.copy"></h4>
 
-    <div class="cta">
-      <nuxt-link class="button" v-if="data.link.url" :to="data.link.url">{{
+    <div class="cta" v-if="data.link">
+      <nuxt-link class="button" :to="data.link.url">{{
         data.link.title
       }}</nuxt-link>
     </div>

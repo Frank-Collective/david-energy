@@ -650,10 +650,6 @@ export default {
       }
 
       h3 {
-        &.hidden {
-          display: none;
-        }
-
         @include breakpoint(small) {
           @include h2;
         }
@@ -736,12 +732,6 @@ export default {
         height: auto;
         top: 0;
         left: 0;
-        opacity: 0;
-        transition: 0.5s opacity;
-
-        &.visible {
-          opacity: 1;
-        }
       }
     }
 
