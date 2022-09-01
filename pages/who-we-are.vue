@@ -1,5 +1,5 @@
 <template>
-  <div id="top">
+  <div id="top" v-if="page">
     <div class="about-us-section-1">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
@@ -11,23 +11,32 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <div class="eyebrow">About us</div>
-          <h1>A better energy grid starts with a better energy provider.</h1>
-          <p class="hide-small">
-            David Energy is revolutionizing energy supply with an integrated
-            software platform that puts the consumer in the driver’s seat.
+          <div class="eyebrow" v-if="page.aboutSection1.eyebrow">
+            {{ page.aboutSection1.eyebrow }}
+          </div>
+          <h1
+            v-if="page.aboutSection1.title"
+            v-html="page.aboutSection1.title"
+          ></h1>
+          <p class="hide-small" v-if="page.aboutSection1.copy">
+            {{ page.aboutSection1.copy }}
           </p>
         </div>
 
         <div class="image">
-          <img src="/images/about-us-section-1-image.png" alt="" />
+          <FadeImage
+            v-if="page.aboutSection1.image"
+            :srcset="page.aboutSection1.image.srcSet"
+            :sizes="page.aboutSection1.image.sizes"
+            :src="page.aboutSection1.image.mediaItemUrl"
+            :alt="page.aboutSection1.image.altText"
+            :width="page.aboutSection1.image.mediaDetails.width"
+            :height="page.aboutSection1.image.mediaDetails.height"
+          />
         </div>
 
         <div class="copy show-small">
-          <p>
-            David Energy is revolutionizing energy supply with an integrated
-            software platform that puts the consumer in the driver’s seat.
-          </p>
+          <p v-if="page.aboutSection1.copy">{{ page.aboutSection1.copy }}</p>
         </div>
       </div>
     </div>
@@ -38,77 +47,12 @@
       </div>
       <div class="inner">
         <ExpandingDropdown
+          v-for="(dropdown, index) in page.aboutSection2.expandingDropdowns"
+          :key="index"
           :data="{
-            title: 'How we think',
-            summary: null,
-            flex_content: [
-              {
-                type: 'paragraph',
-                content:
-                  'We’re entering an energy renaissance. A time when the one-way flow of energy from centralized, fossil fuel sources will be replaced by a network of renewable resources all communicating together to intelligently direct energy to where it’s needed and away from where it’s not.',
-              },
-              {
-                type: 'paragraph',
-                content:
-                  'With smart management, a decentralized grid will be more efficient, more reliable, and more powerful than the old model. But this shift requires a new type of energy provider. One that understands the power of software to inform and direct the flow of energy.',
-              },
-            ],
-          }"
-        />
-        <ExpandingDropdown
-          :data="{
-            title: 'What we do',
-            summary:
-              'We partner with like-minded energy users + businesses, offering them an all-in-one solution to help them build a better grid.',
-            flex_content: [
-              {
-                type: 'list-item-text',
-                title: 'Retail Energy Provider',
-                copy: 'We source clean and affordable energy for our customers.',
-              },
-              {
-                type: 'list-item-text',
-                title: 'Automated Device Management',
-                copy: 'Our software learns when you need energy and adjusts your devices’ usage accordingly.',
-              },
-              {
-                type: 'list-item-text',
-                title: 'Demand Response',
-                copy: 'We automatically modulate your usage during times when energy is the most expensive and dirty.',
-              },
-              {
-                type: 'list-item-text',
-                title: 'Shared Savings Program',
-                copy: 'By selling some of your surplus energy when you don’t need it, we generate revenue that also saves you money.',
-              },
-            ],
-          }"
-        />
-        <ExpandingDropdown
-          :data="{
-            title: 'Who we serve',
-            summary:
-              'Whether you’re powering a multi-location small-business, your home, or a multi-family housing development, David Energy has the tools to help you modernize your energy.',
-            flex_content: [
-              {
-                type: 'list-item-icon',
-                icon: '/images/icon-house.svg',
-                title: 'Home',
-                copy: 'Save money and reduce your carbon footprint.',
-              },
-              {
-                type: 'list-item-icon',
-                icon: '/images/icon-cash.svg',
-                title: 'Business',
-                copy: 'Manage all your buildings and devices from a single platform.',
-              },
-              {
-                type: 'list-item-icon',
-                icon: '/images/icon-house.svg',
-                title: 'Partners',
-                copy: 'Boost profits and simplify your energy processes.',
-              },
-            ],
+            title: dropdown.title,
+            summary: dropdown.summary,
+            flex_content: dropdown.flexContent,
           }"
         />
       </div>
@@ -125,13 +69,15 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <h3>Leadership Team</h3>
-          <p>
-            Meet the folks who are putting all their energy into improving
-            yours.
+          <h3
+            v-if="page.aboutSection3.title"
+            v-html="page.aboutSection3.title"
+          ></h3>
+          <p v-if="page.aboutSection3.copy">
+            {{ page.aboutSection3.copy }}
           </p>
         </div>
-        <LeadershipTeam />
+        <LeadershipTeam :data="page.aboutSection3" />
       </div>
     </div>
 
@@ -203,11 +149,114 @@
 </template>
 
 <script>
+import meta from "~/plugins/meta.js";
+import { gql } from "nuxt-graphql-request";
+import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
+import FadeImage from "~/components/FadeImage.vue";
+import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+
+const gql_content = `
+  ${basics}
+  ${seo_fields}
+  PageAboutUsFields {
+    aboutSection1 {
+      eyebrow
+      title
+      copy
+      image {
+        ${image}
+      }
+    }
+    aboutSection2 {
+      expandingDropdowns {
+        title
+        summary
+        flexContent {
+          ... on Page_Pageaboutusfields_AboutSection2_expandingDropdowns_FlexContent_Paragraph {
+            fieldGroupName
+            copy
+          }
+          ... on Page_Pageaboutusfields_AboutSection2_expandingDropdowns_FlexContent_ListItemText {
+            fieldGroupName
+            title
+            copy
+          }
+          ... on Page_Pageaboutusfields_AboutSection2_expandingDropdowns_FlexContent_ListItemIcon {
+            fieldGroupName
+            icon {
+              mediaItemUrl
+            }
+            title
+            copy
+          }
+        }
+      }
+    }
+    aboutSection3 {
+      title
+      copy
+      teamMembers {
+        image {
+          ${image}
+        }
+        firstName
+        lastName
+        position
+        copy
+        additionalData {
+          title
+          dataPoint {
+            copy
+          }
+        }
+        socialMediaLinks {
+          icon {
+            ${image}
+          }
+          url
+        }
+      }
+    }
+  }
+`;
+
 export default {
+  mixins: [scrollTriggerHub],
+  components: {
+    FadeImage,
+  },
+  async asyncData({ $graphql, route }) {
+    const query = gql`
+      query MyQuery {
+        page(id: "about-us", idType: URI, asPreview: true) {
+          ${gql_content}
+          isPreview
+          preview {
+            node {
+              ${gql_content}
+            }
+          }  
+        }
+      }
+    `;
+    let { page } = await $graphql.default.request(query);
+    page = page.PageAboutUsFields;
+
+    if (route.query && route.query.preview && page.preview) {
+      page = page.preview.node;
+    }
+
+    return { page };
+  },
   head() {
-    return {
-      title: "About us",
-    };
+    if (this.page && this.page.SeoFields) {
+      return {
+        title: this.page.SeoFields.seoTitle
+          ? this.page.SeoFields.seoTitle
+          : this.page.title,
+        meta: meta(this.page.SeoFields),
+      };
+    }
   },
 };
 </script>

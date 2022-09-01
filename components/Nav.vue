@@ -32,41 +32,50 @@
           Close
         </div>
         <div class="image">
-          <img src="/images/team-James.jpeg" alt="" />
+          <FadeImage
+            v-if="this.$store.state.selected_team_member.image"
+            :srcset="this.$store.state.selected_team_member.image.srcSet"
+            :sizes="this.$store.state.selected_team_member.image.sizes"
+            :src="this.$store.state.selected_team_member.image.mediaItemUrl"
+            :alt="this.$store.state.selected_team_member.image.altText"
+            :width="
+              this.$store.state.selected_team_member.image.mediaDetails.width
+            "
+            :height="
+              this.$store.state.selected_team_member.image.mediaDetails.height
+            "
+          />
         </div>
         <div class="bio">
-          <div class="name">James McGinniss</div>
-          <div class="title">CEO & Co-Founder</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nunc
-            ultricies ac viverra nulla euismod vel. Quam mi amet, vel vel non
-            vitae scelerisque. Quis tristique feugiat feugiat lacus risus est
-            enim nisi.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nunc
-            ultricies ac viverra nulla euismod vel. Quam mi amet, vel vel non
-            vitae scelerisque. Quis tristique feugiat feugiat lacus risus est
-            enim nisi. Donec nunc ultricies ac viverra nulla euismod vel.
-          </p>
+          <div class="name">
+            {{ this.$store.state.selected_team_member.firstName }}
+            {{ this.$store.state.selected_team_member.lastName }}
+          </div>
+          <div class="title">
+            {{ this.$store.state.selected_team_member.position }}
+          </div>
+          <div v-html="this.$store.state.selected_team_member.copy"></div>
         </div>
         <div class="history">
-          <div class="eyebrow">Education</div>
-          <ul class="datas">
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-          </ul>
-          <div class="eyebrow">Experience</div>
-          <ul class="datas">
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-          </ul>
+          <template
+            v-for="(data, index) in this.$store.state.selected_team_member
+              .additionalData"
+          >
+            <div class="eyebrow" :key="index">{{ data.title }}</div>
+            <ul class="datas" :key="`${index}1`">
+              <li v-for="(data_point, index2) in data.dataPoint" :key="index2">
+                {{ data_point.copy }}
+              </li>
+            </ul>
+          </template>
           <ul class="social-media-icons">
-            <li><a href="#" target="_blank"></a></li>
-            <li><a href="#" target="_blank"></a></li>
-            <li><a href="#" target="_blank"></a></li>
+            <li
+              v-for="(link, index) in this.$store.state.selected_team_member
+                .socialMediaLinks"
+              :key="index"
+            >
+              <a :href="link.url" target="_blank"></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -395,7 +404,7 @@ export default {
         }
       }
 
-      p {
+      :deep(p) {
         color: $dark_evergreen;
         font-weight: 400;
         font-size: 24px;

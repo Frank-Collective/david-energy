@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" v-if="data">
     <client-only>
       <flickity ref="flickity" :options="flickityOptions" class="carousel">
         <div class="prev-next-btns">
@@ -13,192 +13,31 @@
         <div class="slide ghost"></div>
         <div
           class="slide"
+          v-for="(person, index) in data.teamMembers"
+          :key="index"
           v-bind:class="{
-            faded: selected_index != 0 && selected_index != null,
+            faded: selected_index != index && selected_index != null,
           }"
-          v-on:mouseover="setSelectedIndex(0)"
+          v-on:mouseover="setSelectedIndex(index)"
           v-on:mouseout="resetSelectedIndex"
-          v-on:click="openModal(0)"
+          v-on:click="openModal(index)"
         >
           <div class="inner">
             <div class="cover"></div>
-            <img src="/images/team-James.jpeg" alt="" />
+            <img :src="person.image.mediaItemUrl" alt="" />
             <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
+              <div class="name">
+                {{ person.firstName }} <br />{{ person.lastName }}
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 1 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(1)"
-          v-on:mouseout="resetSelectedIndex"
-          v-on:click="openModal(1)"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Ahmed.jpeg" alt="" />
-            <div class="info">
-              <div class="name">Ahmed<br />Salman</div>
               <div class="name-and-title">
-                <div class="title">CTO & Co-Founder</div>
-                <div class="the-name">Ahmed Salman</div>
+                <div class="title">{{ person.position }}</div>
+                <div class="the-name">
+                  {{ person.firstName }} {{ person.lastName }}
+                </div>
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 2 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(2)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Chaitu.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
+              <div class="button--outline" v-if="person.copy != ''">
+                Read More
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 3 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(3)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Sophia.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 4 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(4)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Abhishek.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 5 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(5)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Sam.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 6 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(6)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-JJ.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 7 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(7)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Ted.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="slide"
-          v-bind:class="{
-            faded: selected_index != 8 && selected_index != null,
-          }"
-          v-on:mouseover="setSelectedIndex(8)"
-          v-on:mouseout="resetSelectedIndex"
-        >
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Diana.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
             </div>
           </div>
         </div>
@@ -209,129 +48,28 @@
         :options="flickityOptions2"
         class="carousel-mobile"
       >
-        <div class="slide" v-on:click="openModal(0)">
+        <div
+          class="slide"
+          v-for="(person, index) in data.teamMembers"
+          :key="index"
+          v-on:click="openModal(index)"
+        >
           <div class="inner">
             <div class="cover"></div>
-            <img src="/images/team-James.jpeg" alt="" />
+            <img :src="person.image.mediaItemUrl" alt="" />
             <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
+              <div class="name">
+                {{ person.firstName }} <br />{{ person.lastName }}
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide" v-on:click="openModal(1)">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Ahmed.jpeg" alt="" />
-            <div class="info">
-              <div class="name">Ahmed<br />Salman</div>
               <div class="name-and-title">
-                <div class="title">CTO & Co-Founder</div>
-                <div class="the-name">Ahmed Salman</div>
+                <div class="title">{{ person.position }}</div>
+                <div class="the-name">
+                  {{ person.firstName }} {{ person.lastName }}
+                </div>
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Chaitu.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
+              <div class="button--outline" v-if="person.copy != ''">
+                Read More
               </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Sophia.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Abhishek.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Sam.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-JJ.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Ted.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="inner">
-            <div class="cover"></div>
-            <img src="/images/team-Diana.jpeg" alt="" />
-            <div class="info">
-              <div class="name">James<br />McGinniss</div>
-              <div class="name-and-title">
-                <div class="title">CEO & Co-Founder</div>
-                <div class="the-name">James McGinniss</div>
-              </div>
-              <div class="button--outline">Read More</div>
             </div>
           </div>
         </div>
@@ -344,6 +82,7 @@
 import gsap from "gsap";
 
 export default {
+  props: { data: Object },
   data() {
     return {
       selected_index: null,
@@ -424,8 +163,12 @@ export default {
       this.selected_index = null;
     },
     openModal(index) {
-      if (!this.dragging) {
+      let clicked_person = this.data.teamMembers[index];
+
+      if (!this.dragging && clicked_person.copy != "") {
+        console.log(this.data.teamMembers[index]);
         this.$store.commit("setTeamModalOpen", true);
+        this.$store.commit("setSelectedTeamMember", clicked_person);
       }
     },
   },
@@ -614,6 +357,7 @@ export default {
           line-height: 130%;
           letter-spacing: -0.015em;
           padding: 0.39em 0.75em;
+          word-break: break-word;
         }
 
         .name-and-title {

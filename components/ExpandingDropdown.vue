@@ -25,9 +25,9 @@
         v-on:leave="leave"
       >
         <div class="content" v-show="expanded">
-          <div class="summary" v-if="data.summary">
+          <div class="summary">
             <div class="spacer"></div>
-            <p>
+            <p v-if="data.summary">
               {{ data.summary }}
             </p>
           </div>
@@ -38,12 +38,15 @@
               v-for="(content_item, index) in data.flex_content"
               :key="index"
             >
-              <div class="paragraph" v-if="content_item.type == 'paragraph'">
-                <p>{{ content_item.content }}</p>
+              <div
+                class="paragraph"
+                v-if="content_item.fieldGroupName.includes('Paragraph')"
+              >
+                <p>{{ content_item.copy }}</p>
               </div>
               <div
                 class="list-item-text"
-                v-if="content_item.type == 'list-item-text'"
+                v-if="content_item.fieldGroupName.includes('ListItemText')"
               >
                 <div class="indented-text-link--medium">
                   {{ content_item.title }}
@@ -52,9 +55,11 @@
               </div>
               <div
                 class="list-item-icon"
-                v-if="content_item.type == 'list-item-icon'"
+                v-if="content_item.fieldGroupName.includes('ListItemIcon')"
               >
-                <div class="icon"><img :src="content_item.icon" alt="" /></div>
+                <div class="icon">
+                  <img :src="content_item.icon.mediaItemUrl" alt="" />
+                </div>
                 <div class="text">
                   <h4>{{ content_item.title }}</h4>
                   <p>{{ content_item.copy }}</p>
