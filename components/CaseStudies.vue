@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="case-studies">
+    <div class="case-studies" v-if="data">
       <div class="inner">
         <flickity
           ref="flickity"
@@ -16,46 +16,40 @@
               <IconCarouselArrowRightLarge />
             </div>
           </div>
-          <div class="slide">
+          <div
+            class="slide"
+            v-for="(case_study, index) in data.caseStudies"
+            :key="index"
+          >
             <div class="column column--1">
-              <div class="eyebrow">Challenge</div>
-              <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+              <div class="eyebrow" v-if="case_study.column1.title">
+                {{ case_study.column1.title }}
+              </div>
+              <div
+                v-if="case_study.column1.copy"
+                v-html="case_study.column1.copy"
+              ></div>
             </div>
             <div class="column column--2">
-              <div class="eyebrow">partnership with DAVID energy</div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                nunc ultricies ac viverra nulla euismod vel.
-              </p>
-              <p>Quam mi amet, vel vel non vitae scelerisque.</p>
+              <div class="eyebrow" v-if="case_study.column2.title">
+                {{ case_study.column2.title }}
+              </div>
+              <div
+                v-if="case_study.column2.copy"
+                v-html="case_study.column2.copy"
+              ></div>
             </div>
             <div class="column column--3">
-              <div class="eyebrow">savings</div>
-              <div class="big-headline">42%</div>
-              <h4>Reduced Costs Across Individual Savings</h4>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="column column--1">
-              <div class="eyebrow">Challenge</div>
-              <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
-            </div>
-            <div class="column column--2">
-              <div class="eyebrow">partnership with DAVID energy</div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                nunc ultricies ac viverra nulla euismod vel.
-              </p>
-              <p>Quam mi amet, vel vel non vitae scelerisque.</p>
-            </div>
-            <div class="column column--3">
-              <div class="eyebrow">savings</div>
-              <div class="big-headline">42%</div>
-              <h4>
-                Reduced Costs Across Individual Savings Reduced Costs Across
-                Individual Savings Reduced Costs Across Individual Savings
-                Reduced Costs Across Individual Savings
-              </h4>
+              <div class="eyebrow" v-if="case_study.column3.title">
+                {{ case_study.column3.title }}
+              </div>
+              <div class="big-headline" v-if="case_study.column3.percentage">
+                {{ case_study.column3.percentage }}
+              </div>
+              <div
+                v-if="case_study.column3.copy"
+                v-html="case_study.column3.copy"
+              ></div>
             </div>
           </div>
         </flickity>
@@ -68,6 +62,7 @@
 import gsap from "gsap";
 
 export default {
+  props: { data: Object },
   data() {
     return {
       selected_index: 0,
@@ -255,25 +250,22 @@ export default {
             }
           }
 
-          .big-headline {
-            color: $white;
-            @include h1-large;
-
-            @include breakpoint(small) {
-              font-size: 96px;
-              margin-top: 0.25em;
-            }
-          }
-
-          p {
-            @include body-copy-small;
-          }
-
           &--1 {
             width: 27%;
 
             @include breakpoint(small) {
               width: 100%;
+            }
+
+            div {
+              :deep(p) {
+                @include h4;
+                color: $white;
+
+                @include breakpoint(small) {
+                  @include body-copy-small;
+                }
+              }
             }
           }
 
@@ -283,6 +275,11 @@ export default {
             @include breakpoint(small) {
               width: 100%;
             }
+
+            :deep(p) {
+              @include body-copy-small;
+              margin-bottom: 1em;
+            }
           }
 
           &--3 {
@@ -290,6 +287,27 @@ export default {
 
             @include breakpoint(small) {
               width: 100%;
+            }
+
+            .big-headline {
+              color: $white;
+              @include h1-large;
+
+              @include breakpoint(small) {
+                font-size: 96px;
+                margin-top: 0.25em;
+              }
+            }
+
+            div {
+              :deep(p) {
+                @include h4;
+                color: $white;
+
+                @include breakpoint(small) {
+                  @include body-copy-small;
+                }
+              }
             }
           }
         }

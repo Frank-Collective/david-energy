@@ -15,29 +15,46 @@
       </div>
       <div class="inner">
         <div class="image">
-          <img src="/images/for-brokers-section-1-image.png" alt="" />
+          <FadeImage
+            v-if="page.forBrokersSection1.image"
+            :srcset="page.forBrokersSection1.image.srcSet"
+            :sizes="page.forBrokersSection1.image.sizes"
+            :src="page.forBrokersSection1.image.mediaItemUrl"
+            :alt="page.forBrokersSection1.image.altText"
+            :width="page.forBrokersSection1.image.mediaDetails.width"
+            :height="page.forBrokersSection1.image.mediaDetails.height"
+          />
         </div>
 
         <div class="copy">
-          <div class="eyebrow">for brokers</div>
-          <h1>Go beyond the broker’s fee.</h1>
-          <p class="hide-small">
-            A win for you and your customers. Enhance your bottom line with
-            David Energy by delivering savings and lowering your customers’
-            bills partner with us
+          <div class="eyebrow" v-if="page.forBrokersSection1.eyebrow">
+            {{ page.forBrokersSection1.eyebrow }}
+          </div>
+          <h1
+            v-if="page.forBrokersSection1.title"
+            v-html="page.forBrokersSection1.title"
+          ></h1>
+          <p class="hide-small" v-if="page.forBrokersSection1.copy">
+            {{ page.forBrokersSection1.copy }}
           </p>
-          <nuxt-link class="button hide-small" to="#"
-            >Partner with us</nuxt-link
+          <nuxt-link
+            class="button hide-small"
+            v-if="page.forBrokersSection1.link"
+            :to="page.forBrokersSection1.link.url"
+            >{{ page.forBrokersSection1.link.title }}</nuxt-link
           >
         </div>
 
         <div class="copy show-small">
-          <p>
-            A win for you and your customers. Enhance your bottom line with
-            David Energy by delivering savings and lowering your customers’
-            bills partner with us
+          <p v-if="page.forBrokersSection1.copy">
+            {{ page.forBrokersSection1.copy }}
           </p>
-          <nuxt-link class="button" to="#">Partner with us</nuxt-link>
+          <nuxt-link
+            class="button"
+            v-if="page.forBrokersSection1.link"
+            :to="page.forBrokersSection1.link.url"
+            >{{ page.forBrokersSection1.link.title }}</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -52,34 +69,19 @@
       </div>
 
       <div class="inner">
-        <h1>Partner with David.</h1>
+        <h1
+          v-if="page.forBrokersSection2.title"
+          v-html="page.forBrokersSection2.title"
+        ></h1>
 
         <div class="info-cards">
           <InfoCard
+            v-for="(card, index) in page.forBrokersSection2.infoCards"
+            :key="index"
             :data="{
-              title: 'Get paid to save the planet.',
-              icons: [
-                '/images/icon-house.svg',
-                '/images/icon-house-active.svg',
-              ],
-              copy: 'Purchase green energy and reduce usage at the priciest times, which also reduces the need for our dirtiest power plants.',
-            }"
-          />
-          <InfoCard
-            :data="{
-              title: 'One platform to manage all your smart devices',
-              icons: ['/images/icon-cash.svg', '/images/icon-cash-active.svg'],
-              copy: 'Give your thumbs a rest and consolidate all your smart device apps into one centralized platform.',
-            }"
-          />
-          <InfoCard
-            :data="{
-              title: 'Be picky about your energy partner',
-              icons: [
-                '/images/icon-house.svg',
-                '/images/icon-house-active.svg',
-              ],
-              copy: 'Say goodbye to price spikes and outages, and say hello to power that’s tailored to fit your needs.',
+              title: card.title,
+              icons: [card.icon.mediaItemUrl, card.iconActive.mediaItemUrl],
+              copy: card.copy,
             }"
           />
         </div>
@@ -99,7 +101,7 @@
           alt=""
         />
       </div>
-      <CaseStudies />
+      <CaseStudies :data="page.forBrokersSection3" />
     </div>
 
     <div class="for-brokers-section-4">
@@ -110,11 +112,11 @@
           class="mobile"
         />
       </div>
-      <PlatformFeatures />
+      <PlatformFeatures :data="page.forBrokersSection4" />
     </div>
 
     <div class="for-brokers-section-5">
-      <BrandsWeWorkWith />
+      <BrandsWeWorkWith :data="page.forBrokersSection5" />
     </div>
 
     <div class="for-brokers-section-6">
@@ -131,7 +133,7 @@
         />
       </div>
 
-      <DevicesWeWorkWith />
+      <DevicesWeWorkWith :data="page.forBrokersSection6" />
     </div>
 
     <div class="for-brokers-section-7">
@@ -147,17 +149,198 @@
           alt=""
         />
       </div>
-      <ToggleGraphs />
+      <div class="inner">
+        <div class="title">
+          <h3
+            v-if="page.forBrokersSection7.title"
+            v-html="page.forBrokersSection7.title"
+          ></h3>
+        </div>
+        <div class="content">
+          <div class="copy">
+            <div class="section">
+              <p>
+                {{ page.forBrokersSection7.copy }}
+              </p>
+              <nuxt-link
+                v-for="(link, index) in page.forBrokersSection7.links"
+                :key="index"
+                :to="link.link.url"
+                class="button"
+              >
+                {{ link.link.title }}</nuxt-link
+              >
+            </div>
+          </div>
+          <div class="graph">
+            <FadeImage
+              v-if="page.forBrokersSection7.image"
+              :srcset="page.forBrokersSection7.image.srcSet"
+              :sizes="page.forBrokersSection7.image.sizes"
+              :src="page.forBrokersSection7.image.mediaItemUrl"
+              :alt="page.forBrokersSection7.image.altText"
+              :width="page.forBrokersSection7.image.mediaDetails.width"
+              :height="page.forBrokersSection7.image.mediaDetails.height"
+            />
+          </div>
+          <div class="mobile-ctas">
+            <nuxt-link
+              v-for="(link, index) in page.forBrokersSection7.links"
+              :key="index"
+              :to="link.link.url"
+              class="button"
+            >
+              {{ link.link.title }}</nuxt-link
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import meta from "~/plugins/meta.js";
+import { gql } from "nuxt-graphql-request";
+import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
+import FadeImage from "~/components/FadeImage.vue";
+import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+
+const gql_content = `
+  ${basics}
+  ${seo_fields}
+  PageForBrokersFields {
+    forBrokersSection1 {
+      eyebrow
+      title
+      copy
+      link {
+        ${link}
+      }
+      image {
+        ${image}
+      }
+    }
+    forBrokersSection2 {
+      title
+      infoCards {
+        title
+        copy
+        icon {
+          ${image}
+        }
+        iconActive {
+          ${image}
+        }
+      }
+    }
+    forBrokersSection3 {
+      caseStudies {
+        column1 {
+          title
+          copy
+        }
+        column2 {
+          title
+          copy
+        }
+        column3 {
+          title
+          percentage
+          copy
+        }
+      }
+    }
+    forBrokersSection4 {
+      copy
+      link {
+        ${link}
+      }
+      infoCards {
+        title
+        copy
+        image {
+          ${image}
+        }
+      }
+    }
+    forBrokersSection5 {
+      title
+      logos {
+        logo {
+          ${image}
+        }
+      }
+    }
+    forBrokersSection6 {
+      title
+      copy
+      devices {
+        title
+        logos {
+          logo {
+            ${image}
+          }
+        }
+      }
+      cta {
+        title
+        link {
+          ${link}
+        }
+      }
+    }
+    forBrokersSection7 {
+      title
+      copy
+      links {
+        link {
+          ${link}
+        }
+      }
+      image {
+        ${image}
+      }
+    }
+  }
+`;
 export default {
+  mixins: [scrollTriggerHub],
+  components: {
+    FadeImage,
+  },
+  async asyncData({ $graphql, route }) {
+    const query = gql`
+      query MyQuery {
+        page(id: "for-brokers", idType: URI, asPreview: true) {
+          ${gql_content}
+          isPreview
+          preview {
+            node {
+              ${gql_content}
+            }
+          }  
+        }
+      }
+    `;
+    let { page } = await $graphql.default.request(query);
+    page = page.PageForBrokersFields;
+
+    if (route.query && route.query.preview && page.preview) {
+      page = page.preview.node;
+    }
+
+    return { page };
+  },
   head() {
-    return {
-      title: "Home",
-    };
+    if (this.page && this.page.SeoFields) {
+      return {
+        title: this.page.SeoFields.seoTitle
+          ? this.page.SeoFields.seoTitle
+          : this.page.title,
+        meta: meta(this.page.SeoFields),
+      };
+    }
   },
 };
 </script>
@@ -225,7 +408,7 @@ export default {
       @include breakpoint(small) {
         width: 100%;
         order: 2;
-        margin-top: -20vw;
+        margin-top: -6vw;
         margin-bottom: 40px;
       }
 
@@ -546,6 +729,126 @@ export default {
 
       @include breakpoint(small) {
         display: block;
+      }
+    }
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    @include gutter(padding-left);
+    @include gutter(padding-right);
+    z-index: 1;
+
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
+
+    .title {
+      margin-bottom: 3.5vw;
+
+      @include breakpoint(small) {
+        order: 1;
+      }
+
+      h3 {
+        @include breakpoint(small) {
+          @include h2;
+        }
+
+        br {
+          @include breakpoint(small) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-shrink: 0;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+        order: 3;
+      }
+
+      .copy {
+        padding-right: 5%;
+
+        @include breakpoint(small) {
+          padding-right: 0;
+        }
+
+        .section {
+          h3 {
+            margin-bottom: 0.35em;
+
+            @include breakpoint(small) {
+              @include h2;
+            }
+
+            br {
+              @include breakpoint(small) {
+                display: none;
+              }
+            }
+          }
+
+          p {
+            margin-bottom: 1em;
+
+            @include breakpoint(small) {
+              @include body-copy-small;
+            }
+          }
+
+          a {
+            margin-bottom: 1em;
+
+            @include breakpoint(small) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .graph {
+      position: relative;
+      width: 66%;
+      flex-shrink: 0;
+      padding-bottom: 32%;
+
+      @include breakpoint(small) {
+        width: 100%;
+        padding-bottom: 44%;
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .mobile-ctas {
+      display: none;
+      margin-top: 25px;
+
+      @include breakpoint(small) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        margin-bottom: 1em;
       }
     }
   }

@@ -16,7 +16,7 @@
           </div>
           <h1
             v-if="page.forHomeSection1.title"
-            v-html="page.forHomeSection1.eyebrow"
+            v-html="page.forHomeSection1.title"
           ></h1>
           <p class="hide-small" v-if="page.forHomeSection1.copy">
             {{ page.forHomeSection1.copy }}
