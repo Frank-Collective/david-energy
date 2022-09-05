@@ -85,6 +85,12 @@ export default {
 
     @include breakpoint(small) {
       margin: 0;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+
+      @include gutter(padding-left);
+      @include gutter(padding-right);
     }
 
     .wysiwyg {
