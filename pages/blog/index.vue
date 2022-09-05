@@ -1,32 +1,26 @@
 <template>
   <div id="top" v-if="page">
-    <div class="careers-section-1">
+    <div class="blog-section-1">
       <div class="bg-image">
         <img class="desktop" src="/images/careers-section-1-bg.jpg" alt="" />
       </div>
       <div class="inner">
         <div class="copy">
           <h1
-            v-if="page.careersSection1.title"
-            v-html="page.careersSection1.title"
+            v-if="page.blogSection1.title"
+            v-html="page.blogSection1.title"
           ></h1>
-          <p
-            v-if="page.careersSection1.copy"
-            v-html="page.careersSection1.copy"
-          ></p>
+          <p v-if="page.blogSection1.copy" v-html="page.blogSection1.copy"></p>
         </div>
-
-        <ul class="jobs-list">
-          <li v-for="(job, index) in page.careersSection1.jobs" :key="index">
-            <div class="job-info">
-              <div class="job-title">{{ job.title }}</div>
-              <div class="job-description">{{ job.copy }}</div>
-            </div>
-            <Link :classes="'button'" :link="job.link" />
-          </li>
-        </ul>
       </div>
     </div>
+    <BlogFeed
+      :posts_per_page="30"
+      :paginate="true"
+      :is_page="true"
+      :search_term="search_term"
+      :search_year="search_year"
+    />
   </div>
 </template>
 
@@ -40,47 +34,45 @@ import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
 const gql_content = `
   ${basics}
   ${seo_fields}
-  PageCareersFields {
-    careersSection1 {
+  PageBlogFields {
+    blogSection1 {
       title
       copy
-      jobs {
-        title
-        copy
-        link {
-          ${link}
-        }
-      }
     }
   }
 `;
 
 export default {
   mixins: [scrollTriggerHub],
-  components: {
-    FadeImage,
+  data() {
+    return {
+      page_data: null,
+      search_term: null,
+      search_year: null,
+    };
   },
   async asyncData({ $graphql, route }) {
     const query = gql`
-      query MyQuery {
-        page(id: "careers", idType: URI, asPreview: true) {
+      query PageQuery {
+        page(id: "blog", idType: URI, asPreview: true) {
           ${gql_content}
           isPreview
+          isFrontPage
           preview {
             node {
               ${gql_content}
             }
-          }  
+          }
         }
       }
     `;
+
     let { page } = await $graphql.default.request(query);
-    page = page.PageCareersFields;
+    page = page.PageBlogFields;
 
     if (route.query && route.query.preview && page.preview) {
       page = page.preview.node;
     }
-
     return { page };
   },
   head() {
@@ -97,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.careers-section-1 {
+.blog-section-1 {
   position: relative;
   padding-top: 19vw;
   padding-bottom: 5vw;
@@ -114,7 +106,7 @@ export default {
   }
 
   .bg-image {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -183,52 +175,6 @@ export default {
 
         @include breakpoint(small) {
           @include body-copy;
-        }
-      }
-    }
-
-    .jobs-list {
-      li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 2px solid rgba($text_color, 0.5);
-        padding-bottom: 28px;
-        margin-bottom: 40px;
-
-        @include breakpoint(small) {
-          padding-bottom: 14px;
-          margin-bottom: 29px;
-          border-color: $bright_green;
-        }
-
-        .job-info {
-          .job-title {
-            font-size: 24px;
-            margin-bottom: 0.5em;
-
-            @include breakpoint(small) {
-              line-height: 100%;
-              font-size: 18px;
-            }
-          }
-          .job-description {
-            font-size: 16px;
-            line-height: 160%;
-
-            @include breakpoint(small) {
-              font-size: 15px;
-            }
-          }
-        }
-
-        a {
-          margin-left: 30px;
-          flex-shrink: 0;
-
-          @include breakpoint(small) {
-            width: auto;
-          }
         }
       }
     }

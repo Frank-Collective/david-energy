@@ -55,12 +55,7 @@
               v-if="page.landingPageSection2.copy"
               v-html="page.landingPageSection2.copy"
             ></div>
-            <nuxt-link
-              class="button"
-              v-if="page.landingPageSection2.link.url"
-              :to="page.landingPageSection2.link.url"
-              >{{ page.landingPageSection2.link.title }}</nuxt-link
-            >
+            <Link :classes="'button'" :link="page.landingPageSection2.link" />
           </div>
         </div>
       </div>

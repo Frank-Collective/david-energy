@@ -90,12 +90,15 @@
           <img src="/images/about-us-section-4-image.png" alt="" />
         </div>
         <div class="copy">
-          <h3>Make a difference with David</h3>
-          <p>
-            We’re always looking for talented, high-energy additions to our
-            team.
-          </p>
-          <nuxt-link class="button" to="#">Careers</nuxt-link>
+          <h3
+            v-if="page.aboutSection4.title"
+            v-html="page.aboutSection4.title"
+          ></h3>
+          <p
+            v-if="page.aboutSection4.copy"
+            v-html="page.aboutSection4.copy"
+          ></p>
+          <Link :classes="'button'" :link="page.aboutSection4.link" />
         </div>
       </div>
     </div>
@@ -111,34 +114,27 @@
       </div>
       <div class="inner">
         <div class="copy">
-          <h3>Knowledge is Power</h3>
-          <p>Stay smart on the future of energy</p>
-          <nuxt-link class="button" to="#">Blog</nuxt-link>
+          <h3
+            v-if="page.aboutSection5.title"
+            v-html="page.aboutSection5.title"
+          ></h3>
+          <p
+            v-if="page.aboutSection5.copy"
+            v-html="page.aboutSection5.copy"
+          ></p>
+          <Link :classes="'button'" :link="page.aboutSection5.link" />
         </div>
         <div class="articles">
-          <article>
+          <article
+            v-for="(article, index) in page.aboutSection5.featuredPosts"
+            :key="index"
+          >
             <div class="eyebrow">Post Type</div>
             <div class="title-excerpt">
-              <h4>Post title goes here</h4>
+              <h4>{{ article.title }}</h4>
               <div class="excerpt">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                </p>
-                <nuxt-link to="#" target="_blank">Read More</nuxt-link>
-              </div>
-            </div>
-          </article>
-          <article>
-            <div class="eyebrow">Post Type</div>
-            <div class="title-excerpt">
-              <h4>Post title goes here</h4>
-              <div class="excerpt">
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                </p>
-                <nuxt-link to="#" target="_blank">Read More</nuxt-link>
+                <div v-html="article.excerpt"></div>
+                <Link :link="{ title: 'Read More', url: '/' + article.slug }" />
               </div>
             </div>
           </article>
@@ -214,6 +210,31 @@ const gql_content = `
             ${image}
           }
           url
+        }
+      }
+    }
+    aboutSection4 {
+      title
+      copy
+      link {
+        ${link}
+      }
+      image {
+        ${image}
+      }
+    }
+    aboutSection5 {
+      title
+      copy
+      link {
+        ${link}
+      }
+      featuredPosts {
+        __typename
+        ... on Post {
+          title
+          excerpt
+          slug
         }
       }
     }
@@ -769,7 +790,7 @@ export default {
           }
 
           .excerpt {
-            p {
+            :deep(p) {
               font-family: "Gronland";
               font-style: normal;
               font-weight: 400;
