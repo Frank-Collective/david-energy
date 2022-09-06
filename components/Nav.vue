@@ -163,7 +163,7 @@
           class="login-button-desktop"
           :data="{
             title: 'Log In',
-            url: '/login',
+            url: '#',
             callback: closeMenu,
           }"
         />
