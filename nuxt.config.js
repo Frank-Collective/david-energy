@@ -26,7 +26,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.SITE_NAME,
+        content: "David Energy",
       },
       { name: "format-detection", content: "telephone=no" },
     ],

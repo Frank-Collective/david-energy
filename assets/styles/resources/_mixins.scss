@@ -96,3 +96,9 @@ $tiny: 480px;
       clamp($min-size-left, $scaler-left, $max-size-left);
   }
 }
+
+@mixin max-width {
+  max-width: 2100px;
+  margin-left: auto;
+  margin-right: auto;
+}

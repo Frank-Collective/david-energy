@@ -196,6 +196,7 @@ export default {
   flex-direction: column;
   @include gutter(padding-left);
   @include gutter(padding-right);
+  @include max-width;
 
   h3 {
     margin-bottom: 0.75em;

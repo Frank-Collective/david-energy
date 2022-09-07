@@ -363,7 +363,7 @@ export default {
     position: relative;
     @include gutter(padding-left);
     @include gutter(padding-right);
-
+    @include max-width;
     h1 {
       width: 80%;
       margin-bottom: 1em;
@@ -534,7 +534,6 @@ export default {
   padding-bottom: 12vw;
   @include gutter(padding-left);
   @include gutter(padding-right);
-
   @include breakpoint(small) {
     padding-bottom: 140px;
   }
