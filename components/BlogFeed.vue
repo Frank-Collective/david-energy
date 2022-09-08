@@ -240,7 +240,6 @@ export default {
 
   > .inner {
     position: relative;
-
     padding-bottom: 5vw;
 
     @include breakpoint(small) {

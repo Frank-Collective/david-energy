@@ -129,6 +129,17 @@ export default {
     }
   }
 
+  &.fakerollout {
+    background-color: transparent;
+    .dropdown {
+      visibility: hidden;
+
+      @include breakpoint(medium) {
+        visibility: visible;
+      }
+    }
+  }
+
   &.expanded {
     .dropdown,
     .dropdown-dummy {

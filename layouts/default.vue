@@ -13,8 +13,19 @@
 </template>
 
 <script>
+import VueScrollTo from "vue-scrollto";
+
 export default {
-  mounted() {},
+  mounted() {
+    // Safari needs this for initial page load w/ anchors
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        if (window.location.hash != "") {
+          VueScrollTo.scrollTo(window.location.hash, 500);
+        }
+      }
+    };
+  },
 };
 </script>
 

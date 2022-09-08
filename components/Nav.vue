@@ -150,6 +150,7 @@
                     callback: closeMenu,
                   }
             "
+            :class="{ fakerollout: dropdownsHidden }"
           />
         </template>
 
@@ -182,7 +183,12 @@ import { image, link } from "~/gql/common";
 
 export default {
   data() {
-    return { data: null, currentRoute: null, mobileMenuOpen: false };
+    return {
+      data: null,
+      currentRoute: null,
+      mobileMenuOpen: false,
+      dropdownsHidden: false,
+    };
   },
   async fetch() {
     const query = gql`
@@ -231,6 +237,7 @@ export default {
     },
     closeMenu: function () {
       this.mobileMenuOpen = false;
+      // this.hideDropdown();
     },
     closeTeamModal: function () {
       this.$store.commit("setTeamModalOpen", false);
