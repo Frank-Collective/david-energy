@@ -171,6 +171,7 @@ footer.footer {
   .cta {
     @include gutter(padding-left);
     @include gutter(padding-right);
+    @include max-width;
     margin-bottom: 4.2vw;
 
     @include breakpoint(small) {
@@ -206,6 +207,7 @@ footer.footer {
     background-color: $soft_white;
     @include gutter(padding-left);
     @include gutter(padding-right);
+    @include max-width;
     padding-top: 4.2vw;
     padding-bottom: 13.5vw;
 
@@ -390,6 +392,7 @@ footer.footer {
     @include gutter(padding-right);
 
     .inner {
+      @include max-width;
       display: flex;
       align-items: center;
       font-weight: 500;

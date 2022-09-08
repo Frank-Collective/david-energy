@@ -147,6 +147,7 @@ export default {
   display: flex;
   @include gutter(padding-left);
   @include gutter(padding-right);
+  @include max-width;
   z-index: 1;
 
   @include breakpoint(small) {

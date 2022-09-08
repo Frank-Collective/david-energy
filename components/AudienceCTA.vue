@@ -163,7 +163,7 @@ export default {
 .inner {
   position: relative;
   z-index: 1;
-
+  @include max-width;
   @include breakpoint(small) {
     padding: 0;
   }

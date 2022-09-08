@@ -264,7 +264,7 @@ export default {
   z-index: 11;
   @include gutter(padding-left);
   @include gutter(padding-right);
-
+  @include max-width;
   @include breakpoint(small) {
     padding: 0;
   }
@@ -293,6 +293,7 @@ export default {
     box-shadow: 0px 0px 8px $sun_glow;
     padding: 3.8vw 4vw 2.5vw;
     max-width: 1575px;
+    @include max-width;
     max-height: calc(100vh - 50px);
     overflow-y: auto;
 
@@ -497,7 +498,7 @@ nav.nav {
     background-color: $white;
     border-radius: 18px;
     padding: 14px 10px 14px 32px;
-
+    @include max-width;
     @include breakpoint(mobile_nav_breakpoint) {
       border-radius: 0;
       padding: 0 15px 0 13px;

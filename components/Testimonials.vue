@@ -87,7 +87,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 10vw;
-
+  @include max-width;
   @include breakpoint(small) {
     @include gutter(padding-left);
     @include gutter(padding-right);
