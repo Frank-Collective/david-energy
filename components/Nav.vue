@@ -74,7 +74,9 @@
                 .socialMediaLinks"
               :key="index"
             >
-              <a :href="link.url" target="_blank"></a>
+              <a :href="link.url" target="_blank">
+                <img v-if="link.icon" :src="link.icon.mediaItemUrl" alt="" />
+              </a>
             </li>
           </ul>
         </div>
@@ -469,11 +471,19 @@ export default {
           margin-right: 14px;
 
           a {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 34px;
             height: 34px;
             border-radius: 100%;
             background-color: $slate_gray;
+
+            img {
+              display: block;
+              width: 70%;
+              height: auto;
+            }
           }
         }
       }

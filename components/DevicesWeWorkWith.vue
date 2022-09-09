@@ -82,6 +82,15 @@
               index: index,
             }"
           />
+          <DevicesWeWorkWithItem
+            v-if="logos_array"
+            :data="{
+              title: 'View All',
+              logos: logos_array,
+              callback: toggleContent,
+              index: logos_array.length,
+            }"
+          />
         </div>
       </div>
 
@@ -118,6 +127,7 @@ export default {
         wrapAround: true,
         fade: 500,
       },
+      logos_array: [],
       all_logos: [],
     };
   },
@@ -162,18 +172,17 @@ export default {
       this.selected_index = index;
     },
     parseLogos() {
-      let logos_array = [];
       this.data.devices.forEach((device, index) => {
         if (device.logos != null) {
           device.logos.forEach((logo, index) => {
-            logos_array.push(logo);
+            this.logos_array.push(logo);
           });
         }
       });
 
       // chunk out logos into groups of 6
       const perChunk = 6;
-      const inputArray = logos_array;
+      const inputArray = this.logos_array;
       const result = inputArray.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / perChunk);
         if (!resultArray[chunkIndex]) {
@@ -185,6 +194,7 @@ export default {
 
       this.all_logos = result;
       // console.log(this.all_logos);
+      console.log(this.logos_array);
     },
   },
 };
