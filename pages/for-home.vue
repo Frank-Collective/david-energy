@@ -299,6 +299,7 @@ export default {
     display: flex;
     justify-content: space-between;
     @include gutter(padding-left);
+    @include max-width;
 
     @include breakpoint(small) {
       padding: 0;
@@ -411,6 +412,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 0 8vw;
+    @include max-width;
 
     @include breakpoint(small) {
       padding: 0;

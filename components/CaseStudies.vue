@@ -128,6 +128,7 @@ export default {
   position: relative;
   @include gutter(padding-left);
   @include gutter(padding-right);
+  @include max-width;
 
   .inner {
     background-color: $bright_green;

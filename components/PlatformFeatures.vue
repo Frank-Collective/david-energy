@@ -45,6 +45,7 @@ export default {
   flex-direction: column;
   @include gutter(padding-left);
   @include gutter(padding-right);
+  @include max-width;
 
   h4 {
     margin-bottom: 2.5em;

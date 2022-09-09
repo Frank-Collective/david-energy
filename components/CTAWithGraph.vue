@@ -59,6 +59,8 @@ export default {
   flex-direction: column;
   @include gutter(padding-left);
   @include gutter(padding-right);
+  @include max-width;
+
   z-index: 1;
 
   @include breakpoint(small) {

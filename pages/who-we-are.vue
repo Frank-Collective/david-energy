@@ -335,7 +335,7 @@ export default {
     display: flex;
     justify-content: space-between;
     @include gutter(padding-left);
-
+    @include max-width;
     @include breakpoint(small) {
       padding: 0;
       flex-direction: column;
@@ -460,7 +460,7 @@ export default {
     flex-direction: column;
     @include gutter(padding-left);
     @include gutter(padding-right);
-
+    @include max-width;
     @include breakpoint(small) {
     }
   }
@@ -518,7 +518,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    @include max-width;
     @include breakpoint(small) {
       flex-direction: column;
     }
@@ -598,7 +598,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     @include gutter(padding-right);
-
+    @include max-width;
     @include breakpoint(small) {
       flex-direction: column;
       padding: 0;
@@ -709,7 +709,7 @@ export default {
     justify-content: space-between;
     @include gutter(padding-left);
     @include gutter(padding-right);
-
+    @include max-width;
     @include breakpoint(small) {
       flex-direction: column;
     }

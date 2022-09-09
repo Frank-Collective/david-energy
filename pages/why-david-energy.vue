@@ -283,6 +283,7 @@ export default {
   .inner {
     position: relative;
     z-index: 1;
+    @include max-width;
 
     h1 {
       @include h1-medium;
@@ -404,6 +405,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 0 11vw;
+    @include max-width;
 
     @include breakpoint(small) {
       padding: 0;
@@ -515,6 +517,7 @@ export default {
     display: flex;
     flex-direction: column;
     z-index: 1;
+    @include max-width;
 
     @include breakpoint(small) {
       padding: 0;
@@ -671,6 +674,7 @@ export default {
     position: relative;
     display: flex;
     justify-content: space-between;
+    @include max-width;
 
     @include breakpoint(small) {
       flex-direction: column;

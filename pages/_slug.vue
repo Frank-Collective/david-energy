@@ -78,6 +78,9 @@ export default {
 .general-page {
   header {
     margin: 5vw 0;
+    .inner {
+      @include max-width;
+    }
   }
   padding: 6vw 7vw;
   margin: 0 6vw;
@@ -89,6 +92,11 @@ export default {
 
     @include gutter(padding-left);
     @include gutter(padding-right);
+  }
+  .article-wrapper {
+    .inner {
+      @include max-width;
+    }
   }
 }
 </style>

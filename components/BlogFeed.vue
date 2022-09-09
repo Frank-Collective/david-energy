@@ -241,7 +241,7 @@ export default {
   > .inner {
     position: relative;
     padding-bottom: 5vw;
-
+    @include max-width;
     @include breakpoint(small) {
       padding-top: 60px;
       padding-bottom: 60px;

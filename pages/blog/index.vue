@@ -143,7 +143,7 @@ export default {
     display: flex;
     flex-direction: column;
     max-width: 1274px;
-
+    @include max-width;
     @include breakpoint(small) {
     }
 
