@@ -1,6 +1,9 @@
 <template>
   <footer class="footer" v-if="data">
-    <div class="cta">
+    <div
+      class="cta"
+      v-bind:class="{ visible: this.$store.state.footer_cta_visible }"
+    >
       <div class="inner">
         <h4 v-if="data.cta.text">{{ data.cta.text }}</h4>
         <nuxt-link
@@ -170,6 +173,7 @@ footer.footer {
   position: relative;
 
   .cta {
+    display: none;
     @include gutter(padding-left);
     @include gutter(padding-right);
     @include max-width;
@@ -177,6 +181,10 @@ footer.footer {
 
     @include breakpoint(small) {
       margin-bottom: 30px;
+    }
+
+    &.visible {
+      display: block;
     }
 
     .inner {
