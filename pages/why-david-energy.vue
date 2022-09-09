@@ -616,6 +616,10 @@ export default {
       }
     }
   }
+
+  :deep(.toggle-btn:not(.selected)) {
+    color: $white !important;
+  }
 }
 .why-section-5 {
   position: relative;
