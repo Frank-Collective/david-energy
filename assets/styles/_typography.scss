@@ -43,3 +43,26 @@ p {
 .body-copy-small {
   @include body-copy-small;
 }
+
+.button {
+  @include button;
+}
+
+.eyebrow {
+  font-family: "Gronland";
+  font-style: normal;
+  font-weight: 500;
+  // @include clamp("font-size", 14px, 1vw, 18px);
+  font-size: 12px;
+  line-height: 111%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  @include breakpoint(small) {
+    line-height: 100%;
+  }
+}
+
+.indented-text-link {
+  @include indented-text-link;
+}

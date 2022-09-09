@@ -126,7 +126,7 @@
   }
 }
 
-.button {
+@mixin button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,11 +192,7 @@
   }
 }
 
-@mixin button {
-  @extend .button;
-}
-
-.indented-text-link {
+@mixin indented-text-link {
   position: relative;
   white-space: nowrap;
   font-family: "Gronland";
@@ -282,32 +278,5 @@
         opacity: 1;
       }
     }
-  }
-}
-
-@mixin indented-text-link {
-  @extend .indented-text-link;
-}
-
-@mixin indented-text-link--medium {
-  @extend .indented-text-link--medium;
-}
-
-@mixin indented-text-link--small {
-  @extend .indented-text-link--small;
-}
-
-.eyebrow {
-  font-family: "Gronland";
-  font-style: normal;
-  font-weight: 500;
-  // @include clamp("font-size", 14px, 1vw, 18px);
-  font-size: 12px;
-  line-height: 111%;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  @include breakpoint(small) {
-    line-height: 100%;
   }
 }
