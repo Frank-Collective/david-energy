@@ -59,7 +59,7 @@
   font-family: "Gronland";
   font-style: normal;
   font-weight: 400;
-  @include clamp("font-size", 32px, 3.8vw, 72px);
+  @include clamp("font-size", 32px, 3.8vw, 64px);
   letter-spacing: -0.01em;
   line-height: 110%;
   // margin-bottom: 0.5em;
@@ -73,7 +73,7 @@
   font-family: "Gronland";
   font-style: normal;
   font-weight: 400;
-  @include clamp("font-size", 26px, 2.3vw, 44px);
+  @include clamp("font-size", 26px, 2.3vw, 40px);
   letter-spacing: -0.01em;
   line-height: 130%;
 
@@ -107,7 +107,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
-  @include clamp("font-size", 24px, 1.46vw, 28px);
+  @include clamp("font-size", 24px, 1.46vw, 26px);
   letter-spacing: 0em;
   color: $text_color;
 
@@ -117,7 +117,7 @@
 }
 
 @mixin body-copy-small {
-  @include clamp("font-size", 18px, 1.25vw, 24px);
+  @include clamp("font-size", 18px, 1.25vw, 22px);
   letter-spacing: 0em;
   line-height: 150%;
 
