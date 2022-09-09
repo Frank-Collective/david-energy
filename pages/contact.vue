@@ -249,7 +249,7 @@ export default {
     z-index: 1;
     display: flex;
     flex-direction: column;
-
+    @include max-width;
     @include breakpoint(small) {
     }
 
@@ -379,7 +379,7 @@ export default {
     justify-content: center;
     @include gutter(padding-left);
     @include gutter(padding-right);
-
+    @include max-width;
     @include breakpoint(small) {
       flex-direction: column;
     }
