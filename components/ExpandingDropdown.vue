@@ -105,16 +105,23 @@ export default {
     }
   },
   methods: {
+    toggleContent: function () {
+      this.expanded = !this.expanded;
+    },
     openContent: function (e, el) {
-      this.expanded = true;
-      if (this.data.callback != null) {
-        this.data.callback(this.data.index);
-      }
-      // scroll to element
       if (this.expanded) {
-        setTimeout(() => {
-          this.$scrollTo(el, 1000, { offset: -120 });
-        }, 500);
+        this.closeContent();
+      } else {
+        this.expanded = true;
+        if (this.data.callback != null) {
+          this.data.callback(this.data.index);
+        }
+        // scroll to element
+        if (this.expanded) {
+          setTimeout(() => {
+            this.$scrollTo(el, 1000, { offset: -120 });
+          }, 500);
+        }
       }
     },
     closeContent: function () {
@@ -168,6 +175,22 @@ export default {
     padding: 19px 17px 15px;
   }
 
+  &:hover {
+    border-color: transparent;
+    box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
+
+    @include breakpoint(small) {
+      border-color: $bright_green;
+      box-shadow: none;
+    }
+
+    .title {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
   &.expanded {
     border-color: transparent;
     box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
@@ -180,17 +203,6 @@ export default {
       }
       .content {
         height: auto;
-      }
-    }
-  }
-
-  &:hover {
-    border-color: transparent;
-    box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
-
-    .title {
-      img {
-        transform: rotate(180deg);
       }
     }
   }

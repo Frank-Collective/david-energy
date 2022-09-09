@@ -100,6 +100,50 @@ export default {
     margin-bottom: 10px;
   }
 
+  &:hover {
+    border-color: transparent;
+    box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
+
+    @include breakpoint(small) {
+      border-color: $bright_green;
+      box-shadow: none;
+    }
+
+    .inner {
+      .title {
+        h4 {
+          opacity: 0;
+
+          @include breakpoint(small) {
+            opacity: 1;
+          }
+        }
+
+        .icon {
+          img {
+            opacity: 0;
+
+            @include breakpoint(small) {
+              opacity: 1;
+            }
+
+            &.active-image {
+              opacity: 1;
+
+              @include breakpoint(small) {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .copy {
+        opacity: 1;
+      }
+    }
+  }
+
   &.expanded {
     @include breakpoint(small) {
       border-color: transparent;
@@ -134,41 +178,6 @@ export default {
         .expanding-content {
           height: auto;
         }
-      }
-    }
-  }
-
-  &:hover {
-    border-color: transparent;
-    box-shadow: 0px 0px 12px rgba(255, 229, 135, 0.7);
-
-    .inner {
-      .title {
-        h4 {
-          opacity: 0;
-
-          @include breakpoint(small) {
-            opacity: 1;
-          }
-        }
-
-        .icon {
-          img {
-            opacity: 0;
-
-            @include breakpoint(small) {
-              opacity: 1;
-            }
-
-            &.active-image {
-              opacity: 1;
-            }
-          }
-        }
-      }
-
-      .copy {
-        opacity: 1;
       }
     }
   }
