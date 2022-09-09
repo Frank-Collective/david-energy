@@ -1,6 +1,6 @@
 <template>
   <div id="top" v-if="page">
-    <div class="landing-section-1">
+    <div class="landing-section-1" v-if="page.landingPageSection1.title">
       <div class="bg-image">
         <img class="desktop" src="/images/landing-section-1-bg.jpg" alt="" />
         <img
@@ -17,7 +17,7 @@
       />
     </div>
 
-    <div class="landing-section-2">
+    <div class="landing-section-2" v-if="page.landingPageSection2.title">
       <div class="bg-image-1">
         <img class="desktop" src="/images/landing-section-2-bg1.jpg" alt="" />
         <img
@@ -61,11 +61,14 @@
       </div>
     </div>
 
-    <div class="landing-section-3">
+    <div
+      class="landing-section-3"
+      v-if="page.landingPageSection3.tab1.tabTitle"
+    >
       <Competitors :data="page.landingPageSection3" />
     </div>
 
-    <div class="landing-section-4">
+    <div class="landing-section-4" v-if="page.landingPageSection4.title">
       <div class="bg-image-1">
         <img class="desktop" src="/images/landing-section-4-bg1.jpg" alt="" />
         <img
@@ -80,7 +83,7 @@
       <DevicesWeWorkWith :data="page.landingPageSection4" />
     </div>
 
-    <div class="landing-section-5">
+    <div class="landing-section-5" v-if="page.landingPageSection5.title">
       <div class="bg-image-1">
         <img
           class="mobile"
@@ -91,7 +94,7 @@
       <BrandsWeWorkWith :data="page.landingPageSection5" />
     </div>
 
-    <div class="landing-section-6">
+    <div class="landing-section-6" v-if="page.landingPageSection6.testimonials">
       <div class="bg-image-1">
         <img class="desktop" src="/images/landing-section-6-bg1.jpg" alt="" />
         <img

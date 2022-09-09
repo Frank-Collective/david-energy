@@ -1,6 +1,6 @@
 <template>
   <div id="top" v-if="page">
-    <div class="about-us-section-1">
+    <div class="about-us-section-1" v-if="page.aboutSection1.title">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
         <img
@@ -41,7 +41,10 @@
       </div>
     </div>
 
-    <div class="about-us-section-2">
+    <div
+      class="about-us-section-2"
+      v-if="page.aboutSection2.expandingDropdowns.length"
+    >
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-1-bg.jpg" alt="" />
       </div>
@@ -58,7 +61,7 @@
       </div>
     </div>
 
-    <div class="about-us-section-3">
+    <div class="about-us-section-3" v-if="page.aboutSection3.title">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-3-bg.jpg" alt="" />
         <img
@@ -81,7 +84,7 @@
       </div>
     </div>
 
-    <div class="about-us-section-4">
+    <div class="about-us-section-4" v-if="page.aboutSection4.title">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-4-bg.jpg" alt="" />
       </div>
@@ -103,7 +106,7 @@
       </div>
     </div>
 
-    <div class="about-us-section-5">
+    <div class="about-us-section-5" v-if="page.aboutSection5.title">
       <div class="bg-image">
         <img class="desktop" src="/images/about-us-section-5-bg.jpg" alt="" />
         <img

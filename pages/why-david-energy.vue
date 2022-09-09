@@ -1,6 +1,6 @@
 <template>
   <div id="top" v-if="page">
-    <div class="why-section-1">
+    <div class="why-section-1" v-if="page.whySection1.title">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-1-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-1-bg-mobile.jpg" alt="" />
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="why-section-2">
+    <div class="why-section-2" v-if="page.whySection2.title">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-2-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-2-bg-mobile.jpg" alt="" />
@@ -42,7 +42,7 @@
         ></div>
       </div>
     </div>
-    <div class="why-section-3">
+    <div class="why-section-3" v-if="page.whySection3.title">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-3-bg-mobile.jpg" alt="" />
@@ -71,13 +71,13 @@
         </div>
       </div>
     </div>
-    <div class="why-section-4">
+    <div class="why-section-4" v-if="page.tab1.tabTitle">
       <div class="bg-image">
         <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>
       <ToggleGraphs :data="page.whySection4" />
     </div>
-    <div class="why-section-5" id="faqs">
+    <div class="why-section-5" id="faqs" v-if="page.whySection5.title">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-5-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-5-bg-mobile.jpg" alt="" />
