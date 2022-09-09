@@ -81,8 +81,8 @@
           v-for="(link, index) in data.legalLinks"
           :key="index"
           :to="link.link.url"
-          >{{ link.link.title }}</nuxt-link
-        >
+          v-html="link.link.title"
+        ></nuxt-link>
         <span>{{ data.copyrightText }}</span>
       </div>
     </div>
@@ -168,6 +168,7 @@ export default {
 <style lang="scss" scoped>
 footer.footer {
   position: relative;
+
   .cta {
     @include gutter(padding-left);
     @include gutter(padding-right);
@@ -207,7 +208,6 @@ footer.footer {
     background-color: $soft_white;
     @include gutter(padding-left);
     @include gutter(padding-right);
-    @include max-width;
     padding-top: 4.2vw;
     padding-bottom: 13.5vw;
 
@@ -219,6 +219,7 @@ footer.footer {
     .inner {
       display: flex;
       align-items: flex-start;
+      @include max-width;
 
       @include breakpoint(medium) {
         flex-direction: column;
@@ -396,7 +397,7 @@ footer.footer {
       display: flex;
       align-items: center;
       font-weight: 500;
-      font-size: 18px;
+      font-size: 15px;
       color: $bright_green;
       text-transform: uppercase;
       letter-spacing: 0.08em;

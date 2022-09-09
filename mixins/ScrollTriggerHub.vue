@@ -91,7 +91,7 @@ export default {
         .to(draw_paths, 1.5, {
           drawSVG: "100%",
           ease: "none",
-          stagger: 0.5,
+          stagger: 0,
           delay: 0,
         });
     },

@@ -301,7 +301,8 @@
   font-family: "Gronland";
   font-style: normal;
   font-weight: 500;
-  @include clamp("font-size", 14px, 1vw, 18px);
+  // @include clamp("font-size", 14px, 1vw, 18px);
+  font-size: 12px;
   line-height: 111%;
   letter-spacing: 0.08em;
   text-transform: uppercase;

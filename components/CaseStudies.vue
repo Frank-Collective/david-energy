@@ -224,7 +224,7 @@ export default {
             font-family: "Gronland";
             font-style: normal;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 11px;
             line-height: 93%;
             letter-spacing: 0.06em;
             text-transform: uppercase;
@@ -313,6 +313,14 @@ export default {
         }
       }
     }
+  }
+}
+
+:deep(.flickity-viewport) {
+  pointer-events: none;
+
+  @include breakpoint(small) {
+    pointer-events: all;
   }
 }
 

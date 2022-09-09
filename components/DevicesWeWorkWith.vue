@@ -115,6 +115,8 @@ export default {
         imagesLoaded: true,
         contain: true,
         cellSelector: ".slide",
+        wrapAround: true,
+        fade: 500,
       },
       all_logos: [],
     };

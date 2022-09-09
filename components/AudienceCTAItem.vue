@@ -11,6 +11,7 @@
     ></div>
     <div class="inner">
       <div class="indented-text-link">{{ data.title }}</div>
+
       <transition
         v-on:before-enter="beforeEnter"
         v-on:enter="enter"
@@ -18,7 +19,8 @@
         v-on:before-leave="beforeLeave"
         v-on:leave="leave"
       >
-        <div class="content" v-show="expanded">
+        <!-- <div class="content" v-show="expanded"> -->
+        <div class="content">
           <p class="body-copy-small">
             {{ data.copy }}
           </p>
@@ -121,6 +123,7 @@ export default {
       }
       .content {
         height: auto;
+        opacity: 1;
       }
     }
   }
@@ -153,7 +156,8 @@ export default {
       position: relative;
       height: 0px;
       overflow: hidden;
-      transition: 0.5s;
+      opacity: 0;
+      transition: 0.5s opacity;
       padding-left: 2.1vw;
 
       &:before {

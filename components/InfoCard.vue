@@ -82,9 +82,10 @@ export default {
 <style lang="scss" scoped>
 .info-card {
   position: relative;
+  z-index: 1;
   background-color: $white;
   border-radius: 20px;
-  border: 2px solid $bright_green;
+  border: 1px solid $bright_green;
   font-size: clamp(26px, 2.3vw, 44px);
   padding: 1em;
   transition: 0.5s border-color, 0.15s box-shadow, 0.15s padding-bottom;

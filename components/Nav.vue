@@ -497,8 +497,9 @@ nav.nav {
     justify-content: space-between;
     background-color: $white;
     border-radius: 18px;
-    padding: 14px 10px 14px 32px;
+    padding: 10px 10px 10px 32px;
     @include max-width;
+
     @include breakpoint(mobile_nav_breakpoint) {
       border-radius: 0;
       padding: 0 15px 0 13px;
@@ -569,8 +570,9 @@ nav.nav {
 
       img.desktop {
         display: block;
-        width: 180px;
+        width: 162px;
         height: auto;
+        margin-top: 3px;
 
         @include breakpoint(mobile_nav_breakpoint) {
           display: none;
@@ -626,6 +628,7 @@ nav.nav {
       > li {
         &.divider {
           width: 2px;
+          height: 52px;
           background-color: $bright_green;
           margin: 0 1.55vw;
 

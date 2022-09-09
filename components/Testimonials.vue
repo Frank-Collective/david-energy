@@ -5,6 +5,7 @@
         <blockquote
           v-for="(testimonial, index) in data.testimonials"
           :key="index"
+          v-on:click="nextSlide"
         >
           <p>
             {{ testimonial.quote }}
@@ -25,14 +26,16 @@ export default {
       flickityOptions: {
         prevNextButtons: false,
         pageDots: true,
-        draggable: true,
+        draggable: false,
         cellAlign: "center",
         imagesLoaded: true,
         contain: true,
         cellSelector: "blockquote",
-        autoPlay: 15000,
+        autoPlay: 5000,
+        pauseAutoPlayOnHover: false,
         adaptiveHeight: true,
         fade: true,
+        wrapAround: true,
       },
     };
   },
@@ -63,6 +66,11 @@ export default {
               (slide) => (slide.$el.style.pointerEvents = "all")
             )
           );
+
+          this.$refs.flickity.on("pointerUp", (event, pointer) => {
+            console.log("pointerUp");
+            this.$refs.flickity.playPlayer();
+          });
         }, 1000);
       }
     },

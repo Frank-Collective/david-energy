@@ -243,7 +243,7 @@ export default {
 <style lang="scss" scoped>
 .landing-section-1 {
   position: relative;
-  padding-top: 11vw;
+  padding-top: 10.4vw;
   margin-bottom: -12vw;
 
   @include breakpoint(medium) {
@@ -364,6 +364,7 @@ export default {
     @include gutter(padding-left);
     @include gutter(padding-right);
     @include max-width;
+
     h1 {
       width: 80%;
       margin-bottom: 1em;
@@ -424,7 +425,7 @@ export default {
 }
 .landing-section-3 {
   position: relative;
-  padding-bottom: 10.4vw;
+  padding-bottom: 7vw;
 
   @include breakpoint(small) {
     margin-bottom: 40px;

@@ -44,6 +44,7 @@
     </div>
     <div class="why-section-3">
       <div class="bg-image">
+        <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-3-bg-mobile.jpg" alt="" />
       </div>
       <div class="bg-image2">
@@ -72,7 +73,6 @@
     </div>
     <div class="why-section-4">
       <div class="bg-image">
-        <img class="desktop" src="/images/why-section-4-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>
       <ToggleGraphs :data="page.whySection4" />
@@ -242,7 +242,7 @@ export default {
 .why-section-1 {
   position: relative;
   padding-top: 11vw;
-  padding-bottom: 6vw;
+  padding-bottom: 10vw;
 
   @include breakpoint(medium) {
     padding-bottom: 120px;
@@ -462,7 +462,9 @@ export default {
     padding-bottom: 120px;
   }
 
-  @include breakpoint(small) {
+  .bg-image {
+    left: 0;
+    top: 21vw;
   }
 
   .bg-image,
@@ -549,7 +551,6 @@ export default {
 
     .ctas {
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
       padding-left: 15vw;
       margin-top: 1vw;
@@ -561,9 +562,12 @@ export default {
 
       :deep(.expanding-cta) {
         width: calc(50% - 10px);
+        max-width: 560px;
+        margin-right: 20px;
 
         @include breakpoint(small) {
           width: 100%;
+          max-width: none;
           margin-bottom: 10px;
         }
       }
@@ -675,6 +679,7 @@ export default {
     .copy {
       position: relative;
       width: 57%;
+      max-width: 612px;
       flex-shrink: 0;
 
       @include breakpoint(small) {

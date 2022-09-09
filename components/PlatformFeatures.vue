@@ -94,7 +94,7 @@ export default {
 
       .image {
         border-radius: 18px;
-        border: 2px solid $bright_green;
+        border: 1px solid $bright_green;
         background-color: $white;
         padding: 4vw;
         overflow: hidden;
@@ -140,7 +140,7 @@ export default {
           font-family: "Gronland";
           font-style: normal;
           font-weight: 400;
-          font-size: 15px;
+          font-size: 12px;
           line-height: 160%;
           letter-spacing: -0.01em;
           padding-left: 3em;

@@ -1,6 +1,7 @@
 <template>
   <div class="inner" v-if="data">
     <h4 v-html="data.title"></h4>
+    <div class="line"></div>
     <div class="logos">
       <img
         v-for="(logo, index) in data.logos"
@@ -41,7 +42,6 @@ export default {
 
   :deep(h4) {
     width: 27%;
-    border-right: 2px solid $bright_green;
 
     @include breakpoint(small) {
       @include h3;
@@ -59,6 +59,17 @@ export default {
     }
   }
 
+  .line {
+    flex-shrink: 0;
+    width: 2px;
+    height: 10.4vw;
+    background-color: $bright_green;
+
+    @include breakpoint(small) {
+      display: none;
+    }
+  }
+
   .logos {
     display: flex;
 
@@ -71,11 +82,14 @@ export default {
       display: block;
       width: 10.4vw;
       height: auto;
+      max-width: 200px;
+      max-height: 200px;
       margin-left: 1.4vw;
 
       @include breakpoint(small) {
         width: calc(50% - 28px);
         max-width: 150px;
+        max-height: 150px;
         margin: 0 14px 28px;
       }
     }

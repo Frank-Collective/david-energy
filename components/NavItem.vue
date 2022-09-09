@@ -126,6 +126,7 @@ export default {
 
     > a.green_hover {
       color: $bright_green;
+      border: none;
     }
   }
 

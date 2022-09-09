@@ -3,14 +3,23 @@
     <client-only>
       <flickity ref="flickity" :options="flickityOptions" class="carousel">
         <div class="prev-next-btns">
-          <div class="btn--prev" v-on:click="prevSlide">
+          <div
+            class="btn--prev"
+            v-on:click="prevSlide"
+            v-bind:class="{ visible: current_cell != 0 }"
+          >
             <IconCarouselArrowLeft />
           </div>
-          <div class="btn--next" v-on:click="nextSlide">
+          <div
+            class="btn--next"
+            v-on:click="nextSlide"
+            v-bind:class="{
+              visible: current_cell < data.teamMembers.length - 4,
+            }"
+          >
             <IconCarouselArrowRight />
           </div>
         </div>
-        <div class="slide ghost"></div>
         <div
           class="slide"
           v-for="(person, index) in data.teamMembers"
@@ -86,6 +95,7 @@ export default {
   data() {
     return {
       selected_index: null,
+      current_cell: 0,
       dragging: false,
       initialized: false,
       flickityOptions: {
@@ -138,6 +148,9 @@ export default {
           setTimeout(() => {
             this.dragging = false;
           }, 250);
+        });
+        this.$refs.flickity.on("change", (index) => {
+          this.current_cell = index;
         });
 
         this.$refs.flickity2.on("dragStart", () => {
@@ -196,33 +209,34 @@ export default {
 
   .prev-next-btns {
     display: flex;
-    display: none;
     justify-content: space-between;
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: 100%;
     left: 0;
-    transform: translateY(-50%);
     width: 100%;
     pointer-events: none;
-
-    @include breakpoint(medium) {
-      display: none;
-    }
+    padding-left: 1vw;
+    padding-right: 1vw;
 
     .btn {
-      width: 16px;
-      height: 35px;
+      width: 1.5vw;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       pointer-events: all;
+      opacity: 0;
+      transition: 0.15s opacity;
 
       &:hover {
         svg {
           transform: translateX(-3px);
         }
+      }
+
+      &.visible {
+        opacity: 1;
       }
 
       &--prev {
@@ -240,6 +254,8 @@ export default {
       }
 
       svg {
+        width: 100%;
+        height: auto;
         transition: transform 0.15s;
       }
     }
@@ -251,10 +267,10 @@ export default {
     height: 30vw;
     transition: 0.25s opacity;
 
-    @include breakpoint(medium) {
-      width: 25vw;
-      height: 48.4vw;
-    }
+    // @include breakpoint(medium) {
+    //   width: 25vw;
+    //   height: 48.4vw;
+    // }
 
     &:hover {
       z-index: 1;
@@ -280,6 +296,21 @@ export default {
             transition: 0.15s opacity;
             transition-delay: 0.15s;
           }
+        }
+      }
+    }
+
+    &:first-of-type {
+      width: 17.25vw;
+
+      .inner {
+        width: calc(100% - 4.25vw);
+        left: calc(50% + 1.5vw);
+      }
+
+      &:hover {
+        .inner {
+          width: calc(100% + 1.7vw);
         }
       }
     }
@@ -330,9 +361,9 @@ export default {
         width: 19vw;
         height: auto;
 
-        @include breakpoint(medium) {
-          width: 32vw;
-        }
+        // @include breakpoint(medium) {
+        //   width: 32vw;
+        // }
       }
 
       .info {

@@ -359,6 +359,7 @@ export default {
     .image {
       position: relative;
       width: 46%;
+      margin-top: -4vw;
 
       @include breakpoint(small) {
         width: 100%;
