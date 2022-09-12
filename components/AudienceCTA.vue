@@ -57,14 +57,21 @@
           </flickity>
         </div>
         <div class="images">
-          <!-- a href here https://trello.com/c/jM1wEdlb/63-landing-page-mobile-audience-ctas-need-swipe-function -->
           <img
-            v-for="(cta, index) in data.ctas"
-            :key="index"
+            v-for="(cta, index2) in data.ctas"
+            :key="index2"
             :src="cta.image.mediaItemUrl"
             alt=""
-            v-bind:class="{ visible: selected_image_index == index }"
+            v-bind:class="{ visible: selected_image_index == index2 }"
           />
+          <template v-for="(cta, index) in data.ctas">
+            <nuxt-link
+              v-if="cta.links.length == 1"
+              :key="`${index}1`"
+              :to="cta.links[0].link.url"
+              v-bind:class="{ visible: selected_image_index == index }"
+            ></nuxt-link>
+          </template>
         </div>
       </div>
     </div>
@@ -299,6 +306,21 @@ export default {
 
         &.visible {
           opacity: 1;
+        }
+      }
+
+      a {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &.visible {
+          @include breakpoint(small) {
+            display: block;
+          }
         }
       }
     }
