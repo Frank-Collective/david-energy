@@ -10,6 +10,13 @@
         data.callback();
       }
     "
+    v-on:touchstart="
+      if (expanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    "
   >
     <nuxt-link v-if="!data.dropdown" :to="data.url" class="green_hover">
       {{ data.title }}

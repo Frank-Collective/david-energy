@@ -61,16 +61,32 @@
         </div>
       </div>
     </div>
-    <div class="graphs">
+    <div class="graphs desktop" v-if="!viewingMobile">
       <div
         ref="graph0"
+        class="desktop"
         v-bind:class="{ visible: selected_index == 0 }"
         v-html="data.tab1.svgImageCode"
       ></div>
       <div
         ref="graph1"
+        class="desktop"
         v-bind:class="{ visible: selected_index == 1 }"
         v-html="data.tab2.svgImageCode"
+      ></div>
+    </div>
+    <div class="graphs mobile" v-if="viewingMobile">
+      <div
+        ref="graphmobile0"
+        class="mobile"
+        v-bind:class="{ visible: selected_index == 0 }"
+        v-html="data.tab1.mobileSvgImageCode"
+      ></div>
+      <div
+        ref="graphmobile1"
+        class="mobile"
+        v-bind:class="{ visible: selected_index == 1 }"
+        v-html="data.tab2.mobileSvgImageCode"
       ></div>
     </div>
     <div class="mobile-ctas">
@@ -105,14 +121,29 @@ export default {
     return {
       currently_visible: 0,
       selected_index: 0,
+      viewingMobile: false,
     };
   },
+  mounted() {
+    window.addEventListener("resize", () => this.onWindowResize());
+    window.dispatchEvent(new Event("resize"));
+  },
   methods: {
+    onWindowResize() {
+      let w = window.innerWidth;
+      if (w < 768) {
+        this.viewingMobile = true;
+      } else {
+        this.viewingMobile = false;
+      }
+    },
     toggleContent(index) {
       let fade_out_el = this.$refs["section" + this.currently_visible];
       this.selected_index = index;
       let fade_in_el = this.$refs["section" + this.selected_index];
       let draw_in_graph = this.$refs["graph" + this.selected_index];
+      let draw_in_graph_mobile =
+        this.$refs["graphmobile" + this.selected_index];
 
       gsap.to(fade_out_el, 0.25, {
         autoAlpha: 0,
@@ -127,15 +158,30 @@ export default {
       });
 
       // Draw SVGs
-      let draw_paths = draw_in_graph.querySelectorAll(".draw-svg");
-      gsap.killTweensOf(draw_paths);
-      gsap.set(draw_paths, { drawSVG: 0 });
-      gsap.to(draw_paths, 1.5, {
-        drawSVG: "100%",
-        ease: "power2",
-        stagger: 0,
-        delay: 0,
-      });
+      if (!this.viewingMobile) {
+        let draw_paths = draw_in_graph.querySelectorAll(".draw-svg");
+        gsap.killTweensOf(draw_paths);
+        gsap.set(draw_paths, { drawSVG: 0 });
+        gsap.to(draw_paths, 1.5, {
+          drawSVG: "100%",
+          ease: "power2",
+          stagger: 0,
+          delay: 0,
+        });
+      }
+
+      if (this.viewingMobile) {
+        let draw_paths_mobile =
+          draw_in_graph_mobile.querySelectorAll(".draw-svg");
+        gsap.killTweensOf(draw_paths_mobile);
+        gsap.set(draw_paths_mobile, { drawSVG: 0 });
+        gsap.to(draw_paths_mobile, 1.5, {
+          drawSVG: "100%",
+          ease: "power2",
+          stagger: 0,
+          delay: 0,
+        });
+      }
     },
   },
 };
@@ -255,6 +301,7 @@ export default {
 
           @include breakpoint(small) {
             @include body-copy-small;
+            margin-bottom: 1em;
           }
         }
 
@@ -277,7 +324,21 @@ export default {
 
     @include breakpoint(small) {
       width: 100%;
-      padding-bottom: 97%;
+      padding-bottom: 145%;
+    }
+
+    &.desktop {
+      @include breakpoint(small) {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      display: none;
+
+      @include breakpoint(small) {
+        display: block;
+      }
     }
 
     div {

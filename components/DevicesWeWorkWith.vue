@@ -194,7 +194,7 @@ export default {
 
       this.all_logos = result;
       // console.log(this.all_logos);
-      console.log(this.logos_array);
+      // console.log(this.logos_array);
     },
   },
 };

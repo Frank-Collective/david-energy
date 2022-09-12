@@ -155,6 +155,7 @@ const gql_content = `
           }
         }
         svgImageCode
+        mobileSvgImageCode
       }
       tab2 {
         tabTitle
@@ -166,6 +167,7 @@ const gql_content = `
           }
         }
         svgImageCode
+        mobileSvgImageCode
       }
     }
     landingPageSection4 {
@@ -223,7 +225,7 @@ export default {
     `;
     let { page } = await $graphql.default.request(query);
     page = page.PageLandingFields;
-    console.log(page);
+    // console.log(page);
     if (route.query && route.query.preview && page.preview) {
       page = page.preview.node;
     }

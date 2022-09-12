@@ -68,7 +68,7 @@ export default {
           );
 
           this.$refs.flickity.on("pointerUp", (event, pointer) => {
-            console.log("pointerUp");
+            // console.log("pointerUp");
             this.$refs.flickity.playPlayer();
           });
         }, 1000);

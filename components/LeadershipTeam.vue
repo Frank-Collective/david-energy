@@ -179,7 +179,7 @@ export default {
       let clicked_person = this.data.teamMembers[index];
 
       if (!this.dragging && clicked_person.copy != "") {
-        console.log(this.data.teamMembers[index]);
+        // console.log(this.data.teamMembers[index]);
         this.$store.commit("setTeamModalOpen", true);
         this.$store.commit("setSelectedTeamMember", clicked_person);
       }

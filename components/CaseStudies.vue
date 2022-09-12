@@ -110,7 +110,6 @@ export default {
       }
     },
     nextSlide() {
-      console.log("nextSlide");
       this.$refs.flickity.next();
     },
     prevSlide() {

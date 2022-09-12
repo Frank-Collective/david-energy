@@ -400,6 +400,10 @@ footer.footer {
     @include gutter(padding-left);
     @include gutter(padding-right);
 
+    @include breakpoint(small) {
+      padding: 0 10px;
+    }
+
     .inner {
       @include max-width;
       display: flex;
@@ -419,12 +423,22 @@ footer.footer {
         padding: 30px 0;
       }
 
+      @include breakpoint(small) {
+        text-align: center;
+      }
+
       a {
         text-decoration: none;
         color: $bright_green;
+        margin-right: 1em;
 
         &:hover {
           color: $light_green;
+        }
+
+        @include breakpoint(small) {
+          margin: 0 0.5em;
+          font-size: 18px;
         }
       }
 
@@ -434,6 +448,11 @@ footer.footer {
         @include breakpoint(medium) {
           margin-left: 0;
           font-size: 15px;
+        }
+
+        @include breakpoint(small) {
+          display: block;
+          margin-top: 0.5em;
         }
       }
     }

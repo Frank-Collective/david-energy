@@ -30,6 +30,30 @@
           :height="data.image.mediaDetails.height"
         />
       </div>
+      <div class="mobile-graph">
+        <div class="left">
+          <FadeImage
+            v-if="data.image"
+            :srcset="data.image.srcSet"
+            :sizes="data.image.sizes"
+            :src="data.image.mediaItemUrl"
+            :alt="data.image.altText"
+            :width="data.image.mediaDetails.width"
+            :height="data.image.mediaDetails.height"
+          />
+        </div>
+        <div class="right">
+          <FadeImage
+            v-if="data.image"
+            :srcset="data.image.srcSet"
+            :sizes="data.image.sizes"
+            :src="data.image.mediaItemUrl"
+            :alt="data.image.altText"
+            :width="data.image.mediaDetails.width"
+            :height="data.image.mediaDetails.height"
+          />
+        </div>
+      </div>
       <div class="mobile-ctas">
         <nuxt-link
           v-for="(link, index) in data.links"
@@ -148,6 +172,7 @@ export default {
     @include breakpoint(small) {
       width: 100%;
       padding-bottom: 44%;
+      display: none;
     }
 
     img {
@@ -157,6 +182,43 @@ export default {
       height: auto;
       top: 0;
       left: 0;
+    }
+  }
+
+  .mobile-graph {
+    position: relative;
+    display: none;
+    width: calc(100% + 52px);
+    @include neg-gutter(left);
+    margin: 30px 0 0;
+
+    @include breakpoint(small) {
+      display: flex;
+    }
+
+    div img {
+      position: relative;
+      width: 143vw;
+      height: auto;
+    }
+
+    .left {
+      flex-shrink: 0;
+      width: 30%;
+      overflow: hidden;
+
+      img {
+        left: -6vw;
+      }
+    }
+
+    .right {
+      overflow-x: scroll;
+      margin-right: -53vw;
+
+      img {
+        left: -40vw;
+      }
     }
   }
 

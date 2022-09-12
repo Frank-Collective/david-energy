@@ -239,7 +239,6 @@ export default {
     },
     closeMenu: function () {
       this.mobileMenuOpen = false;
-      // this.hideDropdown();
     },
     closeTeamModal: function () {
       this.$store.commit("setTeamModalOpen", false);

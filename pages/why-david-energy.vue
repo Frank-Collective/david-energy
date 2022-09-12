@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="why-section-4" v-if="page.tab1.tabTitle">
+    <div class="why-section-4" v-if="page.whySection4.tab1.tabTitle">
       <div class="bg-image">
         <img class="mobile" src="/images/why-section-4-bg-mobile.jpg" alt="" />
       </div>

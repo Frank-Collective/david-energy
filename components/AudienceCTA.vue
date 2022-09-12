@@ -57,6 +57,7 @@
           </flickity>
         </div>
         <div class="images">
+          <!-- a href here https://trello.com/c/jM1wEdlb/63-landing-page-mobile-audience-ctas-need-swipe-function -->
           <img
             v-for="(cta, index) in data.ctas"
             :key="index"
@@ -78,12 +79,11 @@ export default {
   data() {
     return {
       selected_image_index: 0,
-      num_items: 3,
       initialized: false,
       flickityOptions1: {
         prevNextButtons: false,
         pageDots: false,
-        draggable: false,
+        draggable: true,
         cellAlign: "left",
         imagesLoaded: true,
         contain: false,
@@ -92,13 +92,13 @@ export default {
       flickityOptions2: {
         prevNextButtons: false,
         pageDots: false,
-        draggable: false,
+        draggable: true,
         cellAlign: "left",
         imagesLoaded: true,
         contain: true,
         cellSelector: "div",
         adaptiveHeight: true,
-        fade: true,
+        fade: false,
       },
     };
   },
@@ -115,13 +115,13 @@ export default {
     prev: function () {
       if (this.selected_image_index > 0) {
         this.selected_image_index--;
-        this.prevSlide();
+        this.gotoSlide(this.selected_image_index);
       }
     },
     next: function () {
-      if (this.selected_image_index < this.num_items - 1) {
+      if (this.selected_image_index < this.data.ctas.length - 1) {
         this.selected_image_index++;
-        this.nextSlide();
+        this.gotoSlide(this.selected_image_index);
       }
     },
     init() {
@@ -144,16 +144,16 @@ export default {
               (slide) => (slide.$el.style.pointerEvents = "all")
             )
           );
+
+          this.$refs.flickity1.on("change", (index) => this.gotoSlide(index));
+          this.$refs.flickity2.on("change", (index) => this.gotoSlide(index));
         }, 1000);
       }
     },
-    nextSlide() {
-      this.$refs.flickity1.next();
-      this.$refs.flickity2.next();
-    },
-    prevSlide() {
-      this.$refs.flickity1.previous();
-      this.$refs.flickity2.previous();
+    gotoSlide(index) {
+      this.selected_image_index = index;
+      this.$refs.flickity1.selectCell(index);
+      this.$refs.flickity2.selectCell(index);
     },
   },
 };
@@ -251,6 +251,13 @@ export default {
           @include gutter(padding-right);
 
           .landing-header-menu-item {
+            opacity: 0;
+            transition: 0.5s opacity;
+
+            &.is-selected {
+              opacity: 1;
+            }
+
             p {
               margin-bottom: 1em;
             }
@@ -265,14 +272,14 @@ export default {
 
     .images {
       position: relative;
-      width: 60%;
+      width: 52%;
       flex-shrink: 0;
-      top: -21vw;
-      @include gutter(padding-right);
+      top: -15vw;
+      @include gutter(margin-right);
 
       @include breakpoint(small) {
         width: 130%;
-        top: -9vw;
+        top: -6vw;
         left: -13%;
       }
 
