@@ -35,9 +35,10 @@
         />
       </div>
       <div class="inner">
-        <h1 v-if="page.landingPageSection2.title">
-          {{ page.landingPageSection2.title }}
-        </h1>
+        <h1
+          v-if="page.landingPageSection2.title"
+          v-html="page.landingPageSection2.title"
+        ></h1>
         <div class="content">
           <div class="image">
             <FadeImage
@@ -114,6 +115,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -205,7 +207,7 @@ const gql_content = `
   }
 `;
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },

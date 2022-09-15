@@ -6,9 +6,7 @@
     <div class="content">
       <div class="copy">
         <div class="section">
-          <p>
-            {{ data.copy }}
-          </p>
+          <p v-if="data.copy" v-html="data.copy"></p>
           <nuxt-link
             v-for="(link, index) in data.links"
             :key="index"

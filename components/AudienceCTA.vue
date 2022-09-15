@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="inner" v-if="data">
-      <h1>{{ data.title }}</h1>
+      <h1 class="keep-widow" v-if="data.title" v-html="data.title"></h1>
       <div class="content">
         <div class="copy">
           <AudienceCTAItem

@@ -1,6 +1,6 @@
 <template>
   <div class="inner" v-if="data">
-    <h4 v-html="data.title"></h4>
+    <h4 v-if="data.title" v-html="data.title"></h4>
     <div class="line"></div>
     <div class="logos">
       <img

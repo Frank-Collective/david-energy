@@ -31,15 +31,18 @@
       </div>
     </div>
     <div class="titles">
-      <h3 ref="title0" v-html="data.tab1.title"></h3>
-      <h3 class="hidden" ref="title1" v-html="data.tab2.title"></h3>
+      <h3 ref="title0" v-if="data.tab1.title" v-html="data.tab1.title"></h3>
+      <h3
+        class="hidden"
+        ref="title1"
+        v-if="data.tab2.title"
+        v-html="data.tab2.title"
+      ></h3>
     </div>
     <div class="content">
       <div class="copy">
         <div class="section" ref="section0">
-          <p>
-            {{ data.tab1.copy }}
-          </p>
+          <p v-if="data.tab1.copy" v-html="data.tab1.copy"></p>
           <nuxt-link
             v-for="(link, index) in data.tab1.links"
             :key="index"
@@ -50,9 +53,7 @@
           >
         </div>
         <div class="section hidden" ref="section1">
-          <p>
-            {{ data.tab2.copy }}
-          </p>
+          <p v-if="data.tab2.copy" v-html="data.tab2.copy"></p>
           <nuxt-link
             v-for="(link, index) in data.tab2.links"
             :key="index"

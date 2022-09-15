@@ -34,9 +34,11 @@
             v-if="page.forBrokersSection1.title"
             v-html="page.forBrokersSection1.title"
           ></h1>
-          <p class="hide-small" v-if="page.forBrokersSection1.copy">
-            {{ page.forBrokersSection1.copy }}
-          </p>
+          <p
+            class="hide-small"
+            v-if="page.forBrokersSection1.copy"
+            v-html="page.forBrokersSection1.copy"
+          ></p>
           <nuxt-link
             class="button hide-small"
             v-if="page.forBrokersSection1.link"
@@ -46,9 +48,10 @@
         </div>
 
         <div class="copy show-small">
-          <p v-if="page.forBrokersSection1.copy">
-            {{ page.forBrokersSection1.copy }}
-          </p>
+          <p
+            v-if="page.forBrokersSection1.copy"
+            v-html="page.forBrokersSection1.copy"
+          ></p>
           <nuxt-link
             class="button"
             v-if="page.forBrokersSection1.link"
@@ -160,6 +163,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -260,7 +264,7 @@ const gql_content = `
   }
 `;
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },

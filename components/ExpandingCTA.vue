@@ -7,7 +7,7 @@
     <div class="expanding-cta-hit-area" v-on:click="toggleContent"></div>
     <div class="inner">
       <div class="title">
-        <h4>{{ data.title }}</h4>
+        <h4 v-if="data.title" v-html="data.title"></h4>
         <div class="icon">
           <img :src="data.icons[0]" alt="" />
           <img class="active-image" :src="data.icons[1]" alt="" />
@@ -22,9 +22,7 @@
       >
         <div class="content" v-show="expanded">
           <div class="spacer"></div>
-          <p>
-            {{ data.copy }}
-          </p>
+          <p v-if="data.copy" v-html="data.copy"></p>
           <nuxt-link :to="data.link.url" class="button--outline">{{
             data.link.title
           }}</nuxt-link>

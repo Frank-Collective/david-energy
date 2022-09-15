@@ -36,6 +36,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -56,7 +57,7 @@ const gql_content = `
 `;
 
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },

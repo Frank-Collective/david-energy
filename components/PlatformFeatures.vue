@@ -22,10 +22,8 @@
           />
         </div>
         <div class="copy">
-          <h3>{{ card.title }}</h3>
-          <p>
-            {{ card.copy }}
-          </p>
+          <h3 v-if="card.title" v-html="card.title"></h3>
+          <p v-if="card.copy" v-html="card.copy"></p>
         </div>
       </article>
     </div>

@@ -4,9 +4,7 @@
       <h3 v-html="data.title"></h3>
       <div class="content">
         <div class="copy">
-          <p class="body-copy-small">
-            {{ data.copy }}
-          </p>
+          <p class="body-copy-small" v-if="data.copy" v-html="data.copy"></p>
         </div>
         <div class="toggle-btns">
           <div

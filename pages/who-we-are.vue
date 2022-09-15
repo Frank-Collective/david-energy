@@ -15,12 +15,15 @@
             {{ page.aboutSection1.eyebrow }}
           </div>
           <h1
+            class="keep-widow"
             v-if="page.aboutSection1.title"
             v-html="page.aboutSection1.title"
           ></h1>
-          <p class="hide-small" v-if="page.aboutSection1.copy">
-            {{ page.aboutSection1.copy }}
-          </p>
+          <p
+            class="hide-small"
+            v-if="page.aboutSection1.copy"
+            v-html="page.aboutSection1.copy"
+          ></p>
         </div>
 
         <div class="image">
@@ -36,7 +39,10 @@
         </div>
 
         <div class="copy show-small">
-          <p v-if="page.aboutSection1.copy">{{ page.aboutSection1.copy }}</p>
+          <p
+            v-if="page.aboutSection1.copy"
+            v-html="page.aboutSection1.copy"
+          ></p>
         </div>
       </div>
     </div>
@@ -76,9 +82,10 @@
             v-if="page.aboutSection3.title"
             v-html="page.aboutSection3.title"
           ></h3>
-          <p v-if="page.aboutSection3.copy">
-            {{ page.aboutSection3.copy }}
-          </p>
+          <p
+            v-if="page.aboutSection3.copy"
+            v-html="page.aboutSection3.copy"
+          ></p>
         </div>
         <LeadershipTeam :data="page.aboutSection3" />
       </div>
@@ -134,9 +141,9 @@
           >
             <div class="eyebrow">Post Type</div>
             <div class="title-excerpt">
-              <h4>{{ article.title }}</h4>
+              <h4 v-if="article.title" v-html="article.title"></h4>
               <div class="excerpt">
-                <div v-html="article.excerpt"></div>
+                <div v-if="article.excerpt" v-html="article.excerpt"></div>
                 <Link :link="{ title: 'Read More', url: '/' + article.slug }" />
               </div>
             </div>
@@ -153,6 +160,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -245,7 +253,7 @@ const gql_content = `
 `;
 
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },

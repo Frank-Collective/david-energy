@@ -10,9 +10,7 @@
         </div>
       </div>
       <div class="copy">
-        <p>
-          {{ data.copy }}
-        </p>
+        <p v-if="data.copy" v-html="data.copy"></p>
       </div>
       <transition
         v-on:before-enter="beforeEnter"
@@ -23,9 +21,7 @@
       >
         <div class="expanding-content" v-show="expanded">
           <div class="spacer"></div>
-          <p>
-            {{ data.copy }}
-          </p>
+          <p v-if="data.copy" v-html="data.copy"></p>
         </div>
       </transition>
     </div>

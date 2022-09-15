@@ -21,9 +21,7 @@
       >
         <!-- <div class="content" v-show="expanded"> -->
         <div class="content">
-          <p class="body-copy-small">
-            {{ data.copy }}
-          </p>
+          <p class="body-copy-small" v-html="data.copy"></p>
           <nuxt-link
             v-for="(link, index) in data.links"
             :key="index"

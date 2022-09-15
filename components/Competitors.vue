@@ -34,10 +34,8 @@
 
       <div class="content">
         <div class="section" ref="section0">
-          <h3 v-html="data.tab1.title"></h3>
-          <p>
-            {{ data.tab1.copy }}
-          </p>
+          <h3 v-if="data.tab1.title" v-html="data.tab1.title"></h3>
+          <p v-if="data.tab1.copy" v-html="data.tab1.copy"></p>
           <nuxt-link
             v-for="(link, index) in data.tab1.links"
             :key="index"

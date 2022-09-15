@@ -19,12 +19,15 @@
             {{ page.forBusinessSection1.eyebrow }}
           </div>
           <h1
+            class="keep-widow"
             v-if="page.forBusinessSection1.title"
             v-html="page.forBusinessSection1.title"
           ></h1>
-          <p class="hide-small" v-if="page.forBusinessSection1.copy">
-            {{ page.forBusinessSection1.copy }}
-          </p>
+          <p
+            class="hide-small"
+            v-if="page.forBusinessSection1.copy"
+            v-html="page.forBusinessSection1.copy"
+          ></p>
           <nuxt-link
             class="button hide-small"
             v-if="page.forBusinessSection1.link"
@@ -147,6 +150,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -212,7 +216,7 @@ const gql_content = `
   }
 `;
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },

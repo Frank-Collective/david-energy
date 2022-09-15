@@ -7,9 +7,7 @@
           :key="index"
           v-on:click="nextSlide"
         >
-          <p>
-            {{ testimonial.quote }}
-          </p>
+          <p v-html="testimonial.quote"></p>
           <cite>{{ testimonial.author }}</cite>
         </blockquote>
       </flickity>

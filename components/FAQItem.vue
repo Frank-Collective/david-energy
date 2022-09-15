@@ -18,9 +18,11 @@
         v-on:leave="leave"
       >
         <div class="answer" v-show="expanded">
-          <p class="body-copy-small">
-            {{ data.answer }}
-          </p>
+          <p
+            class="body-copy-small"
+            v-if="data.answer"
+            v-html="data.answer"
+          ></p>
         </div>
       </transition>
     </div>

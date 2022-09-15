@@ -14,7 +14,7 @@
     ></div>
     <div class="inner">
       <div class="title">
-        <h3>{{ data.title }}</h3>
+        <h3 v-if="data.title" v-html="data.title"></h3>
         <img src="/images/icon-expanding-dropdown-down-arrow.svg" alt="" />
       </div>
       <transition
@@ -27,9 +27,7 @@
         <div class="content" v-show="expanded">
           <div class="summary">
             <div class="spacer"></div>
-            <p v-if="data.summary">
-              {{ data.summary }}
-            </p>
+            <p v-if="data.summary" v-html="data.summary"></p>
           </div>
           <div class="flex-content">
             <div class="spacer"></div>
@@ -42,16 +40,18 @@
                 class="paragraph"
                 v-if="content_item.fieldGroupName.includes('Paragraph')"
               >
-                <p>{{ content_item.copy }}</p>
+                <p v-if="content_item.copy" v-html="content_item.copy"></p>
               </div>
               <div
                 class="list-item-text"
                 v-if="content_item.fieldGroupName.includes('ListItemText')"
               >
-                <div class="indented-text-link--medium">
-                  {{ content_item.title }}
-                </div>
-                <p>{{ content_item.copy }}</p>
+                <div
+                  class="indented-text-link--medium"
+                  v-if="content_item.title"
+                  v-html="content_item.title"
+                ></div>
+                <p v-if="content_item.copy" v-html="content_item.copy"></p>
               </div>
               <div
                 class="list-item-icon"
@@ -61,8 +61,11 @@
                   <img :src="content_item.icon.mediaItemUrl" alt="" />
                 </div>
                 <div class="text">
-                  <h4>{{ content_item.title }}</h4>
-                  <p>{{ content_item.copy }}</p>
+                  <h4
+                    v-if="content_item.title"
+                    v-html="content_item.title"
+                  ></h4>
+                  <p v-if="content_item.copy" v-html="content_item.copy"></p>
                 </div>
               </div>
             </div>

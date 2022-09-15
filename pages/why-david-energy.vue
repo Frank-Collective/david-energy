@@ -9,9 +9,10 @@
         <h1 v-if="page.whySection1.title" v-html="page.whySection1.title"></h1>
         <div class="content">
           <div class="copy">
-            <h4 v-if="page.whySection1.copy">
-              {{ page.whySection1.copy }}
-            </h4>
+            <h4
+              v-if="page.whySection1.copy"
+              v-html="page.whySection1.copy"
+            ></h4>
           </div>
 
           <div class="image">
@@ -124,6 +125,7 @@ import { gql } from "nuxt-graphql-request";
 import { basics, image, featured_image, link, seo_fields } from "~/gql/common";
 import FadeImage from "~/components/FadeImage.vue";
 import scrollTriggerHub from "~/mixins/ScrollTriggerHub";
+import killWidows from "~/mixins/KillWidows";
 
 const gql_content = `
   ${basics}
@@ -198,7 +200,7 @@ const gql_content = `
   }
 `;
 export default {
-  mixins: [scrollTriggerHub],
+  mixins: [scrollTriggerHub, killWidows],
   components: {
     FadeImage,
   },
