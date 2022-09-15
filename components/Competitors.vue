@@ -286,12 +286,6 @@ export default {
           @include breakpoint(small) {
             @include h2;
           }
-
-          br {
-            @include breakpoint(small) {
-              display: none;
-            }
-          }
         }
 
         p {

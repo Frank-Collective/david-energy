@@ -56,12 +56,6 @@ export default {
       padding: 0 1em;
       margin-bottom: 1.5em;
     }
-
-    br {
-      @include breakpoint(small) {
-        display: none;
-      }
-    }
   }
 
   .line {

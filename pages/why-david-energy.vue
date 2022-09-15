@@ -287,19 +287,13 @@ export default {
     z-index: 1;
     @include max-width;
 
-    h1 {
+    :deep(h1) {
       @include h1-medium;
       @include gutter(padding-left);
       @include gutter(padding-right);
 
       @include breakpoint(small) {
         letter-spacing: -0.06em;
-      }
-
-      br {
-        @include breakpoint(small) {
-          display: none;
-        }
       }
     }
 

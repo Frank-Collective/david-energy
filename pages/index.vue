@@ -35,10 +35,10 @@
         />
       </div>
       <div class="inner">
-        <h1
+        <h2
           v-if="page.landingPageSection2.title"
           v-html="page.landingPageSection2.title"
-        ></h1>
+        ></h2>
         <div class="content">
           <div class="image">
             <FadeImage
@@ -251,10 +251,14 @@ export default {
 .landing-section-1 {
   position: relative;
   padding-top: 10.4vw;
-  margin-bottom: -12vw;
+  margin-bottom: -5em;
+
+  @include breakpoint(large) {
+    margin-bottom: 0px;
+  }
 
   @include breakpoint(medium) {
-    margin-bottom: 130px;
+    margin-bottom: 100px;
   }
 
   @include breakpoint(small) {
@@ -372,12 +376,11 @@ export default {
     @include gutter(padding-right);
     @include max-width;
 
-    h1 {
+    h2 {
       width: 80%;
-      margin-bottom: 1em;
+      margin-bottom: 0.2em;
 
       @include breakpoint(small) {
-        @include h2;
         width: auto;
       }
     }

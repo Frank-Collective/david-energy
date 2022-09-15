@@ -229,19 +229,13 @@ export default {
       order: 1;
     }
 
-    h3 {
+    :deep(h3) {
       &.hidden {
         display: none;
       }
 
       @include breakpoint(small) {
         @include h2;
-      }
-
-      br {
-        @include breakpoint(small) {
-          display: none;
-        }
       }
     }
   }
@@ -269,17 +263,11 @@ export default {
           display: none;
         }
 
-        h3 {
+        :deep(h3) {
           margin-bottom: 0.35em;
 
           @include breakpoint(small) {
             @include h2;
-          }
-
-          br {
-            @include breakpoint(small) {
-              display: none;
-            }
           }
         }
 

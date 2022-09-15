@@ -208,7 +208,7 @@ export default {
   @include gutter(padding-right);
   @include max-width;
 
-  h3 {
+  :deep(h3) {
     margin-bottom: 0.75em;
 
     @include breakpoint(small) {

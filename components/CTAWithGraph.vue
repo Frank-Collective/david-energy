@@ -90,21 +90,16 @@ export default {
   }
 
   .title {
+    max-width: 850px;
     margin-bottom: 3.5vw;
 
     @include breakpoint(small) {
       order: 1;
     }
 
-    h3 {
+    :deep(h3) {
       @include breakpoint(small) {
         @include h2;
-      }
-
-      br {
-        @include breakpoint(small) {
-          display: none;
-        }
       }
     }
   }
@@ -128,17 +123,11 @@ export default {
       }
 
       .section {
-        h3 {
+        :deep(h3) {
           margin-bottom: 0.35em;
 
           @include breakpoint(small) {
             @include h2;
-          }
-
-          br {
-            @include breakpoint(small) {
-              display: none;
-            }
           }
         }
 

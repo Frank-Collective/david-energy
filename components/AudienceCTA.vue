@@ -171,13 +171,15 @@ export default {
   position: relative;
   z-index: 1;
   @include max-width;
+
   @include breakpoint(small) {
     padding: 0;
   }
 
   h1 {
-    @include h1-large;
-    width: 80%;
+    position: relative;
+    z-index: 1;
+    width: 60%;
     @include gutter(padding-left);
     @include gutter(padding-right);
 
@@ -281,8 +283,12 @@ export default {
       position: relative;
       width: 52%;
       flex-shrink: 0;
-      top: -15vw;
+      top: -17em;
       @include gutter(margin-right);
+
+      @include breakpoint(xlarge) {
+        top: -10em;
+      }
 
       @include breakpoint(small) {
         width: 130%;
