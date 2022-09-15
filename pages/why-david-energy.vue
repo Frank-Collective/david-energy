@@ -413,9 +413,12 @@ export default {
     }
 
     h3 {
+      padding-right: 1em;
+
       @include breakpoint(small) {
         @include h2;
         margin-bottom: 0.8em;
+        padding: 0;
       }
     }
 
@@ -621,7 +624,7 @@ export default {
   }
 
   :deep(.toggle-btn:not(.selected)) {
-    color: $white !important;
+    color: $text_color !important;
   }
 }
 .why-section-5 {

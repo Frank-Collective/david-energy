@@ -33,15 +33,20 @@ export default {
   justify-content: space-between;
   align-items: center;
   @include gutter(padding-left);
-  @include gutter(padding-right);
+  padding-right: 3.6vw;
   @include max-width;
   z-index: 1;
+
+  @include breakpoint(large) {
+    @include gutter(padding-right);
+  }
+
   @include breakpoint(small) {
     flex-direction: column;
   }
 
   :deep(h4) {
-    width: 27%;
+    padding-right: 30px;
 
     @include breakpoint(small) {
       @include h3;
@@ -80,10 +85,10 @@ export default {
 
     img {
       display: block;
-      width: 10.4vw;
+      width: 10.94vw;
       height: auto;
-      max-width: 200px;
-      max-height: 200px;
+      max-width: 210px;
+      max-height: 210px;
       margin-left: 1.4vw;
 
       @include breakpoint(small) {

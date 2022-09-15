@@ -446,9 +446,9 @@ export default {
 
   .bg-image-1 {
     position: absolute;
-    top: -40%;
+    top: -34%;
     left: 0;
-    width: 50%;
+    width: 46%;
     pointer-events: none;
     mix-blend-mode: darken;
 

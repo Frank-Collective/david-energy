@@ -71,8 +71,9 @@ export default {
   .info-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+    gap: 40px;
 
     @include breakpoint(small) {
       flex-direction: column;
@@ -141,7 +142,7 @@ export default {
           font-family: "Gronland";
           font-style: normal;
           font-weight: 400;
-          font-size: 12px;
+          font-size: 15px;
           line-height: 160%;
           letter-spacing: -0.01em;
           padding-left: 3em;
