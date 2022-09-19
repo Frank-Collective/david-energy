@@ -66,8 +66,20 @@
           </template>
         </div>
         <div class="menu-2">
-          <ul>
+          <ul class="desktop">
             <li v-for="(item, index) in data.menu2.menuItems" :key="index">
+              <nuxt-link
+                class="indented-text-link--small"
+                :to="item.link.url"
+                >{{ item.link.title }}</nuxt-link
+              >
+            </li>
+          </ul>
+          <ul class="mobile">
+            <li
+              v-for="(item, index) in data.menu2Mobile.menuItems"
+              :key="index"
+            >
               <nuxt-link
                 class="indented-text-link--small"
                 :to="item.link.url"
@@ -81,8 +93,16 @@
     <div class="legal">
       <div class="inner">
         <nuxt-link
+          class="desktop"
           v-for="(link, index) in data.legalLinks"
           :key="index"
+          :to="link.link.url"
+          v-html="link.link.title"
+        ></nuxt-link>
+        <nuxt-link
+          class="mobile"
+          v-for="(link, index) in data.legalLinksMobile"
+          :key="`${index}1`"
           :to="link.link.url"
           v-html="link.link.title"
         ></nuxt-link>
@@ -142,7 +162,19 @@ export default {
                   }
                 }
               }
+              menu2Mobile {
+                menuItems {
+                  link {
+                    ${link}
+                  }
+                }
+              }
               legalLinks {
+                link {
+                  ${link}
+                }
+              }
+              legalLinksMobile {
                 link {
                   ${link}
                 }
@@ -384,6 +416,19 @@ footer.footer {
         }
 
         ul {
+          &.desktop {
+            @include breakpoint(small) {
+              display: none;
+            }
+          }
+
+          &.mobile {
+            display: none;
+            @include breakpoint(small) {
+              display: block;
+            }
+          }
+
           li {
             margin: 0 0 0.5em;
 
@@ -425,12 +470,26 @@ footer.footer {
 
       @include breakpoint(small) {
         text-align: center;
+        letter-spacing: 0em;
       }
 
       a {
         text-decoration: none;
         color: $bright_green;
         margin-right: 1em;
+
+        &.desktop {
+          @include breakpoint(small) {
+            display: none;
+          }
+        }
+
+        &.mobile {
+          display: none;
+          @include breakpoint(small) {
+            display: block;
+          }
+        }
 
         &:hover {
           color: $light_green;
@@ -443,7 +502,7 @@ footer.footer {
       }
 
       span {
-        margin-left: 2em;
+        margin-left: 1.5em;
 
         @include breakpoint(medium) {
           margin-left: 0;

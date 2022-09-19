@@ -120,10 +120,6 @@
   @include clamp("font-size", 18px, 1.25vw, 22px);
   letter-spacing: 0em;
   line-height: 150%;
-
-  @include breakpoint(small) {
-    letter-spacing: 0.01em;
-  }
 }
 
 @mixin button {
