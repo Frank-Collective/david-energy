@@ -17,13 +17,12 @@
         v-on:before-leave="beforeLeave"
         v-on:leave="leave"
       >
-        <div class="answer" v-show="expanded">
-          <p
-            class="body-copy-small"
-            v-if="data.answer"
-            v-html="data.answer"
-          ></p>
-        </div>
+        <div
+          class="answer"
+          v-show="expanded"
+          v-if="data.answer"
+          v-html="data.answer"
+        ></div>
       </transition>
     </div>
   </div>
@@ -111,10 +110,13 @@ export default {
   &.expanded {
     .inner {
       .question {
+        padding-bottom: 0.5em;
+
         img {
           transform: rotate(180deg);
         }
       }
+
       .answer {
         height: auto;
       }
@@ -145,6 +147,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       @include body-copy-small;
+      transition: 0.5s padding-bottom;
 
       img {
         display: block;
@@ -163,12 +166,17 @@ export default {
       overflow: hidden;
       transition: 0.5s;
 
-      p {
+      :deep(p) {
         font-family: "Gronland";
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 150%;
+        margin-bottom: 1em;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
     }
   }
