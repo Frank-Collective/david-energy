@@ -168,7 +168,7 @@ export default {
   border: 2px solid $bright_green;
   border-radius: 18px;
   background-color: $white;
-  padding: 2.1vw 7.5vw;
+  padding: 1.3vw 7.5vw;
   margin-bottom: 2.1vw;
   transition: 0.5s border-color, 0.15s box-shadow;
 
@@ -189,7 +189,7 @@ export default {
 
     .title {
       img {
-        transform: rotate(180deg);
+        // transform: rotate(180deg);
       }
     }
   }

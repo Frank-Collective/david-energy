@@ -288,13 +288,13 @@ export default {
           .name-and-title {
             opacity: 1;
             transition: 0.15s opacity;
-            transition-delay: 0.15s;
+            // transition-delay: 0.15s;
           }
 
           .button--outline {
             opacity: 1;
             transition: 0.15s opacity;
-            transition-delay: 0.15s;
+            // transition-delay: 0.15s;
           }
         }
       }
@@ -473,13 +473,13 @@ export default {
           .name-and-title {
             opacity: 1;
             transition: 0.15s opacity;
-            transition-delay: 0.15s;
+            // transition-delay: 0.15s;
           }
 
           .button--outline {
             opacity: 1;
             transition: 0.15s opacity;
-            transition-delay: 0.15s;
+            // transition-delay: 0.15s;
           }
         }
       }
