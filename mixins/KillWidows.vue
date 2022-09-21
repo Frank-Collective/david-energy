@@ -15,14 +15,14 @@ export default {
   },
   methods: {
     killWidows() {
-      console.log("killWidows");
+      // console.log("killWidows");
       var that = this;
       this.nbspSelectors.forEach(function (selector) {
         var nbspElements = document.querySelectorAll(selector);
         nbspElements.forEach(function (element) {
-          console.log(element);
+          // console.log(element);
           var wordCount = element.innerHTML.split(" ").length;
-          console.log("wordCount: " + wordCount);
+          // console.log("wordCount: " + wordCount);
           if (
             wordCount >= that.nbspWordMin &&
             !element.classList.contains("keep-widow")
