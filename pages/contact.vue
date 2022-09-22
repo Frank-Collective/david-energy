@@ -10,6 +10,9 @@
             v-if="page.contactSection1.title"
             v-html="page.contactSection1.title"
           ></h1>
+          <div v-if="!form_embed" id="form-container" class="form"></div>
+          <div v-else class="form" v-html="form_embed"></div>
+          <!-- 
           <div class="form">
             <form action="">
               <div class="row">
@@ -48,6 +51,7 @@
               </div>
             </form>
           </div>
+          -->
         </div>
       </div>
     </div>
@@ -138,6 +142,11 @@ const gql_content = `
   PageContactFields {
     contactSection1 {
       title
+      hubspotregion
+      hubspotportalid
+      hubspotformid
+      formType
+      genericEmbed
     }
     contactSection2 {
       address
@@ -163,7 +172,7 @@ export default {
             node {
               ${gql_content}
             }
-          }  
+          }
         }
       }
     `;
@@ -186,8 +195,27 @@ export default {
       };
     }
   },
+  data() {
+    return {
+      form_embed: null,
+    };
+  },
   mounted() {
     this.$store.commit("setFooterCtaVisible", false);
+    if (
+      this.page &&
+      this.page.contactSection1.formType == "hubspot" &&
+      this.page.contactSection1.hubspotformid
+    ) {
+      hbspt.forms.create({
+        region: this.page.contactSection1.hubspotregion,
+        portalId: this.page.contactSection1.hubspotportalid,
+        formId: this.page.contactSection1.hubspotformid,
+        target: "#form-container",
+      });
+    } else {
+      this.form_embed = this.page.contactSection1.genericEmbed;
+    }
   },
   beforeDestroy() {
     this.$store.commit("setFooterCtaVisible", true);
@@ -326,37 +354,43 @@ export default {
             flex-direction: column;
             gap: 10px;
           }
-
-          input,
-          textarea {
-            flex-grow: 1;
-            font-family: "Gronland";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 150%;
-            color: $text_color;
-            border-radius: 6px;
-            border: 1px solid $bright_green;
-            background-color: $white;
-            padding: 0.85em 1em 0.65em;
-
-            @include breakpoint(small) {
-              font-size: 15px;
-            }
-          }
-
-          textarea {
-            @include breakpoint(small) {
-              font-size: 18px;
-            }
-          }
         }
 
         .button {
           width: 100%;
           cursor: pointer;
           margin-top: -1em;
+        }
+        input[type="submit"] {
+          @include buttonstyles;
+        }
+        input:not([type="button"]):not([type="submit"]),
+        textarea {
+          flex-grow: 1;
+          font-family: "Gronland";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 150%;
+          color: $text_color;
+          border-radius: 6px;
+          border: 1px solid $bright_green;
+          background-color: $white;
+          padding: 0.85em 1em 0.65em;
+
+          @include breakpoint(small) {
+            font-size: 15px;
+          }
+        }
+        .hs-error-msgs label,
+        .hs-error-msg {
+          font-size: 0.9em;
+          margin-bottom: 15px;
+        }
+        textarea {
+          @include breakpoint(small) {
+            font-size: 18px;
+          }
         }
       }
     }

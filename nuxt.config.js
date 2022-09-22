@@ -33,6 +33,7 @@ export default {
     link: [
       { rel: "icon", type: "image/x-icon", href: "/DavidEnergy_Favicon.png" },
     ],
+    script: [{ src: "https://js.hsforms.net/forms/v2.js" }],
   },
 
   // // Global CSS: https://go.nuxtjs.dev/config-css
