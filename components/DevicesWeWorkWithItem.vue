@@ -10,9 +10,9 @@
       v-if="data.logos"
     ></div>
     <div class="inner">
-      <h3 class="title">
+      <h3 class="title keep-widow">
         {{ data.title }}
-        <span v-if="!data.logos">Coming Soon</span>
+        <span v-if="!data.logos">Coming <br />Soon</span>
         <img
           v-if="data.logos"
           src="/images/icon-dropdown-arrow-mobile.svg"
@@ -133,6 +133,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 0;
 
       img {
         transform: rotate(0deg);
@@ -148,6 +149,14 @@ export default {
         letter-spacing: 0.045em;
         text-transform: uppercase;
         color: $bright_green;
+
+        br {
+          display: none;
+
+          @include breakpoint(small) {
+            display: unset;
+          }
+        }
       }
     }
 

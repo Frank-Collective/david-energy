@@ -78,7 +78,8 @@
       </div>
       <ToggleGraphs :data="page.whySection4" />
     </div>
-    <div class="why-section-5" id="faqs" v-if="page.whySection5.title">
+    <div id="faqs"></div>
+    <div class="why-section-5" v-if="page.whySection5.title">
       <div class="bg-image">
         <img class="desktop" src="/images/why-section-5-bg.jpg" alt="" />
         <img class="mobile" src="/images/why-section-5-bg-mobile.jpg" alt="" />
@@ -621,6 +622,14 @@ export default {
 
   :deep(.toggle-btn:not(.selected)) {
     color: $text_color !important;
+  }
+}
+#faqs {
+  position: relative;
+  top: -150px;
+
+  @include breakpoint(mobile_nav_breakpoint) {
+    top: -90px;
   }
 }
 .why-section-5 {

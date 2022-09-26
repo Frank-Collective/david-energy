@@ -2,7 +2,7 @@
   <div v-if="data" class="faq-item" v-bind:class="[{ expanded: expanded }]">
     <div
       class="faq-item-hit-area"
-      v-on:click="openContent"
+      v-on:click="toggleContent"
       v-mouse-click="onMouseClick"
     ></div>
     <div class="inner">
@@ -60,6 +60,9 @@ export default {
     }
   },
   methods: {
+    toggleContent: function () {
+      this.expanded = !this.expanded;
+    },
     openContent: function () {
       this.expanded = true;
       if (this.data.callback != null) {

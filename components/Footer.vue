@@ -377,7 +377,7 @@ footer.footer {
           font-family: "Gronland";
           font-style: normal;
           font-weight: 500;
-          font-size: 18px;
+          font-size: 15px;
           line-height: 20px;
           letter-spacing: 0.08em;
           text-transform: uppercase;

@@ -208,7 +208,7 @@ export default {
   @include gutter(padding-right);
   @include max-width;
 
-  :deep(h3) {
+  :deep(> h3) {
     margin-bottom: 0.75em;
 
     @include breakpoint(small) {
@@ -247,6 +247,7 @@ export default {
         display: flex;
         align-items: center;
         transition: 0.15s color, 0.15s padding-left;
+        margin-bottom: 0.51em;
 
         &.selected {
           padding-left: 0.5em;

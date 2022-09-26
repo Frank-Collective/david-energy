@@ -66,11 +66,13 @@
       </div>
       <div class="graphs">
         <img
+          v-if="data.tab1.image"
           :src="data.tab1.image.mediaItemUrl"
           alt=""
           v-bind:class="{ visible: selected_index == 0 }"
         />
         <img
+          v-if="data.tab2.image"
           :src="data.tab2.image.mediaItemUrl"
           alt=""
           v-bind:class="{ visible: selected_index == 1 }"
