@@ -333,7 +333,7 @@ export default {
       }
     }
 
-    div {
+    :deep(div) {
       position: absolute;
       top: 0;
       left: 0;
@@ -354,6 +354,55 @@ export default {
         height: auto;
         top: 0;
         left: 0;
+
+        #david-energy {
+          circle,
+          path {
+            stroke: $bright_green;
+          }
+        }
+
+        #voltus {
+          circle,
+          path {
+            stroke: #8ce79f;
+          }
+        }
+
+        #engie {
+          circle,
+          path {
+            stroke: $light_green;
+          }
+        }
+
+        #nrg {
+          circle,
+          path {
+            stroke: #b3dfcf;
+          }
+        }
+
+        #home-david-energy {
+          circle,
+          path {
+            stroke: $bright_green;
+          }
+        }
+
+        #home-nrg {
+          circle,
+          path {
+            stroke: #8ce79f;
+          }
+        }
+
+        #home-ohmconnect {
+          circle,
+          path {
+            stroke: $light_green;
+          }
+        }
       }
     }
   }

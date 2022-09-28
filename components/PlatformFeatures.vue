@@ -67,6 +67,8 @@ export default {
   }
 
   .info-cards {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -96,13 +98,11 @@ export default {
         border-radius: 18px;
         border: 1px solid $bright_green;
         background-color: $white;
-        padding: 4vw;
         overflow: hidden;
 
         @include breakpoint(small) {
           border-width: 1px;
           border-radius: 8px;
-          padding: 0;
         }
 
         img {

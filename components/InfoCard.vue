@@ -3,7 +3,7 @@
     <div class="info-card-hit-area" v-on:click="toggleContent"></div>
     <div class="inner">
       <div class="title">
-        <h4>{{ data.title }}</h4>
+        <h4 class="keep-widow">{{ data.title }}</h4>
         <div class="icon">
           <img :src="data.icons[0]" alt="" />
           <img class="active-image" :src="data.icons[1]" alt="" />
@@ -200,12 +200,6 @@ export default {
       }
 
       h4 {
-        font-family: "Gronland";
-        font-style: normal;
-        font-weight: 400;
-        @include clamp("font-size", 18px, 2.19vw, 42px);
-        line-height: 130%;
-        letter-spacing: -0.01em;
         opacity: 1;
         transition: 0.25s opacity;
 

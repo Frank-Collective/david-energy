@@ -10,7 +10,7 @@
         data.callback();
       }
     "
-    v-on:touchstart="
+    v-on:touchend="
       if (expanded) {
         closeMenu();
       } else {

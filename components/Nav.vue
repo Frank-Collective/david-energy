@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="inner" v-bind:class="{ mobile_menu_open: mobileMenuOpen }">
-      <div class="logomark" v-if="data.logomark">
+      <div class="logomark" v-if="data.logomark" v-on:click="closeMenu">
         <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
           <img :src="data.logomark.mediaItemUrl" alt="" />
         </a>
@@ -91,7 +91,7 @@
           <img :src="data.logomark.mediaItemUrl" alt="" />
         </nuxt-link>
       </div>
-      <div class="logo">
+      <div class="logo" v-on:click="closeMenu">
         <a v-if="currentRoute == 'index'" v-scroll-to="'#top'">
           <img
             class="desktop"
@@ -361,7 +361,8 @@ export default {
     }
 
     .image {
-      position: relative;
+      position: sticky;
+      top: 0;
       width: 31.1%;
       height: 29.2vw;
       flex-shrink: 0;
@@ -369,6 +370,7 @@ export default {
       overflow: hidden;
 
       @include breakpoint(medium) {
+        position: relative;
         width: 100%;
         max-width: 374px;
         height: auto;
@@ -400,13 +402,15 @@ export default {
       }
 
       .name {
+        font-size: 26px;
         color: $dark_evergreen;
         margin-bottom: 0.5em;
       }
 
       .title {
+        font-size: 26px;
         color: $slate_gray;
-        margin-bottom: 2.5em;
+        margin-bottom: 2em;
 
         @include breakpoint(medium) {
           @include body-copy-small;
@@ -416,10 +420,10 @@ export default {
       :deep(p) {
         color: $dark_evergreen;
         font-weight: 400;
-        font-size: 24px;
-        line-height: 130%;
-        letter-spacing: -0.015em;
-        margin-bottom: 1em;
+        font-size: 22px;
+        line-height: 140%;
+        letter-spacing: 0em;
+        margin-bottom: 1.5em;
       }
     }
 
@@ -432,12 +436,13 @@ export default {
       }
 
       .eyebrow {
+        font-size: 18px;
         color: $slate_gray;
-        margin-bottom: 1.5em;
+        margin-bottom: 0.75em;
       }
 
       ul.datas {
-        margin-bottom: 1em;
+        margin-bottom: 1.5em;
 
         li {
           position: relative;
@@ -446,16 +451,17 @@ export default {
           font-weight: 400;
           font-size: 16px;
           line-height: 150%;
-          margin-bottom: 1em;
-          margin-left: 2em;
+          margin-bottom: 0.5em;
+          margin-left: 1.1em;
 
           &:before {
             content: "";
             position: absolute;
             display: inline-block;
-            width: 10px;
-            height: 10px;
-            transform: translate(-2em, 50%);
+            width: 6px;
+            height: 6px;
+            transform: translate(-1em, 50%);
+            top: 0.25em;
             background-color: $dark_evergreen;
             border-radius: 100%;
           }
@@ -464,7 +470,7 @@ export default {
 
       ul.social-media-icons {
         display: flex;
-        margin-top: 4vw;
+        margin-top: 2vw;
 
         li {
           margin-right: 14px;

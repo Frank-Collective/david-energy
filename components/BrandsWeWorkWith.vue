@@ -33,7 +33,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   @include gutter(padding-left);
-  padding-right: 3.6vw;
+  @include gutter(padding-right);
   @include max-width;
   z-index: 1;
 
@@ -85,11 +85,15 @@ export default {
       max-height: 210px;
       margin-left: 1.4vw;
 
+      &:first-of-type {
+        margin-left: 0;
+      }
+
       @include breakpoint(small) {
         width: calc(50% - 28px);
         max-width: 150px;
         max-height: 150px;
-        margin: 0 14px 28px;
+        margin: 0 14px 28px !important;
       }
     }
   }
