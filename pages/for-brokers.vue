@@ -363,25 +363,25 @@ export default {
 
     .image {
       position: relative;
-      width: 46%;
+      width: 52%;
       margin-top: -4vw;
 
       @include breakpoint(small) {
         width: 100%;
         order: 2;
-        margin-top: -6vw;
         margin-bottom: 40px;
       }
 
       img {
         position: relative;
         display: block;
-        width: 100%;
+        width: 105%;
+        left: -5%;
         height: auto;
 
         @include breakpoint(small) {
-          left: 0%;
-          width: 111%;
+          left: -7%;
+          width: 116%;
         }
       }
     }

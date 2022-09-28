@@ -354,6 +354,7 @@ export default {
     display: flex;
     justify-content: space-between;
     @include gutter(padding-left);
+    @include gutter(padding-right);
     @include max-width;
 
     @include breakpoint(small) {
@@ -363,7 +364,7 @@ export default {
     }
 
     .copy {
-      width: 52%;
+      width: 55%;
       flex-shrink: 0;
 
       @include breakpoint(small) {
@@ -399,27 +400,29 @@ export default {
 
     .image {
       position: relative;
-      width: 48%;
-      margin-top: 3.5vw;
+      width: 45%;
+      flex-shrink: 0;
+      padding-bottom: 39.5%;
+      margin-top: -5vw;
 
       @include breakpoint(small) {
         width: 100%;
-        order: 2;
-        margin-top: 0vw;
-        margin-bottom: 40px;
+        padding-bottom: 0;
+        margin-top: -15vw;
       }
 
       img {
         position: absolute;
-        right: 0;
         display: block;
-        width: 130%;
+        top: 0;
+        right: 0;
+        width: 129%;
         height: auto;
 
         @include breakpoint(small) {
           position: relative;
-          left: 0%;
-          width: 111%;
+          right: 20%;
+          width: 125%;
         }
       }
     }
