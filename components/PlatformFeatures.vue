@@ -67,6 +67,8 @@ export default {
   }
 
   .info-cards {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
