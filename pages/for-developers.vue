@@ -383,6 +383,10 @@ export default {
 
       h1 {
         margin-bottom: 0.35em;
+
+        @include breakpoint(small) {
+          @include h2;
+        }
       }
 
       p {

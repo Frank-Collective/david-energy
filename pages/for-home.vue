@@ -459,6 +459,7 @@ export default {
   padding-bottom: 9vw;
 
   @include breakpoint(small) {
+    padding-bottom: 100px;
   }
 
   .bg-image {

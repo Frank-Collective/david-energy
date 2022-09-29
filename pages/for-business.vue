@@ -49,9 +49,10 @@
         </div>
 
         <div class="copy show-small">
-          <p v-if="page.forBusinessSection1.copy">
-            {{ page.forBusinessSection1.copy }}
-          </p>
+          <p
+            v-if="page.forBusinessSection1.copy"
+            v-html="page.forBusinessSection1.copy"
+          ></p>
           <nuxt-link
             class="button"
             v-if="page.forBusinessSection1.link"
