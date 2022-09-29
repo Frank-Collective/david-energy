@@ -36,7 +36,7 @@
           >
         </div>
 
-        <div class="image">
+        <div class="image" v-if="page.forBusinessSection1.image">
           <FadeImage
             v-if="page.forBusinessSection1.image"
             :srcset="page.forBusinessSection1.image.srcSet"
@@ -49,9 +49,10 @@
         </div>
 
         <div class="copy show-small">
-          <p v-if="page.forBusinessSection1.copy">
-            {{ page.forBusinessSection1.copy }}
-          </p>
+          <p
+            v-if="page.forBusinessSection1.copy"
+            v-html="page.forBusinessSection1.copy"
+          ></p>
           <nuxt-link
             class="button"
             v-if="page.forBusinessSection1.link"
@@ -306,6 +307,7 @@ export default {
     display: flex;
     justify-content: space-between;
     @include gutter(padding-left);
+    @include gutter(padding-right);
     @include max-width;
 
     @include breakpoint(small) {
@@ -349,13 +351,15 @@ export default {
 
     .image {
       position: relative;
-      width: 59%;
+      width: 58%;
       flex-shrink: 0;
       padding-bottom: 39.5%;
+      margin-top: -2vw;
 
       @include breakpoint(small) {
         width: 100%;
         padding-bottom: 0;
+        margin-top: 0;
       }
 
       img {
@@ -363,13 +367,13 @@ export default {
         display: block;
         top: 0;
         right: 0;
-        width: 116%;
+        width: 100%;
         height: auto;
 
         @include breakpoint(small) {
           position: relative;
-          right: 16%;
-          width: 140%;
+          right: 8%;
+          width: 120%;
         }
       }
     }

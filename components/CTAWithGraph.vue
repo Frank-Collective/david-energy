@@ -157,8 +157,6 @@ export default {
     padding-bottom: 32%;
 
     @include breakpoint(small) {
-      width: 100%;
-      padding-bottom: 44%;
       display: none;
     }
 

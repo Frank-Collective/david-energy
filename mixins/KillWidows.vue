@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       nbspSelectors: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote"],
-      nbspWordMin: 6,
+      nbspWordMin: 10,
     };
   },
   mounted() {

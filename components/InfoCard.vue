@@ -205,6 +205,7 @@ export default {
 
         @include breakpoint(small) {
           width: 75%;
+          font-size: 18px;
         }
       }
 

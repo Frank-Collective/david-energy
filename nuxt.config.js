@@ -89,8 +89,25 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    "@nuxtjs/google-analytics",
+    [
+      "nuxt-facebook-pixel-module",
+      {
+        /* module options */
+        track: "PageView",
+        pixelId: "1021819445301110",
+        autoPageView: true,
+        disabled: false,
+      },
+    ],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Google Analytics
+  googleAnalytics: {
+    id: "UA-226219087",
+  },
 };

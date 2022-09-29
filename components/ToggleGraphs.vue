@@ -78,6 +78,62 @@
           v-bind:class="{ visible: selected_index == 1 }"
         />
       </div>
+      <div class="mobile-graphs-wrapper">
+        <div
+          class="mobile-graphs"
+          v-bind:class="{ visible: selected_index == 0 }"
+        >
+          <div class="left">
+            <FadeImage
+              v-if="data.tab1.image"
+              :srcset="data.tab1.image.srcSet"
+              :sizes="data.tab1.image.sizes"
+              :src="data.tab1.image.mediaItemUrl"
+              :alt="data.tab1.image.altText"
+              :width="data.tab1.image.mediaDetails.width"
+              :height="data.tab1.image.mediaDetails.height"
+            />
+          </div>
+          <div class="right">
+            <FadeImage
+              v-if="data.tab1.image"
+              :srcset="data.tab1.image.srcSet"
+              :sizes="data.tab1.image.sizes"
+              :src="data.tab1.image.mediaItemUrl"
+              :alt="data.tab1.image.altText"
+              :width="data.tab1.image.mediaDetails.width"
+              :height="data.tab1.image.mediaDetails.height"
+            />
+          </div>
+        </div>
+        <div
+          class="mobile-graphs pos-abs"
+          v-bind:class="{ visible: selected_index == 1 }"
+        >
+          <div class="left">
+            <FadeImage
+              v-if="data.tab2.image"
+              :srcset="data.tab2.image.srcSet"
+              :sizes="data.tab2.image.sizes"
+              :src="data.tab2.image.mediaItemUrl"
+              :alt="data.tab2.image.altText"
+              :width="data.tab2.image.mediaDetails.width"
+              :height="data.tab2.image.mediaDetails.height"
+            />
+          </div>
+          <div class="right">
+            <FadeImage
+              v-if="data.tab2.image"
+              :srcset="data.tab2.image.srcSet"
+              :sizes="data.tab2.image.sizes"
+              :src="data.tab2.image.mediaItemUrl"
+              :alt="data.tab2.image.altText"
+              :width="data.tab2.image.mediaDetails.width"
+              :height="data.tab2.image.mediaDetails.height"
+            />
+          </div>
+        </div>
+      </div>
       <div class="mobile-ctas">
         <nuxt-link
           v-for="(link, index) in data.tab1.links"
@@ -299,8 +355,7 @@ export default {
     padding-bottom: 32%;
 
     @include breakpoint(small) {
-      width: 100%;
-      padding-bottom: 44%;
+      display: none;
     }
 
     img {
@@ -315,6 +370,60 @@ export default {
 
       &.visible {
         opacity: 1;
+      }
+    }
+  }
+
+  .mobile-graphs-wrapper {
+    position: relative;
+
+    .mobile-graphs {
+      position: relative;
+      display: none;
+      width: calc(100% + 52px);
+      @include neg-gutter(left);
+      margin: 30px 0 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.5s opacity;
+
+      &.visible {
+        pointer-events: all;
+        opacity: 1;
+      }
+
+      &.pos-abs {
+        position: absolute;
+        top: 0;
+      }
+
+      @include breakpoint(small) {
+        display: flex;
+      }
+
+      div img {
+        position: relative;
+        width: 143vw;
+        height: auto;
+      }
+
+      .left {
+        flex-shrink: 0;
+        width: 30%;
+        overflow: hidden;
+
+        img {
+          left: -6vw;
+        }
+      }
+
+      .right {
+        overflow-x: scroll;
+        margin-right: -53vw;
+
+        img {
+          left: -40vw;
+        }
       }
     }
   }

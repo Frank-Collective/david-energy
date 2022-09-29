@@ -303,6 +303,7 @@ export default {
 
       .form {
         max-width: 552px;
+        width: 100%;
 
         @include breakpoint(small) {
           max-width: none;
