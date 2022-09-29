@@ -14,7 +14,7 @@
         />
       </div>
       <div class="inner">
-        <div class="image">
+        <div class="image" v-if="page.forBrokersSection1.image">
           <FadeImage
             v-if="page.forBrokersSection1.image"
             :srcset="page.forBrokersSection1.image.srcSet"

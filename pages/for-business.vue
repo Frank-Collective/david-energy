@@ -36,7 +36,7 @@
           >
         </div>
 
-        <div class="image">
+        <div class="image" v-if="page.forBusinessSection1.image">
           <FadeImage
             v-if="page.forBusinessSection1.image"
             :srcset="page.forBusinessSection1.image.srcSet"

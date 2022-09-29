@@ -32,7 +32,7 @@
           >
         </div>
 
-        <div class="image">
+        <div class="image" v-if="page.forHomeSection1.image">
           <FadeImage
             v-if="page.forHomeSection1.image"
             :srcset="page.forHomeSection1.image.srcSet"
