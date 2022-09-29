@@ -61,6 +61,11 @@ export default {
     justify-content: center;
     margin-bottom: 7vw;
 
+    @include breakpoint(small) {
+      margin-bottom: 3em;
+      margin-top: -1.5em;
+    }
+
     a {
       width: 100%;
     }
@@ -87,7 +92,7 @@ export default {
         width: 100%;
         height: auto;
         min-height: 0;
-        margin-bottom: 40px;
+        margin-bottom: 0px;
 
         &:last-of-type {
           margin-bottom: 0;
@@ -119,7 +124,7 @@ export default {
 
         @include breakpoint(small) {
           flex-direction: column;
-          margin-top: 0.5em;
+          margin-top: 0.75em;
         }
 
         h3 {

@@ -15,7 +15,7 @@
             ></h4>
           </div>
 
-          <div class="image">
+          <div class="image" v-if="page.whySection1.image">
             <FadeImage
               v-if="page.whySection1.image"
               :srcset="page.whySection1.image.srcSet"

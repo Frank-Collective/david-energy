@@ -32,7 +32,7 @@
           >
         </div>
 
-        <div class="image">
+        <div class="image" v-if="page.forHomeSection1.image">
           <FadeImage
             v-if="page.forHomeSection1.image"
             :srcset="page.forHomeSection1.image.srcSet"
@@ -304,6 +304,7 @@ export default {
     display: flex;
     justify-content: space-between;
     @include gutter(padding-left);
+    @include gutter(padding-right);
     @include max-width;
 
     @include breakpoint(small) {
@@ -349,12 +350,15 @@ export default {
 
     .image {
       position: relative;
-      flex-grow: 1;
-      padding-bottom: 40.5%;
+      width: 58%;
+      flex-shrink: 0;
+      padding-bottom: 39.5%;
+      margin-top: -2vw;
 
       @include breakpoint(small) {
         width: 100%;
         padding-bottom: 0;
+        margin-top: 0;
       }
 
       img {
@@ -362,13 +366,13 @@ export default {
         display: block;
         top: 0;
         right: 0;
-        width: 120%;
+        width: 100%;
         height: auto;
 
         @include breakpoint(small) {
           position: relative;
-          right: 17%;
-          width: 152%;
+          right: 8%;
+          width: 120%;
         }
       }
     }
@@ -455,6 +459,7 @@ export default {
   padding-bottom: 9vw;
 
   @include breakpoint(small) {
+    padding-bottom: 100px;
   }
 
   .bg-image {
