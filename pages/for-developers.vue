@@ -98,7 +98,10 @@
       </div>
     </div>
 
-    <div class="for-developers-section-3">
+    <div
+      v-if="page.forDevelopersSection3.caseStudies"
+      class="for-developers-section-3"
+    >
       <div class="bg-image">
         <img
           class="desktop"

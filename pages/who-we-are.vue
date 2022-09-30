@@ -139,7 +139,7 @@
             v-for="(article, index) in page.aboutSection5.featuredPosts"
             :key="index"
           >
-            <div class="eyebrow">Post Type</div>
+            <!-- <div class="eyebrow">Post Type</div> -->
             <div class="title-excerpt">
               <h4 v-if="article.title" v-html="article.title"></h4>
               <div class="excerpt">
