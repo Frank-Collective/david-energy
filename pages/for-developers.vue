@@ -28,12 +28,15 @@
             v-if="page.forDevelopersSection1.copy"
             v-html="page.forDevelopersSection1.copy"
           ></p>
-          <nuxt-link
-            class="button hide-small"
+          <Link
             v-if="page.forDevelopersSection1.link"
-            :to="page.forDevelopersSection1.link.url"
-            >{{ page.forDevelopersSection1.link.title }}</nuxt-link
-          >
+            :classes="'button hide-small'"
+            :link="{
+              url: page.forDevelopersSection1.link.url,
+              target: page.forDevelopersSection1.link.target,
+              title: page.forDevelopersSection1.link.title,
+            }"
+          />
         </div>
 
         <div class="image" v-if="page.forDevelopersSection1.image">
@@ -53,12 +56,15 @@
             v-if="page.forDevelopersSection1.copy"
             v-html="page.forDevelopersSection1.copy"
           ></p>
-          <nuxt-link
-            class="button"
+          <Link
             v-if="page.forDevelopersSection1.link"
-            :to="page.forDevelopersSection1.link.url"
-            >{{ page.forDevelopersSection1.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: page.forDevelopersSection1.link.url,
+              target: page.forDevelopersSection1.link.target,
+              title: page.forDevelopersSection1.link.title,
+            }"
+          />
         </div>
       </div>
     </div>
@@ -92,7 +98,10 @@
       </div>
     </div>
 
-    <div class="for-developers-section-3">
+    <div
+      v-if="page.forDevelopersSection3.caseStudies"
+      class="for-developers-section-3"
+    >
       <div class="bg-image">
         <img
           class="desktop"

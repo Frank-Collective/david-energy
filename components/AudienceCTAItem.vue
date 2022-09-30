@@ -22,13 +22,16 @@
         <!-- <div class="content" v-show="expanded"> -->
         <div class="content">
           <p class="body-copy-small" v-html="data.copy"></p>
-          <nuxt-link
+          <Link
             v-for="(link, index) in data.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-            >{{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.url,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
       </transition>
     </div>

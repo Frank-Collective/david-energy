@@ -23,9 +23,14 @@
         <div class="content" v-show="expanded">
           <div class="spacer"></div>
           <p v-if="data.copy" v-html="data.copy"></p>
-          <nuxt-link :to="data.link.url" class="button--outline">{{
-            data.link.title
-          }}</nuxt-link>
+          <Link
+            :classes="'button--outline'"
+            :link="{
+              url: data.link.url,
+              target: data.link.target,
+              title: data.link.title,
+            }"
+          />
         </div>
       </transition>
     </div>

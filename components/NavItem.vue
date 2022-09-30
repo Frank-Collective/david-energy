@@ -18,9 +18,15 @@
       }
     "
   >
-    <nuxt-link v-if="!data.dropdown" :to="data.url" class="green_hover">
-      {{ data.title }}
-    </nuxt-link>
+    <Link
+      v-if="!data.dropdown"
+      :classes="'green_hover'"
+      :link="{
+        url: data.url,
+        target: data.target,
+        title: data.title,
+      }"
+    />
     <span v-if="data.dropdown">
       {{ data.title }}
       <img
@@ -50,7 +56,13 @@
           :key="index"
           v-on:click="data.callback()"
         >
-          <nuxt-link :to="item.url">{{ item.title }}</nuxt-link>
+          <Link
+            :link="{
+              url: item.url,
+              target: item.target,
+              title: item.title,
+            }"
+          />
         </li>
       </ul>
     </transition>

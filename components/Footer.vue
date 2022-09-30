@@ -6,12 +6,15 @@
     >
       <div class="inner">
         <h4 v-if="data.cta.text">{{ data.cta.text }}</h4>
-        <nuxt-link
-          v-if="data.cta.link"
-          class="button--light-green"
-          :to="data.cta.link.url"
-          >{{ data.cta.link.title }}</nuxt-link
-        >
+
+        <Link
+          :classes="'button--light-green'"
+          :link="{
+            url: data.cta.link.url,
+            target: data.cta.link.target,
+            title: data.cta.link.title,
+          }"
+        />
       </div>
     </div>
     <div class="footer-content">
@@ -56,11 +59,14 @@
             <span v-if="menu.title" :key="index">{{ menu.title }}</span>
             <ul :key="`${index}1`">
               <li v-for="(item, index2) in menu.menuItems" :key="index2">
-                <nuxt-link
-                  class="indented-text-link--medium"
-                  :to="item.link.url"
-                  >{{ item.link.title }}</nuxt-link
-                >
+                <Link
+                  :classes="'indented-text-link--medium'"
+                  :link="{
+                    url: item.link.url,
+                    target: item.link.target,
+                    title: item.link.title,
+                  }"
+                />
               </li>
             </ul>
           </template>
@@ -68,11 +74,14 @@
         <div class="menu-2">
           <ul class="desktop">
             <li v-for="(item, index) in data.menu2.menuItems" :key="index">
-              <nuxt-link
-                class="indented-text-link--small"
-                :to="item.link.url"
-                >{{ item.link.title }}</nuxt-link
-              >
+              <Link
+                :classes="'indented-text-link--small'"
+                :link="{
+                  url: item.link.url,
+                  target: item.link.target,
+                  title: item.link.title,
+                }"
+              />
             </li>
           </ul>
           <ul class="mobile">
@@ -80,11 +89,14 @@
               v-for="(item, index) in data.menu2Mobile.menuItems"
               :key="index"
             >
-              <nuxt-link
-                class="indented-text-link--small"
-                :to="item.link.url"
-                >{{ item.link.title }}</nuxt-link
-              >
+              <Link
+                :classes="'indented-text-link--small'"
+                :link="{
+                  url: item.link.url,
+                  target: item.link.target,
+                  title: item.link.title,
+                }"
+              />
             </li>
           </ul>
         </div>
@@ -92,20 +104,27 @@
     </div>
     <div class="legal">
       <div class="inner">
-        <nuxt-link
-          class="desktop"
+        <Link
+          :classes="'desktop'"
           v-for="(link, index) in data.legalLinks"
           :key="index"
-          :to="link.link.url"
-          v-html="link.link.title"
-        ></nuxt-link>
-        <nuxt-link
-          class="mobile"
-          v-for="(link, index) in data.legalLinksMobile"
+          :link="{
+            url: link.link.url,
+            target: link.link.target,
+            title: link.link.title,
+          }"
+        />
+        <Link
+          :classes="'mobile'"
+          v-for="(link, index) in data.legalLinks"
           :key="`${index}1`"
-          :to="link.link.url"
-          v-html="link.link.title"
-        ></nuxt-link>
+          :link="{
+            url: link.link.url,
+            target: link.link.target,
+            title: link.link.title,
+          }"
+        />
+
         <span>{{ data.copyrightText }}</span>
       </div>
     </div>
