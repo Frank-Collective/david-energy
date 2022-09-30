@@ -39,12 +39,15 @@
             v-if="page.forBrokersSection1.copy"
             v-html="page.forBrokersSection1.copy"
           ></p>
-          <nuxt-link
-            class="button hide-small"
+          <Link
             v-if="page.forBrokersSection1.link"
-            :to="page.forBrokersSection1.link.url"
-            >{{ page.forBrokersSection1.link.title }}</nuxt-link
-          >
+            :classes="'button hide-small'"
+            :link="{
+              url: page.forBrokersSection1.link.url,
+              target: page.forBrokersSection1.link.target,
+              title: page.forBrokersSection1.link.title,
+            }"
+          />
         </div>
 
         <div class="copy show-small">
@@ -52,12 +55,15 @@
             v-if="page.forBrokersSection1.copy"
             v-html="page.forBrokersSection1.copy"
           ></p>
-          <nuxt-link
-            class="button"
+          <Link
             v-if="page.forBrokersSection1.link"
-            :to="page.forBrokersSection1.link.url"
-            >{{ page.forBrokersSection1.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: page.forBrokersSection1.link.url,
+              target: page.forBrokersSection1.link.target,
+              title: page.forBrokersSection1.link.title,
+            }"
+          />
         </div>
       </div>
     </div>

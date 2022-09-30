@@ -90,12 +90,15 @@
             v-if="page.whySection5.title"
             v-html="page.whySection5.title"
           ></h2>
-          <nuxt-link
-            class="button"
+          <Link
             v-if="page.whySection5.link"
-            :to="page.whySection5.link.url"
-            >{{ page.whySection5.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: page.whySection5.link.url,
+              target: page.whySection5.link.target,
+              title: page.whySection5.link.title,
+            }"
+          />
         </div>
         <div class="faqs">
           <FAQItem
@@ -108,12 +111,15 @@
           />
         </div>
         <div class="cta">
-          <nuxt-link
-            class="button"
+          <Link
             v-if="page.whySection5.link"
-            :to="page.whySection5.link.url"
-            >{{ page.whySection5.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: page.whySection5.link.url,
+              target: page.whySection5.link.target,
+              title: page.whySection5.link.title,
+            }"
+          />
         </div>
       </div>
     </div>

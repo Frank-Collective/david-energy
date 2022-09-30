@@ -164,7 +164,7 @@
             :link="{
               url: data.getStartedLink.url,
               target: data.getStartedLink.target,
-              title: 'sdfasdf',
+              title: data.getStartedLink.title,
             }"
           />
         </li>

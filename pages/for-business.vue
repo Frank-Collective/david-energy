@@ -28,12 +28,15 @@
             v-if="page.forBusinessSection1.copy"
             v-html="page.forBusinessSection1.copy"
           ></p>
-          <nuxt-link
-            class="button hide-small"
+          <Link
             v-if="page.forBusinessSection1.link"
-            :to="page.forBusinessSection1.link.url"
-            >{{ page.forBusinessSection1.link.title }}</nuxt-link
-          >
+            :classes="'button hide-small'"
+            :link="{
+              url: page.forBusinessSection1.link.url,
+              target: page.forBusinessSection1.link.target,
+              title: page.forBusinessSection1.link.title,
+            }"
+          />
         </div>
 
         <div class="image" v-if="page.forBusinessSection1.image">
@@ -53,12 +56,15 @@
             v-if="page.forBusinessSection1.copy"
             v-html="page.forBusinessSection1.copy"
           ></p>
-          <nuxt-link
-            class="button"
+          <Link
             v-if="page.forBusinessSection1.link"
-            :to="page.forBusinessSection1.link.url"
-            >{{ page.forBusinessSection1.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: page.forBusinessSection1.link.url,
+              target: page.forBusinessSection1.link.target,
+              title: page.forBusinessSection1.link.title,
+            }"
+          />
         </div>
       </div>
     </div>
