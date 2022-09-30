@@ -12,7 +12,7 @@
             :key="index"
             :classes="'button'"
             :link="{
-              url: link.link.title,
+              url: link.link.url,
               target: link.link.target,
               title: link.link.title,
             }"
@@ -60,7 +60,7 @@
           :key="index"
           :classes="'button'"
           :link="{
-            url: link.link.title,
+            url: link.link.url,
             target: link.link.target,
             title: link.link.title,
           }"

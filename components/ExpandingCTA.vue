@@ -26,7 +26,7 @@
           <Link
             :classes="'button--outline'"
             :link="{
-              url: data.link.title,
+              url: data.link.url,
               target: data.link.target,
               title: data.link.title,
             }"
