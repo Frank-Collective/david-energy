@@ -10,7 +10,7 @@
         <Link
           :classes="'button--light-green'"
           :link="{
-            url: data.cta.title,
+            url: data.cta.url,
             target: data.cta.target,
             title: data.cta.title,
           }"

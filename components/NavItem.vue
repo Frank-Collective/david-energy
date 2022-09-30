@@ -76,13 +76,7 @@
     >
       <ul class="dropdown-dummy" v-show="expanded">
         <li v-for="(item, index) in data.dropdown" :key="index">
-          <!-- <nuxt-link :to="item.url">&nbsp;</nuxt-link> -->
-          <Link
-            :link="{
-              url: item.url,
-              title: '&nbsp;',
-            }"
-          />
+          <nuxt-link :to="item.url">&nbsp;</nuxt-link>
         </li>
       </ul>
     </transition>

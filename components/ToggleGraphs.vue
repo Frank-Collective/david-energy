@@ -143,7 +143,7 @@
         <Link
           v-for="(link, index) in data.tab1.links"
           :key="`${index}0`"
-          :classes="{ visible: selected_index == 0 }"
+          :classes="selected_index == 0 ? 'visible' : 'not-visible'"
           :link="{
             url: link.link.url,
             target: link.link.target,
@@ -153,7 +153,7 @@
         <Link
           v-for="(link, index) in data.tab2.links"
           :key="`${index}1`"
-          :classes="{ visible: selected_index == 1 }"
+          :classes="selected_index == 1 ? 'visible' : 'not-visible'"
           :link="{
             url: link.link.url,
             target: link.link.target,

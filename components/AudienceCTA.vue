@@ -72,7 +72,9 @@
             <Link
               v-if="cta.links.length == 1"
               :key="`${index}1`"
-              :classes="{ visible: selected_image_index == index }"
+              :classes="
+                selected_image_index == index ? 'visible' : 'not-visible'
+              "
               :link="{
                 url: cta.links[0].link.url,
                 target: cta.links[0].target,
