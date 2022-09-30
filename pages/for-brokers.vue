@@ -1,6 +1,6 @@
 <template>
   <div id="top">
-    <div class="for-brokers-section-1">
+    <div class="for-brokers-section-1" v-if="page.forBrokersSection1.title">
       <div class="bg-image">
         <img
           class="desktop"
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div class="for-brokers-section-2">
+    <div class="for-brokers-section-2" v-if="page.forBrokersSection2.title">
       <div class="bg-image">
         <img
           class="mobile"
@@ -97,7 +97,10 @@
       </div>
     </div>
 
-    <div class="for-brokers-section-3">
+    <div
+      class="for-brokers-section-3"
+      v-if="page.forBrokersSection3.caseStudies"
+    >
       <div class="bg-image">
         <img
           class="desktop"
@@ -113,7 +116,7 @@
       <CaseStudies :data="page.forBrokersSection3" />
     </div>
 
-    <div class="for-brokers-section-4">
+    <div class="for-brokers-section-4" v-if="page.forBrokersSection4.infoCards">
       <div class="bg-image">
         <img
           src="/images/for-brokers-section-4-bg-mobile.jpg"
@@ -124,11 +127,11 @@
       <PlatformFeatures :data="page.forBrokersSection4" />
     </div>
 
-    <div class="for-brokers-section-5">
+    <div class="for-brokers-section-5" v-if="page.forBrokersSection5.tite">
       <BrandsWeWorkWith :data="page.forBrokersSection5" />
     </div>
 
-    <div class="for-brokers-section-6">
+    <div class="for-brokers-section-6" v-if="page.forBrokersSection6.title">
       <div class="bg-image">
         <img
           class="desktop"
@@ -145,7 +148,7 @@
       <DevicesWeWorkWith :data="page.forBrokersSection6" />
     </div>
 
-    <div class="for-brokers-section-7">
+    <div class="for-brokers-section-7" v-if="page.forBrokersSection7.title">
       <div class="bg-image">
         <img
           class="desktop"
