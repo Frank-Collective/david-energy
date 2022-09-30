@@ -43,25 +43,30 @@
       <div class="copy">
         <div class="section" ref="section0">
           <p v-if="data.tab1.copy" v-html="data.tab1.copy"></p>
-          <nuxt-link
+
+          <Link
             v-for="(link, index) in data.tab1.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-          >
-            {{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.url,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
         <div class="section hidden" ref="section1">
           <p v-if="data.tab2.copy" v-html="data.tab2.copy"></p>
-          <nuxt-link
+          <Link
             v-for="(link, index) in data.tab2.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-          >
-            {{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.url,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
       </div>
       <div class="graphs">
@@ -135,22 +140,26 @@
         </div>
       </div>
       <div class="mobile-ctas">
-        <nuxt-link
+        <Link
           v-for="(link, index) in data.tab1.links"
           :key="`${index}0`"
-          :to="link.link.url"
-          class="button"
-          v-bind:class="{ visible: selected_index == 0 }"
-          >{{ link.link.title }}</nuxt-link
-        >
-        <nuxt-link
+          :classes="{ visible: selected_index == 0 }"
+          :link="{
+            url: link.link.url,
+            target: link.link.target,
+            title: link.link.title,
+          }"
+        />
+        <Link
           v-for="(link, index) in data.tab2.links"
           :key="`${index}1`"
-          :to="link.link.url"
-          class="button"
-          v-bind:class="{ visible: selected_index == 1 }"
-          >{{ link.link.title }}</nuxt-link
-        >
+          :classes="{ visible: selected_index == 1 }"
+          :link="{
+            url: link.link.url,
+            target: link.link.target,
+            title: link.link.title,
+          }"
+        />
       </div>
     </div>
   </div>

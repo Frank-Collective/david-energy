@@ -3,9 +3,14 @@
     <h4 v-if="data.copy" v-html="data.copy"></h4>
 
     <div class="cta" v-if="data.link">
-      <nuxt-link class="button" :to="data.link.url">{{
-        data.link.title
-      }}</nuxt-link>
+      <Link
+        :classes="'button'"
+        :link="{
+          url: data.link.url,
+          target: data.link.target,
+          title: data.link.title,
+        }"
+      />
     </div>
 
     <div class="info-cards">

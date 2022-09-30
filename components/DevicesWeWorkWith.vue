@@ -94,12 +94,14 @@
 
       <div class="cta">
         <p v-if="data.cta.title">{{ data.cta.title }}</p>
-        <nuxt-link
-          class="button--light-green"
-          v-if="data.cta.link"
-          :to="data.cta.link.url"
-          >{{ data.cta.link.title }}</nuxt-link
-        >
+        <Link
+          :classes="'button--light-green'"
+          :link="{
+            url: data.cta.title,
+            target: data.cta.target,
+            title: data.cta.title,
+          }"
+        />
       </div>
     </div>
   </client-only>

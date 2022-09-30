@@ -7,14 +7,16 @@
       <div class="copy">
         <div class="section">
           <p v-if="data.copy" v-html="data.copy"></p>
-          <nuxt-link
+          <Link
             v-for="(link, index) in data.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-          >
-            {{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.title,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
       </div>
       <div class="graph">
@@ -53,14 +55,16 @@
         </div>
       </div>
       <div class="mobile-ctas">
-        <nuxt-link
+        <Link
           v-for="(link, index) in data.links"
           :key="index"
-          :to="link.link.url"
-          class="button"
-        >
-          {{ link.link.title }}</nuxt-link
-        >
+          :classes="'button'"
+          :link="{
+            url: link.link.title,
+            target: link.link.target,
+            title: link.link.title,
+          }"
+        />
       </div>
     </div>
   </div>

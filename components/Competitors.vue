@@ -36,26 +36,32 @@
         <div class="section" ref="section0">
           <h3 v-if="data.tab1.title" v-html="data.tab1.title"></h3>
           <p v-if="data.tab1.copy" v-html="data.tab1.copy"></p>
-          <nuxt-link
+          <Link
             v-for="(link, index) in data.tab1.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-            >{{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.title,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
         <div class="section hidden" ref="section1">
           <h3 v-html="data.tab2.title"></h3>
           <p>
             {{ data.tab2.copy }}
           </p>
-          <nuxt-link
+          <Link
             v-for="(link, index) in data.tab2.links"
             :key="index"
-            :to="link.link.url"
-            class="button"
-            >{{ link.link.title }}</nuxt-link
-          >
+            :classes="'button'"
+            :link="{
+              url: link.link.title,
+              target: link.link.target,
+              title: link.link.title,
+            }"
+          />
         </div>
       </div>
     </div>
@@ -88,22 +94,27 @@
       ></div>
     </div>
     <div class="mobile-ctas">
-      <nuxt-link
+      <Link
         v-for="(link, index) in data.tab1.links"
         :key="`${index}0`"
-        :to="link.link.url"
-        class="button"
-        v-bind:class="{ visible: selected_index == 0 }"
-        >{{ link.link.title }}</nuxt-link
-      >
-      <nuxt-link
+        :classes="'button'"
+        :link="{
+          url: link.link.title,
+          target: link.link.target,
+          title: link.link.title,
+        }"
+      />
+
+      <Link
         v-for="(link, index) in data.tab2.links"
         :key="`${index}1`"
-        :to="link.link.url"
-        class="button"
-        v-bind:class="{ visible: selected_index == 1 }"
-        >{{ link.link.title }}</nuxt-link
-      >
+        :classes="'button'"
+        :link="{
+          url: link.link.title,
+          target: link.link.target,
+          title: link.link.title,
+        }"
+      />
     </div>
   </div>
 </template>

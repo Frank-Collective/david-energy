@@ -46,13 +46,17 @@
               :key="index"
             >
               <p class="body-copy-small">{{ cta.copy }}</p>
-              <nuxt-link
-                class="button"
+
+              <Link
+                :classes="'button'"
                 v-for="(link, index2) in cta.links"
                 :key="index2"
-                :to="link.link.url"
-                >{{ link.link.title }}</nuxt-link
-              >
+                :link="{
+                  url: link.link.url,
+                  target: link.link.target,
+                  title: link.link.title,
+                }"
+              />
             </div>
           </flickity>
         </div>
@@ -65,12 +69,16 @@
             v-bind:class="{ visible: selected_image_index == index2 }"
           />
           <template v-for="(cta, index) in data.ctas">
-            <nuxt-link
+            <Link
               v-if="cta.links.length == 1"
               :key="`${index}1`"
-              :to="cta.links[0].link.url"
-              v-bind:class="{ visible: selected_image_index == index }"
-            ></nuxt-link>
+              :classes="{ visible: selected_image_index == index }"
+              :link="{
+                url: cta.links[0].link.url,
+                target: cta.links[0].target,
+                title: cta.links[0].title,
+              }"
+            />
           </template>
         </div>
       </div>
