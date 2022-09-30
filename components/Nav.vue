@@ -158,21 +158,36 @@
 
         <li class="divider"></li>
 
-        <li class="bright-green-button">
-          <nuxt-link class="button" to="#">Get Started</nuxt-link>
+        <li v-if="data.getStartedLink" class="bright-green-button">
+          <Link
+            :classes="'button'"
+            :link="{
+              url: data.getStartedLink.url,
+              target: data.getStartedLink.target,
+              title: 'sdfasdf',
+            }"
+          />
         </li>
 
         <NavItem
+          v-if="data.logInLink"
           class="login-button-desktop"
           :data="{
-            title: 'Log In',
-            url: '#',
+            title: data.logInLink.title,
+            url: data.logInLink.url,
             callback: closeMenu,
           }"
         />
 
-        <li class="login-button-mobile">
-          <nuxt-link class="button--white" to="#">Log In</nuxt-link>
+        <li v-if="data.logInLink" class="login-button-mobile">
+          <Link
+            :classes="'button'"
+            :link="{
+              url: data.logInLink.url,
+              target: data.logInLink.target,
+              title: data.logInLink.title,
+            }"
+          />
         </li>
       </ul>
     </div>
@@ -215,6 +230,16 @@ export default {
                   title
                   url
                 }
+              }
+              logInLink {
+                target
+                title
+                url
+              }
+              getStartedLink {
+                target
+                title
+                url
               }
             }
           }
