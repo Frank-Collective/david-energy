@@ -175,6 +175,7 @@
           :data="{
             title: data.logInLink.title,
             url: data.logInLink.url,
+            target: data.logInLink.target,
             callback: closeMenu,
           }"
         />
