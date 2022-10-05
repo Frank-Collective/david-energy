@@ -354,6 +354,8 @@ export default {
     }
 
     .copy {
+      position: relative;
+      z-index: 1;
       width: 63%;
       flex-shrink: 0;
 
@@ -399,12 +401,11 @@ export default {
       position: relative;
       flex-grow: 1;
       padding-bottom: 45.2%;
-      margin-top: 3vw;
 
       @include breakpoint(small) {
         width: 100%;
         padding-bottom: 0;
-        margin-top: -28vw;
+        margin-top: -16vw;
       }
 
       img {
@@ -412,13 +413,13 @@ export default {
         display: block;
         top: 0;
         right: 0;
-        width: 170%;
+        width: 146%;
         height: auto;
 
         @include breakpoint(small) {
           position: relative;
-          width: 165%;
-          right: 27%;
+          width: 120%;
+          right: 8%;
         }
       }
     }

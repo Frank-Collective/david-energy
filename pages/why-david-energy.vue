@@ -227,7 +227,7 @@ export default {
     `;
     let { page } = await $graphql.default.request(query);
     page = page.PageWhyFields;
-    console.log(page);
+    // console.log(page);
     if (route.query && route.query.preview && page.preview) {
       page = page.preview.node;
     }
@@ -295,6 +295,8 @@ export default {
     @include max-width;
 
     :deep(h1) {
+      position: relative;
+      z-index: 1;
       @include h1-medium;
       @include gutter(padding-left);
       @include gutter(padding-right);
@@ -328,15 +330,15 @@ export default {
 
       .image {
         position: relative;
-        margin-top: -13vw;
-        width: 58%;
+        margin-top: -18vw;
+        width: 51%;
         flex-shrink: 0;
         padding-bottom: 44%;
 
         @include breakpoint(small) {
           width: 100%;
           margin-top: -9%;
-          padding-bottom: 100%;
+          padding-bottom: 0;
         }
 
         img {
@@ -348,8 +350,9 @@ export default {
           height: auto;
 
           @include breakpoint(small) {
-            width: 140%;
-            right: -29%;
+            position: relative;
+            width: 110%;
+            right: 7%;
           }
         }
       }

@@ -293,7 +293,7 @@ export default {
       position: relative;
       width: 52%;
       flex-shrink: 0;
-      top: -17em;
+      top: -14em;
       @include gutter(margin-right);
 
       @include breakpoint(xlarge) {
