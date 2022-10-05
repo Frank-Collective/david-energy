@@ -260,7 +260,7 @@ export default {
   async asyncData({ $graphql, route }) {
     const query = gql`
       query MyQuery {
-        page(id: "about-us", idType: URI, asPreview: true) {
+        page(id: "who-we-are", idType: URI, asPreview: true) {
           ${gql_content}
           isPreview
           preview {
