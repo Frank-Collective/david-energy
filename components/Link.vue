@@ -7,6 +7,21 @@
     >{{ link.title }}</a
   >
 
+  <!-- Scroll To Element Using Full URL + Hash on same page -->
+  <a
+    v-else-if="
+      link.url &&
+      link.url.includes('#') &&
+      $route.path == link.url.substr(0, link.url.indexOf('#'))
+    "
+    v-scroll-to="{
+      el: link.url.substr(link.url.indexOf('#')),
+      offset: -50,
+    }"
+    :class="classes"
+    >{{ link.title }}</a
+  >
+
   <!-- Internal link -->
   <nuxt-link
     v-else-if="link.target != '_blank' && link.url"
